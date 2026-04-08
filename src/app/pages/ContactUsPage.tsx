@@ -76,10 +76,10 @@ export function ContactUsPage() {
               <div>
                 <div className="text-sm font-medium text-gray-500">Email</div>
                 <a
-                  href="mailto:partners@chaloholiday.com"
+                  href="mailto:chaloholiday@chaloholidays.com"
                   className="block text-lg text-gray-900 hover:text-[#E63946]"
                 >
-                  partners@chaloholiday.com
+                  chaloholiday@chaloholidays.com
                 </a>
                 <a
                   href="mailto:chaloholiday@hotmail.co.uk"

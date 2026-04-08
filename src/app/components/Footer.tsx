@@ -143,8 +143,8 @@ export function Footer() {
                 <Mail className="w-5 h-5 text-[#E63946] flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Email</p>
-                  <a href="mailto:partners@chaloholiday.com" className="text-gray-300 hover:text-white transition-colors">
-                    partners@chaloholiday.com
+                  <a href="mailto:chaloholiday@chaloholidays.com" className="text-gray-300 hover:text-white transition-colors">
+                    chaloholiday@chaloholidays.com
                   </a>
                   <p className="mt-1 text-sm text-gray-400">
                     Alternative:{" "}
