@@ -46,7 +46,15 @@ export function PartnerEnquiryForm({
       });
 
       const responseText = await response.text();
-      const result = responseText ? JSON.parse(responseText) : {};
+      let result: unknown = {};
+
+      if (responseText) {
+        try {
+          result = JSON.parse(responseText);
+        } catch {
+          result = { error: responseText };
+        }
+      }
 
       if (!response.ok) {
         console.error("Partner enquiry request failed", {
