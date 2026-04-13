@@ -20,13 +20,9 @@ const benefits = [
   },
 ];
 
-type DifferentiationProps = {
-  onOpenPartnerModal: () => void;
-};
-
-export function Differentiation({ onOpenPartnerModal }: DifferentiationProps) {
+export function Differentiation() {
   return (
-    <section id="about" className="py-24 sm:py-32 bg-[#F5F5F7] scroll-mt-24">
+    <section className="py-24 sm:py-32 bg-[#F5F5F7]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: Text Content */}
@@ -38,16 +34,10 @@ export function Differentiation({ onOpenPartnerModal }: DifferentiationProps) {
             className="space-y-8"
           >
             <div className="space-y-4">
-              <h2
-                className="text-4xl sm:text-5xl font-bold leading-[1.05] tracking-[-0.03em] text-gray-900"
-                style={{ fontFamily: '"Poppins", sans-serif' }}
-              >
+              <h2 className="text-4xl sm:text-5xl font-bold text-gray-900">
                 Why <span className="text-[#E63946]">Chalo Holiday</span>
               </h2>
-              <p
-                className="text-xl text-gray-600 leading-relaxed"
-                style={{ fontFamily: '"Manrope", sans-serif' }}
-              >
+              <p className="text-xl text-gray-600 leading-relaxed">
                 We understand the challenges travel professionals face. That's why we've built a platform that puts your success first.
               </p>
             </div>
@@ -69,16 +59,10 @@ export function Differentiation({ onOpenPartnerModal }: DifferentiationProps) {
                     </div>
                   </div>
                   <div className="space-y-1">
-                    <h3
-                      className="text-xl font-semibold text-gray-900 group-hover:text-[#E63946] transition-colors duration-300"
-                      style={{ fontFamily: '"Manrope", sans-serif' }}
-                    >
+                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-[#E63946] transition-colors duration-300">
                       {benefit.title}
                     </h3>
-                    <p
-                      className="text-gray-600 leading-relaxed"
-                      style={{ fontFamily: '"Manrope", sans-serif' }}
-                    >
+                    <p className="text-gray-600 leading-relaxed">
                       {benefit.description}
                     </p>
                   </div>
@@ -93,13 +77,8 @@ export function Differentiation({ onOpenPartnerModal }: DifferentiationProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <button
-                type="button"
-                onClick={onOpenPartnerModal}
-                className="px-8 py-4 bg-[#E63946] text-white rounded-xl hover:bg-[#D62839] transition-all duration-300 shadow-lg hover:shadow-xl"
-                style={{ fontFamily: '"Manrope", sans-serif' }}
-              >
-                <span className="text-lg">Register as a Partner to Explore All Benefits</span>
+              <button className="px-8 py-4 bg-[#E63946] text-white rounded-xl hover:bg-[#D62839] transition-all duration-300 shadow-lg hover:shadow-xl">
+                <span className="text-lg">Explore All Benefits</span>
               </button>
             </motion.div>
           </motion.div>

@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
+
+const PARTNER_ENQUIRY_DRAFT_KEY = "partner_enquiry_draft_v1";
 
 const initialFormData = {
   fullName: "",
@@ -18,12 +20,46 @@ export function PartnerEnquiryForm({
   successMode = "replace",
   onSuccess,
 }: PartnerEnquiryFormProps) {
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState(() => {
+    if (typeof window === "undefined") {
+      return initialFormData;
+    }
+
+    try {
+      const saved = window.localStorage.getItem(PARTNER_ENQUIRY_DRAFT_KEY);
+      if (!saved) {
+        return initialFormData;
+      }
+
+      const parsed = JSON.parse(saved);
+      return {
+        ...initialFormData,
+        ...(typeof parsed === "object" && parsed ? parsed : {}),
+      };
+    } catch {
+      return initialFormData;
+    }
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<{
     type: "success" | "error";
     message: string;
   } | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(
+        PARTNER_ENQUIRY_DRAFT_KEY,
+        JSON.stringify(formData),
+      );
+    } catch {
+      // Ignore storage failures and keep the form usable.
+    }
+  }, [formData]);
 
   const handleFieldChange =
     (field: keyof typeof initialFormData) =>
@@ -82,6 +118,13 @@ export function PartnerEnquiryForm({
           "Your partner enquiry has been submitted successfully. Our team will contact you shortly.",
       });
       setFormData(initialFormData);
+      if (typeof window !== "undefined") {
+        try {
+          window.localStorage.removeItem(PARTNER_ENQUIRY_DRAFT_KEY);
+        } catch {
+          // Ignore storage cleanup failures.
+        }
+      }
       onSuccess?.();
     } catch (error) {
       console.error("Partner enquiry submit error", error);
