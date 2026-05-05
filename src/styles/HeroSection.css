@@ -1,0 +1,726 @@
+/* =============================================================
+   HeroSection.css — ChaloHolidays
+   Fully responsive: xs(< 480) | sm(480) | md(768) | lg(1024) | xl(1280) | 2xl(1536)
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --ch-red:        #D32F2F;
+  --ch-red-dark:   #B71C1C;
+  --ch-gold:       #C9A84C;
+  --ch-gold-light: #E6C76A;
+  --ch-dark:       #1a1008;
+  --ch-overlay-l:  rgba(10, 4, 0, 0.82);
+  --ch-overlay-r:  rgba(10, 4, 0, 0.10);
+  --ch-overlay-b:  rgba(10, 4, 0, 0.70);
+  --ch-white-low:  rgba(255, 255, 255, 0.65);
+  --ch-white-dim:  rgba(255, 255, 255, 0.30);
+  --ch-white-faint:rgba(255, 255, 255, 0.07);
+  --ch-text-label: rgba(255, 255, 255, 0.40);
+  --ch-transition: 0.25s ease;
+  --ch-font-serif: 'Playfair Display', Georgia, serif;
+  --ch-font-sans:  'Inter', system-ui, sans-serif;
+}
+
+/* ── Keyframes ─────────────────────────────────────────────── */
+@keyframes ch-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ch-slide-up {
+  from { opacity: 0; transform: translateY(44px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ch-pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.25); }
+  50%       { box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.10); }
+}
+
+/* ── Root Wrapper ──────────────────────────────────────────── */
+.ch-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 580px;
+  overflow: hidden;
+  background: var(--ch-dark);
+  font-family: var(--ch-font-sans);
+}
+
+/* ── Background Slides ─────────────────────────────────────── */
+.ch-bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  will-change: opacity, transform;
+}
+.ch-bg-slide.active  { opacity: 1;  transform: scale(1);    z-index: 2; }
+.ch-bg-slide.prev    { opacity: 0;  transform: scale(1.04); z-index: 1; }
+.ch-bg-slide.hidden  { opacity: 0;  transform: scale(1);    z-index: 0; }
+
+/* ── Overlays ──────────────────────────────────────────────── */
+.ch-overlay-lr {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    var(--ch-overlay-l) 0%,
+    rgba(10, 4, 0, 0.50) 50%,
+    var(--ch-overlay-r) 100%
+  );
+  pointer-events: none;
+  z-index: 3;
+}
+
+.ch-overlay-tb {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--ch-overlay-b) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ── Main Content Layer ────────────────────────────────────── */
+.ch-content {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  gap: 24px;
+}
+
+/* ── Left Text Block ───────────────────────────────────────── */
+.ch-left {
+  flex: 1;
+  max-width: 520px;
+  min-width: 0;
+}
+
+/* Location tag */
+.ch-location-tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  animation: ch-fade-in 0.7s ease forwards;
+}
+
+.ch-location-line {
+  width: 36px;
+  height: 1px;
+  background: var(--ch-gold);
+  flex-shrink: 0;
+}
+
+.ch-location-text {
+  color: var(--ch-gold);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Heading */
+.ch-heading-wrap {
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+
+.ch-title {
+  font-family: var(--ch-font-serif);
+  color: #fff;
+  line-height: 1.05;
+  margin: 0;
+  animation: ch-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.ch-title-top {
+  display: block;
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 700;
+}
+
+.ch-title-bottom {
+  display: block;
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 900;
+  color: var(--ch-gold);
+}
+
+/* Description */
+.ch-desc {
+  color: var(--ch-white-low);
+  font-size: 14px;
+  line-height: 1.8;
+  max-width: 380px;
+  margin-bottom: 32px;
+  animation: ch-fade-in 0.7s ease 0.15s forwards;
+  opacity: 0;
+}
+
+/* CTA row */
+.ch-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ch-btn-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 1px solid var(--ch-gold);
+  background: transparent;
+  cursor: pointer;
+  transition: background var(--ch-transition);
+  border-radius: 0;
+  padding: 0;
+}
+.ch-btn-circle:hover  { background: rgba(201, 168, 76, 0.15); }
+.ch-btn-circle:active { background: rgba(201, 168, 76, 0.28); }
+
+.ch-btn-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ch-red);
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background var(--ch-transition), transform var(--ch-transition);
+  font-family: var(--ch-font-sans);
+  white-space: nowrap;
+  touch-action: manipulation;
+}
+.ch-btn-main:hover  { background: var(--ch-red-dark); }
+.ch-btn-main:active { transform: scale(0.98); }
+
+/* ── Right — Destination Cards ─────────────────────────────── */
+.ch-cards {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding-bottom: 48px;
+  flex-shrink: 0;
+}
+
+.ch-dcard {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+  filter: brightness(0.75);
+  flex-shrink: 0;
+}
+.ch-dcard:hover       { transform: scale(1.04) translateY(-4px); filter: brightness(1); }
+.ch-dcard:focus       { outline: 2px solid var(--ch-gold); outline-offset: -2px; }
+.ch-dcard.active-card { filter: brightness(1); outline: 2px solid var(--ch-gold); outline-offset: -2px; }
+
+.ch-dcard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.ch-dcard:hover img { transform: scale(1.06); }
+
+.ch-dcard-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.10) 60%);
+  pointer-events: none;
+}
+
+.ch-dcard-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 14px 14px;
+}
+
+.ch-dcard-location {
+  color: rgba(201, 168, 76, 0.85);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.ch-dcard-title {
+  color: #fff;
+  font-family: var(--ch-font-serif);
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.ch-dcard-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ch-gold);
+  animation: ch-pulse-dot 2s ease infinite;
+}
+
+/* ── Bottom Bar ────────────────────────────────────────────── */
+.ch-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  border-top: 1px solid var(--ch-white-faint);
+  gap: 16px;
+}
+
+/* Slide counter */
+.ch-counter {
+  font-family: var(--ch-font-serif);
+  color: var(--ch-gold);
+  font-size: 28px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ch-counter-dim {
+  color: var(--ch-white-dim);
+  font-size: 13px;
+}
+.ch-counter-sep {
+  color: var(--ch-white-dim);
+  font-size: 13px;
+  margin-left: 4px;
+}
+
+/* Progress ring + dots */
+.ch-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ch-ring-wrap {
+  position: relative;
+  width: 52px;
+  height: 52px;
+}
+
+.ch-ring-svg {
+  transform: rotate(-90deg);
+}
+
+.ch-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.10);
+  stroke-width: 2;
+}
+
+.ch-ring-fill {
+  fill: none;
+  stroke: var(--ch-gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 50ms linear;
+}
+
+.ch-ring-dot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ch-ring-dot-inner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ch-gold);
+}
+
+/* Slide dots */
+.ch-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ch-dot {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: width 0.3s ease, background 0.3s ease;
+  touch-action: manipulation;
+  /* clickable height without visual change */
+  position: relative;
+}
+.ch-dot::before {
+  content: '';
+  position: absolute;
+  inset: -8px 0;
+}
+.ch-dot.on { background: var(--ch-red); }
+
+/* Stats */
+.ch-stats {
+  display: flex;
+  gap: 28px;
+  flex-shrink: 0;
+}
+
+.ch-stat {
+  text-align: center;
+}
+
+.ch-stat-num {
+  font-family: var(--ch-font-serif);
+  color: var(--ch-gold);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.ch-stat-label {
+  color: var(--ch-text-label);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── Animation Helpers ─────────────────────────────────────── */
+.ch-fade-in  { animation: ch-fade-in  0.7s ease forwards; }
+.ch-slide-up { animation: ch-slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+
+/* =============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================= */
+
+/* ── 2XL — Large Screens 1536px+ ───────────────────────────── */
+@media (min-width: 1536px) {
+  .ch-content        { padding: 0 72px; }
+  .ch-bottom-bar     { padding: 22px 72px; }
+  .ch-left           { max-width: 600px; }
+  .ch-title-top,
+  .ch-title-bottom   { font-size: clamp(72px, 6vw, 96px); }
+  .ch-desc           { font-size: 15px; max-width: 420px; }
+  .ch-cards          { gap: 16px; }
+}
+
+/* ── XL — Desktops 1280px–1535px ───────────────────────────── */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .ch-content    { padding: 0 56px; }
+  .ch-bottom-bar { padding: 18px 56px; }
+}
+
+/* ── LG — Laptops 1024px–1279px ────────────────────────────── */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .ch-content    { padding: 0 36px; gap: 16px; }
+  .ch-bottom-bar { padding: 16px 36px; }
+  .ch-left       { max-width: 440px; }
+
+  .ch-title-top,
+  .ch-title-bottom { font-size: clamp(36px, 5.5vw, 68px); }
+
+  .ch-cards      { gap: 8px; padding-bottom: 40px; }
+
+  .ch-stats      { gap: 18px; }
+  .ch-stat-num   { font-size: 18px; }
+}
+
+/* ── MD — Tablets 768px–1023px ─────────────────────────────── */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ch-hero       { min-height: 620px; }
+
+  .ch-content {
+    padding: 0 28px;
+    align-items: flex-end;
+    padding-bottom: 100px;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  /* Left block — full width, reduced size */
+  .ch-left       { max-width: 100%; width: 100%; }
+
+  .ch-location-text { font-size: 10px; letter-spacing: 2.5px; }
+
+  .ch-title-top,
+  .ch-title-bottom { font-size: clamp(36px, 6vw, 56px); }
+
+  .ch-desc       { font-size: 13px; max-width: 100%; margin-bottom: 24px; }
+
+  .ch-btn-main   { padding: 12px 22px; font-size: 11px; }
+
+  /* Cards — horizontal strip below text */
+  .ch-cards {
+    flex-direction: row;
+    align-items: stretch;
+    padding-bottom: 0;
+    gap: 10px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ch-cards::-webkit-scrollbar { display: none; }
+
+  /* Equalise card heights on tablet */
+  .ch-dcard { width: 140px !important; height: 160px !important; }
+  .ch-dcard-title { font-size: 12px; }
+
+  /* Bottom bar — compact */
+  .ch-bottom-bar { padding: 12px 28px; }
+  .ch-counter    { font-size: 22px; }
+  .ch-stats      { gap: 14px; }
+  .ch-stat-num   { font-size: 17px; }
+  .ch-stat-label { font-size: 8px; }
+  .ch-ring-wrap  { width: 40px; height: 40px; }
+  .ch-ring-svg   { width: 40px; height: 40px; }
+}
+
+/* ── SM — Phones 480px–767px ───────────────────────────────── */
+@media (min-width: 480px) and (max-width: 767px) {
+  .ch-hero       { min-height: 600px; height: 100svh; }
+
+  /* Overlay — heavier on mobile for text legibility */
+  .ch-overlay-lr {
+    background: linear-gradient(
+      to right,
+      rgba(10, 4, 0, 0.88) 0%,
+      rgba(10, 4, 0, 0.70) 60%,
+      rgba(10, 4, 0, 0.40) 100%
+    );
+  }
+
+  .ch-content {
+    padding: 0 20px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 110px;
+    gap: 16px;
+  }
+
+  .ch-left       { max-width: 100%; width: 100%; }
+
+  .ch-location-tag   { margin-bottom: 12px; }
+  .ch-location-text  { font-size: 9.5px; letter-spacing: 2px; }
+  .ch-location-line  { width: 24px; }
+
+  .ch-title-top,
+  .ch-title-bottom { font-size: clamp(34px, 9vw, 52px); }
+
+  .ch-heading-wrap   { margin-bottom: 12px; }
+
+  .ch-desc {
+    font-size: 12.5px;
+    line-height: 1.7;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .ch-btn-main  { padding: 11px 20px; font-size: 11px; letter-spacing: 1.5px; }
+  .ch-btn-circle{ width: 40px; height: 40px; min-width: 40px; }
+
+  /* Cards — small horizontal strip */
+  .ch-cards {
+    flex-direction: row;
+    align-items: stretch;
+    padding-bottom: 0;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ch-cards::-webkit-scrollbar { display: none; }
+  .ch-dcard { width: 110px !important; height: 130px !important; }
+  .ch-dcard-title    { font-size: 11px; }
+  .ch-dcard-location { font-size: 8px; }
+
+  /* Bottom bar — two-row on small phone */
+  .ch-bottom-bar {
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    gap: 10px;
+    row-gap: 6px;
+  }
+
+  .ch-counter    { font-size: 20px; }
+  .ch-stats      { gap: 12px; }
+  .ch-stat-num   { font-size: 15px; }
+  .ch-stat-label { font-size: 7.5px; letter-spacing: 1px; }
+
+  .ch-progress-wrap { flex-direction: row; gap: 8px; align-items: center; }
+  .ch-ring-wrap  { width: 36px; height: 36px; }
+  .ch-ring-svg   { width: 36px; height: 36px; }
+  .ch-dots       { gap: 6px; }
+}
+
+/* ── XS — Very Small Phones < 480px ────────────────────────── */
+@media (max-width: 479px) {
+  .ch-hero       { min-height: 580px; height: 100svh; }
+
+  .ch-overlay-lr {
+    background: rgba(10, 4, 0, 0.80);
+  }
+
+  .ch-content {
+    padding: 0 16px;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 120px;
+    gap: 14px;
+  }
+
+  .ch-left       { max-width: 100%; width: 100%; }
+
+  .ch-location-tag   { margin-bottom: 10px; gap: 8px; }
+  .ch-location-line  { width: 20px; }
+  .ch-location-text  { font-size: 9px; letter-spacing: 1.8px; }
+
+  .ch-title-top,
+  .ch-title-bottom { font-size: clamp(30px, 10vw, 44px); }
+  .ch-heading-wrap   { margin-bottom: 10px; }
+
+  .ch-desc {
+    font-size: 12px;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-bottom: 18px;
+    /* Hide on very small screens if too cramped */
+  }
+
+  .ch-cta-row    { gap: 10px; }
+  .ch-btn-main   { padding: 10px 18px; font-size: 10.5px; letter-spacing: 1.2px; gap: 6px; }
+  .ch-btn-circle { width: 38px; height: 38px; min-width: 38px; }
+
+  /* Cards — tiny strip */
+  .ch-cards {
+    flex-direction: row;
+    align-items: stretch;
+    padding-bottom: 0;
+    gap: 6px;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ch-cards::-webkit-scrollbar { display: none; }
+  .ch-dcard { width: 90px  !important; height: 112px !important; }
+  .ch-dcard-title    { font-size: 10px; }
+  .ch-dcard-location { font-size: 7.5px; letter-spacing: 1px; }
+  .ch-dcard-info     { padding: 10px; }
+
+  /* Bottom bar — stacked on very small */
+  .ch-bottom-bar {
+    flex-wrap: wrap;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  /* Hide stats on xs to avoid overflow */
+  .ch-stats      { display: none; }
+
+  .ch-counter    { font-size: 18px; }
+
+  .ch-progress-wrap { flex-direction: row; gap: 8px; align-items: center; }
+  .ch-ring-wrap  { width: 32px; height: 32px; }
+  .ch-ring-svg   { width: 32px; height: 32px; }
+  .ch-ring-dot-inner { width: 6px; height: 6px; }
+  .ch-dots       { gap: 5px; }
+}
+
+/* ── Landscape phone — very short viewport ──────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .ch-hero       { min-height: 100svw; height: 100svh; }
+
+  .ch-content    { padding-bottom: 70px; }
+
+  .ch-title-top,
+  .ch-title-bottom { font-size: clamp(24px, 5vh, 40px); }
+
+  .ch-desc       { display: none; }
+
+  .ch-cards      {
+    flex-direction: column;
+    padding-bottom: 0;
+    gap: 6px;
+    max-height: 60vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .ch-cards::-webkit-scrollbar { display: none; }
+  .ch-dcard { width: 80px !important; height: 90px !important; }
+
+  .ch-bottom-bar { padding: 8px 20px; }
+  .ch-stats      { display: none; }
+  .ch-ring-wrap  { width: 30px; height: 30px; }
+  .ch-ring-svg   { width: 30px; height: 30px; }
+}
+
+/* ── Touch devices — remove hover effects ───────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  .ch-dcard:hover        { transform: none; filter: brightness(0.85); }
+  .ch-dcard:active       { transform: scale(0.98); filter: brightness(1); }
+  .ch-dcard:hover img    { transform: none; }
+  .ch-btn-circle:hover   { background: transparent; }
+  .ch-btn-main:hover     { background: var(--ch-red); }
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .ch-bg-slide,
+  .ch-dcard,
+  .ch-dcard img,
+  .ch-btn-main,
+  .ch-btn-circle {
+    transition: none !important;
+  }
+  .ch-fade-in,
+  .ch-slide-up,
+  .ch-desc {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── Print ──────────────────────────────────────────────────── */
+@media print {
+  .ch-hero { display: none !important; }
+}

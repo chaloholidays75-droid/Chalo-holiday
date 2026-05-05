@@ -1,0 +1,1113 @@
+/* ============================================================
+   Navbar.css — ChaloHolidays
+   Fully responsive: xs (320px) → 2xl (1536px+)
+   Breakpoints:
+     xs      : < 480px
+     sm      : 480px – 767px
+     md      : 768px – 1023px
+     lg      : 1024px – 1279px   ← desktop nav starts here
+     xl      : 1280px – 1535px
+     2xl     : 1536px+
+   ============================================================ */
+
+/* ── Palette Variables ────────────────────────────────────── */
+:root {
+  --nb-red:      #C62828;
+  --nb-red-dark: #8E0000;
+  --nb-gold:     #B8860B;
+  --nb-gold-lt:  #E6B800;
+  --nb-white:    #ffffff;
+  --nb-dark:     #1A1A1A;
+  --nb-text:     #333333;
+  --nb-muted:    rgba(255, 255, 255, 0.45);
+  --nb-divider:  rgba(255, 255, 255, 0.12);
+  --nb-border:   #E8E8E8;
+  --nb-hover-bg: rgba(198, 40, 40, 0.04);
+
+  --nb-topbar-h:      36px;
+  --nb-nav-h-desktop: 72px;
+  --nb-nav-h-mobile:  60px;
+  --nb-nav-h-xs:      54px;
+
+  --nb-transition: 0.18s ease;
+  --nb-radius-pill: 30px;
+  --nb-radius-card: 12px;
+  --nb-shadow-scroll: 0 4px 24px rgba(0, 0, 0, 0.10);
+  --nb-shadow-mega:   0 24px 60px rgba(0, 0, 0, 0.13);
+  --nb-shadow-btn:    0 4px 18px rgba(198, 40, 40, 0.45);
+}
+
+/* ============================================================
+   1. HEADER WRAPPER
+   ============================================================ */
+.nb-header {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow var(--nb-transition);
+  width: 100%;
+}
+
+.nb-header--scrolled {
+  box-shadow: var(--nb-shadow-scroll);
+}
+
+/* ============================================================
+   2. TOP BAR
+   ============================================================ */
+.nb-topbar {
+  background: var(--nb-dark);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  width: 100%;
+}
+
+.nb-topbar__inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: var(--nb-topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.nb-topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.nb-topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.nb-topbar__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+}
+
+.nb-topbar__divider {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.nb-topbar__link {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color var(--nb-transition);
+  white-space: nowrap;
+}
+
+.nb-topbar__link:hover {
+  color: #ffffff;
+}
+
+.nb-topbar__lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: all var(--nb-transition);
+  font-family: inherit;
+}
+
+.nb-topbar__lang-btn:hover {
+  border-color: var(--nb-gold);
+  color: var(--nb-gold);
+}
+
+/* ============================================================
+   3. MAIN NAV
+   ============================================================ */
+.nb-nav {
+  background: var(--nb-white);
+  position: relative;
+  width: 100%;
+}
+
+.nb-nav__inner {
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: var(--nb-nav-h-desktop);
+  display: flex;
+  align-items: center;
+   justify-content: space-between; 
+  gap: 0;
+  position: relative;
+}
+
+/* ── Logo ─────────────────────────────── */
+.nb-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-right: 40px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-logo__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--nb-red), var(--nb-red-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(198, 40, 40, 0.4);
+  flex-shrink: 0;
+  transition: transform var(--nb-transition);
+}
+
+.nb-logo:hover .nb-logo__icon {
+  transform: scale(1.05);
+}
+
+.nb-logo__text {
+  line-height: 1.1;
+}
+
+.nb-logo__name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.02em;
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+}
+
+.nb-logo__name span {
+  color: var(--nb-red);
+}
+
+.nb-logo__tagline {
+  font-size: 9px;
+  font-weight: 600;
+  color: #aaa;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ── Desktop Nav List ─────────────────── */
+.nb-menu {
+  display: flex;
+  align-items: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+  flex: 1;
+  justify-content: center;
+  height: 100%;
+}
+
+.nb-menu__item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nb-menu__link,
+.nb-menu__trigger {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 16px;
+  height: 100%;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--nb-text);
+  text-decoration: none;
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color var(--nb-transition);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-menu__link:hover,
+.nb-menu__trigger:hover,
+.nb-menu__link--active,
+.nb-menu__trigger--open {
+  color: var(--nb-red);
+}
+
+/* Active / open underline bar */
+.nb-menu__bar {
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, var(--nb-red), var(--nb-gold));
+}
+
+/* Chevron icon inside trigger */
+.nb-menu__chevron {
+  transition: transform 0.2s ease;
+  color: #999;
+  flex-shrink: 0;
+}
+
+.nb-menu__chevron--open {
+  transform: rotate(180deg);
+  color: var(--nb-red);
+}
+
+/* ── Right CTA Block ──────────────────── */
+.nb-cta {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.nb-cta__call {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #444;
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--nb-border);
+  border-radius: var(--nb-radius-pill);
+  transition: all var(--nb-transition);
+  white-space: nowrap;
+}
+
+.nb-cta__call:hover {
+  border-color: var(--nb-gold);
+  color: var(--nb-gold);
+}
+
+.nb-cta__inquiry {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: var(--nb-radius-pill);
+  background: linear-gradient(135deg, var(--nb-red), var(--nb-red-dark));
+  color: #fff;
+  text-decoration: none;
+  box-shadow: var(--nb-shadow-btn);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-cta__inquiry:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(198, 40, 40, 0.55);
+}
+
+/* ── Hamburger Button ─────────────────── */
+.nb-hamburger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--nb-border);
+  background: none;
+  cursor: pointer;
+ margin-right: 4px;  /* ✅ pushes to right corner */
+  color: #444;
+  flex-shrink: 0;
+  transition: all var(--nb-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-hamburger:hover {
+  border-color: var(--nb-red);
+  color: var(--nb-red);
+  background: rgba(198, 40, 40, 0.04);
+}
+
+.nb-hamburger:active {
+  transform: scale(0.94);
+}
+
+/* ============================================================
+   4. MEGA MENU PANEL
+   ============================================================ */
+@keyframes nbMegaFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nb-mega {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--nb-white);
+  z-index: 900;
+  border-top: 3px solid var(--nb-red);
+  box-shadow: var(--nb-shadow-mega);
+  animation: nbMegaFadeIn 0.18s ease forwards;
+  overflow: hidden;
+}
+
+.nb-mega__inner {
+  max-width: 1380px;
+  margin: 0 auto;
+}
+
+/* Services Mega ─────────────────────── */
+.nb-mega-services {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+}
+
+.nb-mega-services__left {
+  padding: 32px 36px 28px;
+}
+
+.nb-mega-services__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9e9e9e;
+  margin-bottom: 20px;
+}
+
+.nb-mega-services__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.nb-mega-services__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: var(--nb-radius-card);
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: all var(--nb-transition);
+}
+
+.nb-mega-services__card:hover {
+  background: rgba(198, 40, 40, 0.04);
+  border-color: rgba(198, 40, 40, 0.18);
+  transform: translateY(-1px);
+}
+
+.nb-mega-services__card--highlight {
+  background: rgba(184, 134, 11, 0.05);
+  border-color: rgba(184, 134, 11, 0.13);
+}
+
+.nb-mega-services__card--highlight:hover {
+  background: rgba(198, 40, 40, 0.04);
+  border-color: rgba(198, 40, 40, 0.18);
+}
+
+.nb-mega-services__icon-wrap {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: rgba(198, 40, 40, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nb-mega-services__card-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 2px;
+}
+
+.nb-mega-services__card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+.nb-mega-services__card-tag {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  color: #888;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nb-mega-services__card-tag--gold {
+  background: rgba(184, 134, 11, 0.13);
+  color: var(--nb-gold);
+}
+
+.nb-mega-services__card-desc {
+  font-size: 11.5px;
+  color: #757575;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Services right promo panel */
+.nb-mega-services__right {
+  background: linear-gradient(160deg, var(--nb-red-dark) 0%, #4A0000 100%);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nb-mega-services__stats-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 10px;
+}
+
+.nb-mega-services__stat {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.nb-mega-services__stat-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--nb-gold-lt);
+  letter-spacing: -0.03em;
+  min-width: 52px;
+}
+
+.nb-mega-services__stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.nb-mega-services__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nb-mega-services__help-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 10px;
+}
+
+.nb-mega-services__inquiry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--nb-gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  padding: 10px 20px;
+  border-radius: var(--nb-radius-pill);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity var(--nb-transition);
+}
+
+.nb-mega-services__inquiry-btn:hover {
+  opacity: 0.88;
+}
+
+.nb-mega-services__call-card {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--nb-radius-card);
+  padding: 14px 16px;
+}
+
+.nb-mega-services__call-label {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nb-mega-services__call-number {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.nb-mega-services__call-hours {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 2px;
+}
+
+/* Destinations Mega ─────────────────── */
+.nb-mega-destinations {
+  padding: 32px 40px 0;
+}
+
+.nb-mega-destinations__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nb-mega-destinations__tab {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: #f5f5f5;
+  color: #999;
+  cursor: pointer;
+  transition: all var(--nb-transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.nb-mega-destinations__tab:hover {
+  background: rgba(198, 40, 40, 0.08);
+  color: var(--nb-red);
+}
+
+.nb-mega-destinations__view-all {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--nb-red);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity var(--nb-transition);
+}
+
+.nb-mega-destinations__view-all:hover {
+  opacity: 0.75;
+}
+
+.nb-mega-destinations__grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.nb-mega-destinations__card {
+  position: relative;
+  text-decoration: none;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 200px;
+  display: block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mega-destinations__card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+}
+
+.nb-mega-destinations__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.nb-mega-destinations__card:hover .nb-mega-destinations__img {
+  transform: scale(1.08);
+}
+
+.nb-mega-destinations__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+  transition: background 0.3s;
+}
+
+.nb-mega-destinations__badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 12px;
+}
+
+.nb-mega-destinations__tag {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nb-mega-destinations__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 12px;
+}
+
+.nb-mega-destinations__name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.nb-mega-destinations__nights {
+  margin: 0;
+  font-size: 9.5px;
+  color: rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.2s ease;
+}
+
+.nb-mega-destinations__card:hover .nb-mega-destinations__nights {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nb-mega-destinations__arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.nb-mega-destinations__card:hover .nb-mega-destinations__arrow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Bottom strip */
+.nb-mega-destinations__strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 18px;
+  padding-bottom: 20px;
+  padding-top: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nb-mega-destinations__filters {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nb-mega-destinations__filter-tag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  padding: 4px 0;
+  border-bottom: 1.5px solid transparent;
+  transition: all var(--nb-transition);
+}
+
+.nb-mega-destinations__filter-tag:hover {
+  color: var(--nb-red);
+  border-bottom-color: var(--nb-red);
+}
+
+.nb-mega-destinations__explore-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--nb-red);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity var(--nb-transition);
+}
+
+.nb-mega-destinations__explore-link:hover {
+  opacity: 0.75;
+}
+
+/* ============================================================
+   5. MOBILE MENU
+   ============================================================ */
+@keyframes nbMobileSlideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nb-mobile-menu {
+  background: var(--nb-white);
+  border-top: 1px solid #f0f0f0;
+  animation: nbMobileSlideDown 0.2s ease forwards;
+  max-height: calc(100dvh - var(--nb-topbar-h) - var(--nb-nav-h-mobile));
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.nb-mobile-menu__list {
+  padding: 12px 16px 4px;
+  margin: 0;
+  list-style: none;
+}
+
+.nb-mobile-menu__link {
+  display: block;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all var(--nb-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mobile-menu__link:hover,
+.nb-mobile-menu__link--active {
+  background: rgba(198, 40, 40, 0.06);
+  color: var(--nb-red);
+}
+
+.nb-mobile-menu__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: inherit;
+  transition: all var(--nb-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mobile-menu__trigger:hover {
+  background: rgba(198, 40, 40, 0.06);
+  color: var(--nb-red);
+}
+
+.nb-mobile-menu__chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nb-mobile-menu__chevron--open {
+  transform: rotate(180deg);
+}
+
+.nb-mobile-menu__sub {
+  padding-left: 14px;
+  padding-bottom: 6px;
+  animation: nbMobileSlideDown 0.15s ease forwards;
+}
+
+.nb-mobile-menu__sub-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: #555;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all var(--nb-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mobile-menu__sub-link:hover {
+  background: rgba(198, 40, 40, 0.05);
+  color: var(--nb-red);
+}
+
+/* Mobile bottom CTA */
+.nb-mobile-menu__cta {
+  padding: 8px 16px 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.nb-mobile-menu__cta-inquiry {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  border-radius: var(--nb-radius-pill);
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--nb-red), var(--nb-red-dark));
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  transition: opacity var(--nb-transition), transform var(--nb-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mobile-menu__cta-inquiry:active {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.nb-mobile-menu__cta-call {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 13px 18px;
+  border-radius: var(--nb-radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid var(--nb-border);
+  color: #444;
+  text-decoration: none;
+  transition: all var(--nb-transition);
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nb-mobile-menu__cta-call:active {
+  border-color: var(--nb-gold);
+  color: var(--nb-gold);
+}
+
+/* ============================================================
+   6. RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* ── xl & 2xl: show top bar phone item, all nav items ─────── */
+@media (min-width: 1280px) {
+  .nb-topbar__inner { padding: 0 40px; }
+  .nb-nav__inner    { padding: 0 40px; }
+}
+
+@media (min-width: 1536px) {
+  .nb-nav__inner    { height: 80px; }
+  .nb-logo__name    { font-size: 19px; }
+  .nb-menu__link,
+  .nb-menu__trigger { font-size: 14px; padding: 0 18px; }
+}
+
+/* ── lg (1024–1279): desktop nav, hide hamburger ──────────── */
+@media (min-width: 1024px) {
+  .nb-hamburger          { display: none !important; }
+  .nb-mobile-menu        { display: none !important; }
+  .nb-menu               { display: flex !important; }
+  .nb-cta                { display: flex !important; }
+}
+
+/* ── md (768–1023): tablet — show hamburger, hide desktop nav */
+@media (max-width: 1023px) {
+  .nb-hamburger          { display: flex !important; }
+  .nb-menu               { display: none !important; }
+  .nb-cta                { display: none !important; }
+  .nb-mega               { display: none !important; }
+
+  /* Collapse top bar — hide left info items on tablet */
+  .nb-topbar__left .nb-topbar__item:not(:first-child),
+  .nb-topbar__left .nb-topbar__divider {
+    display: none;
+  }
+
+  .nb-nav__inner {
+    height: var(--nb-nav-h-mobile);
+    padding: 0 20px;
+  }
+
+  .nb-logo { margin-right: 0; }
+  .nb-logo__icon { width: 38px; height: 38px; }
+  .nb-logo__name { font-size: 15px; }
+}
+
+/* ── sm (480–767): large phones ───────────────────────────── */
+@media (max-width: 767px) {
+  .nb-topbar { display: none; }   /* hide top bar on phones entirely */
+
+  .nb-nav__inner {
+    height: var(--nb-nav-h-mobile);
+    padding: 0 16px;
+  }
+
+  .nb-logo__icon  { width: 36px; height: 36px; border-radius: 10px; }
+  .nb-logo__name  { font-size: 15px; }
+  .nb-logo__tagline { display: none; }
+}
+
+/* ── xs (< 480px): small phones ──────────────────────────── */
+@media (max-width: 479px) {
+  .nb-nav__inner {
+    height: var(--nb-nav-h-xs);
+    padding: 0 14px;
+  }
+
+  .nb-logo__icon  { width: 33px; height: 33px; border-radius: 9px; }
+  .nb-logo__name  { font-size: 14px; }
+  .nb-logo__tagline { display: none; }
+
+  .nb-hamburger   { width: 36px; height: 36px; }
+
+  .nb-mobile-menu {
+    max-height: calc(100dvh - var(--nb-nav-h-xs));
+  }
+
+  .nb-mobile-menu__link,
+  .nb-mobile-menu__trigger { font-size: 13px; padding: 10px 12px; }
+  .nb-mobile-menu__sub-link { font-size: 12px; }
+  .nb-mobile-menu__cta-inquiry { font-size: 13px; }
+}
+
+/* ── Landscape phone (height < 500px) ─────────────────────── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .nb-nav__inner {
+    height: 52px;
+  }
+  .nb-logo__icon { width: 30px; height: 30px; }
+  .nb-mobile-menu {
+    max-height: calc(100dvh - 52px);
+  }
+}
+
+/* ── Mega menu: narrow desktop (1024–1200px) ──────────────── */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .nb-mega-services {
+    grid-template-columns: 1fr 260px;
+  }
+  .nb-mega-services__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .nb-mega-services__left  { padding: 24px 24px 20px; }
+  .nb-mega-services__right { padding: 24px 20px; }
+
+  .nb-mega-destinations__grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+  }
+  .nb-mega-destinations__card { height: 170px; }
+  .nb-mega-destinations { padding: 24px 28px 0; }
+}
+
+/* ── Touch: remove hover effects on touch devices ─────────── */
+@media (hover: none) and (pointer: coarse) {
+  .nb-mega-destinations__card:hover {
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  }
+  .nb-mega-destinations__card:hover .nb-mega-destinations__img {
+    transform: none;
+  }
+  .nb-cta__inquiry:hover {
+    transform: none;
+    box-shadow: var(--nb-shadow-btn);
+  }
+}
+
+/* ── High contrast / accessibility ───────────────────────── */
+@media (forced-colors: active) {
+  .nb-menu__bar,
+  .nb-cta__inquiry,
+  .nb-mobile-menu__cta-inquiry {
+    forced-color-adjust: none;
+  }
+}
+
+/* ── Print: hide navbar completely ───────────────────────── */
+@media print {
+  .nb-header { display: none !important; }
+}
