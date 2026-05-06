@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect, useMemo ,useCallback} from "react"
+import { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import {
   MapPin, ArrowUpRight, ChevronDown, Search, X,
   ChevronRight, Globe, Waves, Mountain, Building2, Plane,
@@ -12,19 +12,25 @@ import DestinationHeroImg from '../assets/destination/destination-page.jpg'
 import DestinationImg from '../assets/destination/destination-page.webp'
 
 /* ═══════════════════════════════════════════════════════
-   DESIGN TOKENS — Luxury Editorial / Auction Catalogue
+   DESIGN TOKENS — Chalo Holidays Brand (matches HomePage)
+   RED    : #D91B1B  — logo vivid red script
+   AMBER  : #F5A800  — logo sun illustration
+   AMBER2 : #C8880A  — deeper amber
+   CHAR   : #2D2D2D  — logo charcoal headings
+   GRAY   : #8A8A8A  — logo airplane silhouette
 ═══════════════════════════════════════════════════════ */
-const G = '#B8860B'   // deep gold
-const G2 = '#D4A017'   // bright gold
-const G3 = '#FAF3DC'   // gold tint bg
-const R = '#B91C1C'   // crimson
-const INK = '#0E0C08'   // near-black
-const PARCH = '#F9F5EC'   // parchment page bg
-const CARD = '#FFFDF7'   // card surface
-const SL = '#5C4F3A'   // warm sepia text
-const SL2 = '#9C8B78'   // muted warm
-const BR = '#E6DDD0'   // warm border
-const BR2 = '#D4C9B8'   // darker border
+const RED    = '#D91B1B'   // logo vivid red — primary CTA
+const RED2   = '#B01515'   // darker red for gradients
+const G      = '#F5A800'   // AMBER — logo sun, gold role
+const G2     = '#C8880A'   // AMBER2 — deeper amber
+const G3     = '#FAEEDA'   // amber 50 tint bg
+const INK    = '#2D2D2D'   // CHAR — logo charcoal
+const PARCH  = '#FAFAF5'   // cream page background
+const CARD   = '#FFFFFF'   // card surface
+const SL     = '#4A4A4A'   // warm slate text
+const SL2    = '#8A8A8A'   // GRAY — muted text
+const BR     = '#E8E8E4'   // light border
+const BR2    = '#D4D4CC'   // slightly darker border
 
 /* ═══════════════════════════════════════════════════════
    ICONS MAP
@@ -97,309 +103,120 @@ const COUNTRIES = ['All Countries', 'United Kingdom', 'Italy', 'Switzerland', 'F
 /* ═══════════════════════════════════════════════════════
    HERO
 ═══════════════════════════════════════════════════════ */
-const HERO_IMG = DestinationHeroImg;
+const HERO_IMG = DestinationHeroImg
 
 function Hero({ onSearch }) {
-  const [query, setQuery] = useState('');
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setLoaded(true), 80);
-  }, []);
+  const [query, setQuery] = useState('')
+  const [loaded, setLoaded] = useState(false)
+  useEffect(() => { setTimeout(() => setLoaded(true), 80) }, [])
 
   return (
-    <section style={{
-      position: 'relative',
-      minHeight: '80vh',
-      background: INK,
-      display: 'flex',
-      flexDirection: 'column',
-      overflow: 'hidden'
-    }}>
-      {/* ── Background Image ── */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: `url(${HERO_IMG})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 30%',
-        backgroundRepeat: 'no-repeat',
-        transform: loaded ? 'scale(1.06)' : 'scale(1.0)',
-        transition: 'transform 14s ease',
-        filter: 'brightness(0.88) saturate(1.1)',
-      }} />
-
-      {/* ── Overlays ── */}
+    <section style={{ position: 'relative', minHeight: '80vh', background: INK, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${HERO_IMG})`, backgroundSize: 'cover', backgroundPosition: 'center 30%', backgroundRepeat: 'no-repeat', transform: loaded ? 'scale(1.06)' : 'scale(1.0)', transition: 'transform 14s ease', filter: 'brightness(0.88) saturate(1.1)' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(125deg,rgba(8,6,2,.97) 0%,rgba(8,6,2,.78) 40%,rgba(8,6,2,.22) 100%)' }} />
       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg,rgba(8,6,2,1) 0%,rgba(8,6,2,.55) 15%,transparent 45%)' }} />
+      {/* Brand amber accent line — matches homepage */}
       <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: `linear-gradient(180deg,transparent,${G} 20%,${G2} 80%,transparent)` }} />
 
-      {/* ── Content ── */}
-      <div style={{
-        position: 'relative',
-        zIndex: 3,
-        flex: 1,
-        display: 'flex',
-        alignItems: 'center',
-        padding: 'clamp(6rem,14vh,9rem) clamp(1.5rem,6vw,6rem) 4rem'
-      }}>
-        <div style={{
-          maxWidth: 820,
-          opacity: loaded ? 1 : 0,
-          transform: loaded ? 'none' : 'translateY(32px)',
-          transition: 'opacity 1.1s ease .1s, transform 1.1s ease .1s'
-        }}>
+      <div style={{ position: 'relative', zIndex: 3, flex: 1, display: 'flex', alignItems: 'center', padding: 'clamp(6rem,14vh,9rem) clamp(1.5rem,6vw,6rem) 4rem' }}>
+        <div style={{ maxWidth: 820, opacity: loaded ? 1 : 0, transform: loaded ? 'none' : 'translateY(32px)', transition: 'opacity 1.1s ease .1s, transform 1.1s ease .1s' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 32 }}>
-            <div style={{ width: 40, height: 1, background: `linear-gradient(90deg,${G},${G2})` }} />
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: G }}>
-              Premium Travel Collection
-            </span>
+            <div style={{ width: 40, height: 1.5, background: `linear-gradient(90deg,${G},${G2})`, borderRadius: 2 }} />
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>Premium Travel Collection</span>
           </div>
-          <h1 style={{
-            fontFamily: "Georgia,'Times New Roman',serif",
-            fontSize: 'clamp(3.2rem,9vw,6.8rem)',
-            fontWeight: 400,
-            lineHeight: .9,
-            letterSpacing: '-0.03em',
-            color: '#fff',
-            marginBottom: 32
-          }}>
-            Discover<br />
-            <em style={{ fontStyle: 'italic', color: G }}>Your Journey</em>
+          <h1 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(3.2rem,9vw,6.8rem)', fontWeight: 400, lineHeight: .9, letterSpacing: '-0.03em', color: '#fff', marginBottom: 32 }}>
+            Discover<br /><em style={{ fontStyle: 'italic', color: G }}>Your Journey</em>
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 22 }}>
             <MapPin size={11} style={{ color: G2 }} />
-            <span style={{ fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)' }}>
-              Worldwide Destinations
-            </span>
+            <span style={{ fontSize: 10, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)', fontFamily: 'sans-serif' }}>Worldwide Destinations</span>
           </div>
-          <p style={{
-            color: 'rgba(255,255,255,.38)',
-            fontSize: 'clamp(.875rem,1.5vw,1rem)',
-            lineHeight: 1.95,
-            maxWidth: '46ch',
-            marginBottom: 44
-          }}>
+          <p style={{ color: 'rgba(255,255,255,.38)', fontSize: 'clamp(.875rem,1.5vw,1rem)', lineHeight: 1.95, maxWidth: '46ch', marginBottom: 44, fontFamily: 'sans-serif' }}>
             Explore handpicked destinations across the world — from iconic cities to hidden gems. Your perfect journey starts here.
           </p>
         </div>
       </div>
     </section>
-  );
+  )
 }
+
 /* ═══════════════════════════════════════════════════════
-   INTRO SECTION — Left image, Right content
+   INTRO SECTION
 ═══════════════════════════════════════════════════════ */
 function IntroSection() {
   const [ref, inView] = useInView(0.06)
-
-  const stats = [
-    { number: '30+', label: 'Destinations' },
-    { number: '500+', label: 'Happy Travellers' },
-    { number: '10+', label: 'Years Experience' },
-    { number: '98%', label: 'Satisfaction Rate' },
-  ]
-
   return (
-     <section ref={ref} style={{ background: PARCH, padding: 'clamp(4rem,8vw,6.5rem) 0', borderTop: `1px solid ${BR}` }}>
-      <div style={{
-        maxWidth: 1440,
-        margin: '0 auto',
-        padding: '0 clamp(1rem,5vw,5rem)',
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))',
-        gap: 'clamp(2.5rem,6vw,5rem)',
-        alignItems: 'center',
-      }}>
- 
-        {/* ── LEFT: Image panel ── */}
-        <div
-          style={{
-            position: 'relative',
-            opacity: inView ? 1 : 0,
-            transform: inView ? 'none' : 'translateX(-36px)',
-            transition: 'opacity .9s ease, transform .9s ease',
-          }}
-        >
- 
-        <div style={{
-  position: 'relative',
-  zIndex: 1,
-  borderRadius: 2,
-  overflow: 'hidden',
-  height: 'clamp(420px, 55vw, 650px)',
-  background: PARCH,  // ✅ match page background so any gap is invisible
-}}>
-<img
-  src={DestinationImg}
-  alt="Chalo Holiday — explore the world"
-  loading="lazy"
-  style={{
-    width: '100%',
-    height: '100%',
-    objectFit: 'contain',     // ✅ shows full image without cropping
-    objectPosition: 'center',
-    display: 'block',
-    // No transform — no zoom, no blur, no cutoff
-  }}
-/>
- 
-         
+    <section ref={ref} style={{ background: PARCH, padding: 'clamp(4rem,8vw,6.5rem) 0', borderTop: `1px solid ${BR}` }}>
+      <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(1rem,5vw,5rem)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))', gap: 'clamp(2.5rem,6vw,5rem)', alignItems: 'center' }}>
+
+        {/* LEFT: Image panel */}
+        <div style={{ position: 'relative', opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateX(-36px)', transition: 'opacity .9s ease, transform .9s ease' }}>
+          <div style={{ position: 'relative', zIndex: 1, borderRadius: 2, overflow: 'hidden', height: 'clamp(420px, 55vw, 650px)', background: PARCH }}>
+            <img src={DestinationImg} alt="Chalo Holiday — explore the world" loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block' }} />
           </div>
         </div>
- 
-        {/* ── RIGHT: Content panel ── */}
-        <div style={{
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'none' : 'translateX(36px)',
-          transition: 'opacity .9s ease .15s, transform .9s ease .15s',
-        }}>
- 
-          {/* Eyebrow */}
+
+        {/* RIGHT: Content panel */}
+        <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateX(36px)', transition: 'opacity .9s ease .15s, transform .9s ease .15s' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 28, height: 1, background: G }} />
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,${G},${G2})`, borderRadius: 2 }} />
             <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>About Our Collection</span>
           </div>
- 
-          {/* Heading */}
-          <h2 style={{
-            fontFamily: "Georgia,'Times New Roman',serif",
-            fontSize: 'clamp(1.9rem,3.8vw,3rem)',
-            fontWeight: 400,
-            color: INK,
-            lineHeight: 1.1,
-            letterSpacing: '-0.025em',
-            marginBottom: 24,
-          }}>
-            Where every journey<br />
-            becomes a <em style={{ color: G }}>cherished story.</em>
+          <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(1.9rem,3.8vw,3rem)', fontWeight: 400, color: INK, lineHeight: 1.1, letterSpacing: '-0.025em', marginBottom: 24 }}>
+            Where every journey<br />becomes a <em style={{ color: G }}>cherished story.</em>
           </h2>
- 
-          {/* Thin gold rule */}
           <div style={{ width: 64, height: 2, background: `linear-gradient(90deg,${G},${G2})`, marginBottom: 24, borderRadius: 1 }} />
- 
-          {/* Body paragraphs */}
           <p style={{ fontSize: 15, lineHeight: 1.9, color: SL, fontFamily: 'sans-serif', fontWeight: 300, marginBottom: 16 }}>
             At <strong style={{ fontWeight: 600, color: INK }}>Chalo Holidays</strong>, we believe that travel is more than a destination — it is a transformative experience. Our curated collection of European escapes spans 20 countries, handpicked by our expert consultants who have walked every cobblestone, tasted every local dish and watched every sunset we recommend.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.9, color: SL2, fontFamily: 'sans-serif', fontWeight: 300, marginBottom: 36 }}>
             From the fjords of Norway to the sun-drenched Amalfi Coast, from fairy-tale Prague to the eternal streets of Rome — we craft bespoke itineraries tailored precisely to your pace, your passions and your budget.
           </p>
- 
-          {/* Stats row */}
-     
-          {/* CTA buttons */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}>
-            <a
-              href="#destinations"
-              onClick={e => { e.preventDefault(); document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' }) }}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                background: `linear-gradient(135deg,${R},#991b1b)`,
-                color: '#fff',
-                fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em',
-                padding: '14px 28px',
-                borderRadius: 2,
-                fontFamily: 'sans-serif',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                boxShadow: `0 8px 28px -6px ${R}44`,
-              }}
-            >
+            <a href="#destinations" onClick={e => { e.preventDefault(); document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' }) }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: `linear-gradient(135deg,${RED},${RED2})`, color: '#fff', fontSize: 10.5, fontWeight: 700, letterSpacing: '0.18em', padding: '14px 28px', borderRadius: 3, fontFamily: 'sans-serif', textDecoration: 'none', textTransform: 'uppercase', boxShadow: `0 8px 28px -6px ${RED}44` }}>
               Explore All Destinations <ArrowUpRight size={14} />
             </a>
-           
           </div>
         </div>
- 
       </div>
     </section>
   )
 }
- 
 
 /* ═══════════════════════════════════════════════════════
    TOP DESTINATIONS CAROUSEL
 ═══════════════════════════════════════════════════════ */
-const VISIBLE_COUNT = 6
-
 function TopDestinationsCarousel({ onFilter }) {
   const [ref, inView] = useInView(0.05)
   const [paused, setPaused] = useState(false)
-
   const carouselDests = ALL_DESTINATIONS.filter(d => d.hot)
-  // Duplicate for seamless loop
   const doubled = [...carouselDests, ...carouselDests]
 
   return (
     <section ref={ref} style={{ background: '#ffffff', padding: 'clamp(3.5rem,7vw,5.5rem) 0' }}>
       <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(1rem,5vw,5rem)' }}>
-
-        {/* Header */}
-        <div style={{
-          textAlign: 'center',
-          marginBottom: 48,
-          opacity: inView ? 1 : 0,
-          transform: inView ? 'none' : 'translateY(20px)',
-          transition: 'opacity .7s, transform .7s'
-        }}>
+        <div style={{ textAlign: 'center', marginBottom: 48, opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(20px)', transition: 'opacity .7s, transform .7s' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 12 }}>
-            <div style={{ width: 28, height: 1, background: G }} />
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>
-              Handpicked for You
-            </span>
-            <div style={{ width: 28, height: 1, background: G }} />
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,transparent,${G})`, borderRadius: 2 }} />
+            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>Handpicked for You</span>
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,${G},transparent)`, borderRadius: 2 }} />
           </div>
-          <h2 style={{
-            fontFamily: "Georgia,'Times New Roman',serif",
-            fontSize: 'clamp(1.8rem,4vw,2.8rem)',
-            fontWeight: 400,
-            color: INK,
-            letterSpacing: '-0.02em'
-          }}>
+          <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(1.8rem,4vw,2.8rem)', fontWeight: 400, color: INK, letterSpacing: '-0.02em' }}>
             Top <em style={{ color: G }}>Destinations</em>
           </h2>
         </div>
-
-        {/* Inject keyframes */}
         <style>{`
-          @keyframes marqueeScroll {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .marquee-track {
-            display: flex;
-            gap: 28px;
-            width: max-content;
-            animation: marqueeScroll 28s linear infinite;
-          }
-          .marquee-track.paused {
-            animation-play-state: paused;
-          }
-          .marquee-wrap {
-            overflow: hidden;
-            width: 100%;
-          }
+          @keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+          .marquee-track { display: flex; gap: 28px; width: max-content; animation: marqueeScroll 28s linear infinite; }
+          .marquee-track.paused { animation-play-state: paused; }
+          .marquee-wrap { overflow: hidden; width: 100%; }
         `}</style>
-
-        {/* Marquee */}
-        <div
-          className="marquee-wrap"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
+        <div className="marquee-wrap" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
           <div className={`marquee-track${paused ? ' paused' : ''}`}>
-            {doubled.map((dest, i) => (
-              <TopDestItem
-                key={`${dest.id}-${i}`}
-                dest={dest}
-                inView={inView}
-                onClick={() => onFilter && onFilter(dest.region)}
-              />
-            ))}
+            {doubled.map((dest, i) => <TopDestItem key={`${dest.id}-${i}`} dest={dest} inView={inView} onClick={() => onFilter && onFilter(dest.region)} />)}
           </div>
         </div>
-
       </div>
     </section>
   )
@@ -407,68 +224,17 @@ function TopDestinationsCarousel({ onFilter }) {
 
 function TopDestItem({ dest, inView, onClick }) {
   const [hov, setHov] = useState(false)
-
   return (
-    <div
-      onClick={onClick}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        cursor: 'pointer',
-        flexShrink: 0,
-        width: 150,
-        opacity: inView ? 1 : 0,
-        transition: 'opacity 0.6s ease',
-      }}
-    >
-      <div style={{
-        width: 130,
-        height: 130,
-        borderRadius: '50%',
-        overflow: 'hidden',
-        border: `3px solid ${hov ? G : '#e8e8e8'}`,
-        transition: 'border-color .3s, transform .3s, box-shadow .3s',
-        transform: hov ? 'scale(1.06)' : 'scale(1)',
-        boxShadow: hov ? `0 8px 28px ${G}33` : '0 2px 10px rgba(0,0,0,0.08)',
-        flexShrink: 0,
-      }}>
-        <img
-          src={dest.img}
-          alt={dest.name}
-          loading="lazy"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            display: 'block',
-            transform: hov ? 'scale(1.08)' : 'scale(1)',
-            transition: 'transform .5s ease',
-          }}
-        />
+    <div onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer', flexShrink: 0, width: 150, opacity: inView ? 1 : 0, transition: 'opacity 0.6s ease' }}>
+      <div style={{ width: 130, height: 130, borderRadius: '50%', overflow: 'hidden', border: `3px solid ${hov ? G : '#e8e8e8'}`, transition: 'border-color .3s, transform .3s, box-shadow .3s', transform: hov ? 'scale(1.06)' : 'scale(1)', boxShadow: hov ? `0 8px 28px ${G}33` : '0 2px 10px rgba(0,0,0,0.08)', flexShrink: 0 }}>
+        <img src={dest.img} alt={dest.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', transform: hov ? 'scale(1.08)' : 'scale(1)', transition: 'transform .5s ease' }} />
       </div>
-
-      <p style={{
-        fontFamily: "Georgia,'Times New Roman',serif",
-        fontSize: '0.95rem',
-        fontWeight: 400,
-        color: hov ? G : INK,
-        marginTop: 14,
-        marginBottom: 4,
-        textAlign: 'center',
-        transition: 'color .3s',
-        letterSpacing: '-0.01em',
-      }}>
-        {dest.name}
-      </p>
-
-     
+      <p style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: '0.95rem', fontWeight: 400, color: hov ? G : INK, marginTop: 14, marginBottom: 4, textAlign: 'center', transition: 'color .3s', letterSpacing: '-0.01em' }}>{dest.name}</p>
     </div>
   )
 }
+
 /* ═══════════════════════════════════════════════════════
    ACCORDION ITEM
 ═══════════════════════════════════════════════════════ */
@@ -509,24 +275,8 @@ function DestCard({ dest, index, inView }) {
   const delay = `${(index % 6) * 70}ms`
 
   return (
-    <article
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-      style={{
-        background: CARD,
-        borderTop: `2px solid ${hov ? G : BR2}`,
-        borderLeft: `1px solid ${BR}`,
-        borderRight: `1px solid ${BR}`,
-        borderBottom: `1px solid ${BR}`,
-        overflow: 'hidden',
-        opacity: inView ? 1 : 0,
-        transform: inView ? 'translateY(0)' : 'translateY(44px)',
-        transition: `opacity .7s ease ${delay}, transform .7s ease ${delay}, border-top-color .3s, box-shadow .3s`,
-        boxShadow: hov ? `0 24px 64px -16px rgba(184,134,11,.18), 0 4px 16px -4px rgba(0,0,0,.08)` : `0 2px 16px -4px rgba(92,79,58,.07)`,
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <article onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{ background: CARD, borderTop: `2px solid ${hov ? G : BR2}`, borderLeft: `1px solid ${BR}`, borderRight: `1px solid ${BR}`, borderBottom: `1px solid ${BR}`, overflow: 'hidden', opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(44px)', transition: `opacity .7s ease ${delay}, transform .7s ease ${delay}, border-top-color .3s, box-shadow .3s`, boxShadow: hov ? `0 24px 64px -16px rgba(245,168,0,.18), 0 4px 16px -4px rgba(0,0,0,.08)` : `0 2px 16px -4px rgba(45,45,45,.07)`, display: 'flex', flexDirection: 'column' }}>
       <div style={{ position: 'relative', overflow: 'hidden', flexShrink: 0, height: 'clamp(220px,28vw,340px)' }}>
         <img src={dest.img} alt={dest.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transform: hov ? 'scale(1.07)' : 'scale(1.01)', transition: 'transform 1.1s cubic-bezier(.4,0,.2,1)', filter: `brightness(${hov ? '0.72' : '0.82'}) saturate(1.08)` }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg,rgba(8,6,2,.72) 0%,rgba(8,6,2,.18) 50%,transparent 80%)' }} />
@@ -558,11 +308,12 @@ function DestCard({ dest, index, inView }) {
         <p style={{ fontSize: 12.5, lineHeight: 1.85, color: SL2, fontWeight: 300, fontFamily: 'sans-serif', marginBottom: 14, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{dest.desc}</p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginBottom: 16 }}>
           {dest.highlights.map(h => (
-            <span key={h} style={{ fontSize: 9, fontWeight: 600, padding: '3px 9px', borderRadius: 20, background: 'rgba(184,134,11,.09)', color: G, border: `1px solid ${G}30`, fontFamily: 'sans-serif' }}>{h}</span>
+            <span key={h} style={{ fontSize: 9, fontWeight: 600, padding: '3px 9px', borderRadius: 20, background: `rgba(245,168,0,.09)`, color: G, border: `1px solid ${G}30`, fontFamily: 'sans-serif' }}>{h}</span>
           ))}
         </div>
         <div style={{ background: '#fff', border: `1px solid ${expanded ? G + '55' : BR}`, borderRadius: 2, overflow: 'hidden', marginBottom: 0, transition: 'border-color .3s' }}>
-          <button onClick={() => { setExpanded(e => !e); if (!expanded) setOpenAcc(null) }} style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: expanded ? G3 : '#fff', border: 'none', cursor: 'pointer', transition: 'background .3s', borderBottom: expanded ? `1px solid ${G}22` : 'none' }}>
+          <button onClick={() => { setExpanded(e => !e); if (!expanded) setOpenAcc(null) }}
+            style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: expanded ? G3 : '#fff', border: 'none', cursor: 'pointer', transition: 'background .3s', borderBottom: expanded ? `1px solid ${G}22` : 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
               <div style={{ width: 5, height: 5, borderRadius: '50%', background: expanded ? G : BR2, transition: 'background .3s' }} />
               <span style={{ fontFamily: 'sans-serif', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: expanded ? G : SL2 }}>{expanded ? 'Less Info' : 'Know More'}</span>
@@ -582,7 +333,7 @@ function DestCard({ dest, index, inView }) {
         </div>
         <div style={{ flex: 1 }} />
         <div style={{ display: 'flex', gap: 8, marginTop: 18, paddingTop: 16, borderTop: `1px solid ${BR}` }}>
-          <a href="#inquiry" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: `linear-gradient(135deg,${R},#991b1b)`, color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', padding: '13px 16px', borderRadius: 2, fontFamily: 'sans-serif', textDecoration: 'none', textTransform: 'uppercase', boxShadow: hov ? `0 8px 24px -6px ${R}55` : 'none', transition: 'box-shadow .3s' }}>
+          <a href="#inquiry" style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, background: `linear-gradient(135deg,${RED},${RED2})`, color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', padding: '13px 16px', borderRadius: 2, fontFamily: 'sans-serif', textDecoration: 'none', textTransform: 'uppercase', boxShadow: hov ? `0 8px 24px -6px ${RED}55` : 'none', transition: 'box-shadow .3s' }}>
             Enquire Now <ArrowUpRight size={13} />
           </a>
           <a href={`tel:+442030049978`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 46, height: 46, borderRadius: 2, background: G3, border: `1px solid ${G}40`, textDecoration: 'none', flexShrink: 0 }}>
@@ -630,13 +381,15 @@ function DestinationsSection({ initSearch, initRegion }) {
     category !== 'all' && CATEGORIES.find(c => c.id === category)?.label,
   ].filter(Boolean)
 
+  const selectStyle = { flex: '1 1 160px', minWidth: 150, background: '#fff', border: `1px solid ${BR2}`, borderRadius: 2, padding: '10px 32px 10px 14px', fontSize: 13, color: SL, fontFamily: 'sans-serif', cursor: 'pointer', appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%238A8A8A' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', outline: 'none' }
+
   return (
     <section id="destinations" ref={ref} style={{ background: PARCH, padding: 'clamp(4rem,8vw,6rem) 0', position: 'relative' }}>
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(rgba(184,134,11,.18) 1px,transparent 1px)`, backgroundSize: '32px 32px', pointerEvents: 'none', opacity: .45 }} />
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(rgba(245,168,0,.18) 1px,transparent 1px)`, backgroundSize: '32px 32px', pointerEvents: 'none', opacity: .45 }} />
       <div style={{ position: 'relative', maxWidth: 1440, margin: '0 auto', padding: '0 clamp(1rem,5vw,5rem)' }}>
         <div style={{ marginBottom: 40, opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(24px)', transition: 'opacity .7s, transform .7s' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-            <div style={{ width: 28, height: 1, background: G }} />
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,${G},${G2})`, borderRadius: 2 }} />
             <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.3em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>The Collection</span>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, marginBottom: 32 }}>
@@ -645,34 +398,41 @@ function DestinationsSection({ initSearch, initRegion }) {
             </h2>
             <span style={{ fontSize: 13, color: SL2, fontFamily: 'sans-serif', paddingBottom: 4 }}>{filtered.length} destination{filtered.length !== 1 ? 's' : ''} found</span>
           </div>
+
+          {/* Search + filters */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
             <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 200, maxWidth: 300 }}>
               <Search size={13} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: SL2, pointerEvents: 'none' }} />
-              <input value={searchQ} onChange={e => { setSearchQ(e.target.value); setPage(1) }} placeholder="Search destinations…" style={{ width: '100%', background: '#fff', border: `1px solid ${searchQ ? G + '88' : BR2}`, borderRadius: 2, padding: '10px 32px 10px 36px', fontSize: 13, color: INK, fontFamily: 'sans-serif', boxSizing: 'border-box', outline: 'none', transition: 'border-color .3s' }} />
+              <input value={searchQ} onChange={e => { setSearchQ(e.target.value); setPage(1) }} placeholder="Search destinations…"
+                style={{ width: '100%', background: '#fff', border: `1px solid ${searchQ ? G + '88' : BR2}`, borderRadius: 2, padding: '10px 32px 10px 36px', fontSize: 13, color: INK, fontFamily: 'sans-serif', boxSizing: 'border-box', outline: 'none', transition: 'border-color .3s' }} />
               {searchQ && <X size={11} style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', color: SL2, cursor: 'pointer' }} onClick={() => setSearchQ('')} />}
             </div>
-            <select value={region} onChange={e => { setRegion(e.target.value); setPage(1) }} style={{ flex: '1 1 160px', minWidth: 150, background: '#fff', border: `1px solid ${BR2}`, borderRadius: 2, padding: '10px 32px 10px 14px', fontSize: 13, color: SL, fontFamily: 'sans-serif', cursor: 'pointer', appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%239C8B78' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', outline: 'none' }}>
+            <select value={region} onChange={e => { setRegion(e.target.value); setPage(1) }} style={selectStyle}>
               {REGIONS.map(r => <option key={r}>{r}</option>)}
             </select>
-            <select value={country} onChange={e => { setCountry(e.target.value); setPage(1) }} style={{ flex: '1 1 160px', minWidth: 150, background: '#fff', border: `1px solid ${BR2}`, borderRadius: 2, padding: '10px 32px 10px 14px', fontSize: 13, color: SL, fontFamily: 'sans-serif', cursor: 'pointer', appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%239C8B78' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', outline: 'none' }}>
+            <select value={country} onChange={e => { setCountry(e.target.value); setPage(1) }} style={selectStyle}>
               {COUNTRIES.map(c => <option key={c}>{c}</option>)}
             </select>
-            <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ flex: '1 1 140px', minWidth: 140, background: '#fff', border: `1px solid ${BR2}`, borderRadius: 2, padding: '10px 32px 10px 14px', fontSize: 13, color: SL, fontFamily: 'sans-serif', cursor: 'pointer', marginLeft: 'auto', appearance: 'none', backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%239C8B78' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 10px center', outline: 'none' }}>
+            <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ ...selectStyle, flex: '1 1 140px', minWidth: 140, marginLeft: 'auto' }}>
               <option value="popular">Most Popular</option>
               <option value="name">A – Z</option>
             </select>
           </div>
+
+          {/* Category pills */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {CATEGORIES.map(({ id, label, Icon }) => {
               const active = category === id
               return (
-                <button key={id} onClick={() => { setCategory(id); setPage(1) }} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 16px', background: active ? G : '#fff', border: `1px solid ${active ? G : BR2}`, borderRadius: 2, color: active ? '#fff' : SL, fontSize: 11.5, fontWeight: active ? 700 : 400, fontFamily: 'sans-serif', cursor: 'pointer', boxShadow: active ? `0 4px 16px -4px ${G}55` : 'none', transition: 'all .25s' }}>
+                <button key={id} onClick={() => { setCategory(id); setPage(1) }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '8px 16px', background: active ? G : '#fff', border: `1px solid ${active ? G : BR2}`, borderRadius: 2, color: active ? '#fff' : SL, fontSize: 11.5, fontWeight: active ? 700 : 400, fontFamily: 'sans-serif', cursor: 'pointer', boxShadow: active ? `0 4px 16px -4px ${G}55` : 'none', transition: 'all .25s' }}>
                   <Icon size={12} style={{ color: active ? 'rgba(255,255,255,.7)' : SL2 }} />
                   {label}
                 </button>
               )
             })}
           </div>
+
           {activeFilters.length > 0 && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center', marginTop: 10 }}>
               <span style={{ fontSize: 10.5, color: SL2, fontFamily: 'sans-serif' }}>Active:</span>
@@ -687,10 +447,12 @@ function DestinationsSection({ initSearch, initRegion }) {
                   }} />
                 </span>
               ))}
-              <button onClick={() => { setCategory('all'); setRegion('All Regions'); setCountry('All Countries'); setSearchQ('') }} style={{ fontSize: 10.5, color: R, fontFamily: 'sans-serif', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700 }}>Clear all</button>
+              <button onClick={() => { setCategory('all'); setRegion('All Regions'); setCountry('All Countries'); setSearchQ('') }}
+                style={{ fontSize: 10.5, color: RED, fontFamily: 'sans-serif', background: 'none', border: 'none', cursor: 'pointer', fontWeight: 700 }}>Clear all</button>
             </div>
           )}
         </div>
+
         {shown.length > 0 ? (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,320px),1fr))', gap: 'clamp(16px,2.5vw,28px)', opacity: inView ? 1 : 0, transition: 'opacity .7s ease .15s' }}>
             {shown.map((dest, i) => <DestCard key={dest.id} dest={dest} index={i} inView={inView} />)}
@@ -699,16 +461,8 @@ function DestinationsSection({ initSearch, initRegion }) {
           <div style={{ textAlign: 'center', padding: '6rem 0' }}>
             <p style={{ fontFamily: "Georgia,serif", fontSize: '1.8rem', color: SL2, marginBottom: 10 }}>No destinations found.</p>
             <p style={{ fontSize: 13, color: SL2, fontFamily: 'sans-serif', marginBottom: 24 }}>Try adjusting your filters or search term.</p>
-            <button onClick={() => { setCategory('all'); setRegion('All Regions'); setCountry('All Countries'); setSearchQ('') }} style={{ background: `linear-gradient(135deg,${R},#991b1b)`, color: '#fff', border: 'none', borderRadius: 2, padding: '13px 28px', fontSize: 11.5, fontWeight: 700, fontFamily: 'sans-serif', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Clear All Filters</button>
-          </div>
-        )}
-        {hasMore && (
-          <div style={{ marginTop: 56, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 24 }}>
-            <div style={{ height: 1, flex: 1, maxWidth: 100, background: `linear-gradient(90deg,transparent,${G}66)` }} />
-            <button onClick={() => setPage(p => p + 1)} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: `linear-gradient(135deg,${R},#991b1b)`, color: '#fff', border: 'none', borderRadius: 2, padding: '14px 32px', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', cursor: 'pointer', fontFamily: 'sans-serif', boxShadow: `0 12px 36px -8px ${R}55` }}>
-              Load More Destinations <ChevronRight size={14} />
-            </button>
-            <div style={{ height: 1, flex: 1, maxWidth: 100, background: `linear-gradient(90deg,${G}66,transparent)` }} />
+            <button onClick={() => { setCategory('all'); setRegion('All Regions'); setCountry('All Countries'); setSearchQ('') }}
+              style={{ background: `linear-gradient(135deg,${RED},${RED2})`, color: '#fff', border: 'none', borderRadius: 2, padding: '13px 28px', fontSize: 11.5, fontWeight: 700, fontFamily: 'sans-serif', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Clear All Filters</button>
           </div>
         )}
       </div>
@@ -733,9 +487,9 @@ function WhySection() {
       <div style={{ maxWidth: 1440, margin: '0 auto', padding: '0 clamp(1rem,5vw,5rem)' }}>
         <div style={{ textAlign: 'center', marginBottom: 48, opacity: inView ? 1 : 0, transition: 'opacity .7s, transform .7s', transform: inView ? 'none' : 'translateY(20px)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: 14 }}>
-            <div style={{ width: 28, height: 1, background: G }} />
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,transparent,${G})`, borderRadius: 2 }} />
             <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.28em', textTransform: 'uppercase', color: G, fontFamily: 'sans-serif' }}>Why Chalo Holidays</span>
-            <div style={{ width: 28, height: 1, background: G }} />
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,${G},transparent)`, borderRadius: 2 }} />
           </div>
           <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(1.9rem,4vw,3rem)', fontWeight: 400, color: INK, letterSpacing: '-0.02em' }}>
             Crafted with <em style={{ color: G }}>passion,</em> delivered with <em style={{ color: G }}>precision.</em>
@@ -746,7 +500,8 @@ function WhySection() {
             const [hov, setHov] = useState(false)
             const I = ICON_MAP[icon] || Sun
             return (
-              <div key={title} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)} style={{ padding: '28px 24px', border: `1px solid ${hov ? G + '66' : BR}`, borderTop: `2px solid ${hov ? G : BR2}`, background: hov ? G3 : CARD, transition: 'all .3s', cursor: 'default', opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(28px)', transitionDelay: `${i * 80}ms` }}>
+              <div key={title} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+                style={{ padding: '28px 24px', border: `1px solid ${hov ? G + '66' : BR}`, borderTop: `2px solid ${hov ? G : BR2}`, background: hov ? G3 : CARD, transition: 'all .3s', cursor: 'default', opacity: inView ? 1 : 0, transform: inView ? 'none' : 'translateY(28px)', transitionDelay: `${i * 80}ms` }}>
                 <div style={{ width: 44, height: 44, borderRadius: '50%', background: hov ? `${G}22` : PARCH, border: `1px solid ${hov ? G + '55' : BR2}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18, transition: 'all .3s' }}>
                   <I size={18} style={{ color: hov ? G : SL2, strokeWidth: 1.5, transition: 'color .3s' }} />
                 </div>
@@ -780,19 +535,12 @@ export default function DestinationsPage() {
         ::-webkit-scrollbar { width:6px; height:6px }
         ::-webkit-scrollbar-track { background:${PARCH} }
         ::-webkit-scrollbar-thumb { background:${G}; border-radius:3px }
-        @media (max-width:900px) {
-          .top-dest-grid { grid-template-columns: repeat(3, 1fr) !important; }
-        }
-        @media (max-width:580px) {
-          .top-dest-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .dest-grid { grid-template-columns: 1fr !important }
-        }
+        @media (max-width:900px) { .top-dest-grid { grid-template-columns: repeat(3, 1fr) !important; } }
+        @media (max-width:580px) { .top-dest-grid { grid-template-columns: repeat(2, 1fr) !important; } .dest-grid { grid-template-columns: 1fr !important } }
       `}</style>
       <Navbar />
       <Hero onSearch={handleSearch} />
-      {/* ── INTRO SECTION — left image, right content ── */}
       <IntroSection />
-      {/* ── TOP DESTINATIONS CAROUSEL ── */}
       <TopDestinationsCarousel onFilter={handleRegionFilter} />
       <WhySection />
       <DestinationsSection initSearch={searchQuery} initRegion={regionFilter} />

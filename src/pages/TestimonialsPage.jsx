@@ -7,14 +7,24 @@ import {
 import Navbar from '../components/common/Navbar'
 import Footer from '../components/common/Footer'
 
-/* ─── Design Tokens (matching Chalo Holidays) ─── */
-const GOLD  = '#B8860B'
-const GOLD2 = '#D4A017'
-const RED   = '#B91C1C'
-const DARK  = '#0F172A'
-const DARK2 = '#1C1917'
-const SLATE = '#475569'
-const STONE = '#78716C'
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS — Chalo Holidays Brand (matches HomePage)
+   RED    : #D91B1B  — logo vivid red script
+   AMBER  : #F5A800  — logo sun illustration
+   AMBER2 : #C8880A  — deeper amber
+   CHAR   : #2D2D2D  — logo charcoal headings
+   GRAY   : #8A8A8A  — logo airplane silhouette
+═══════════════════════════════════════════════════════ */
+const RED    = '#D91B1B'   // logo vivid red — primary CTA
+const RED2   = '#B01515'   // darker red for gradients
+const GOLD   = '#F5A800'   // AMBER — logo sun, gold role
+const GOLD2  = '#C8880A'   // AMBER2 — deeper amber
+const DARK   = '#2D2D2D'   // CHAR — logo charcoal
+const DARK2  = '#2D2D2D'
+const SLATE  = '#4A4A4A'
+const STONE  = '#8A8A8A'
+const CREAM  = '#FAFAF5'
+const CREAM2 = '#F5F0E6'
 
 /* ─── Hooks ─── */
 function useInView(threshold = 0.12) {
@@ -33,8 +43,9 @@ function useInView(threshold = 0.12) {
 
 /* ─── Shared Atoms ─── */
 function Rule({ color = GOLD, w = 28 }) {
-  return <div style={{ width: w, height: 1, background: color, flexShrink: 0 }} />
+  return <div style={{ width: w, height: 1.5, background: color, flexShrink: 0, borderRadius: 2 }} />
 }
+
 function SectionLabel({ color = GOLD, children }) {
   return (
     <div className="flex items-center gap-3 mb-5">
@@ -45,6 +56,7 @@ function SectionLabel({ color = GOLD, children }) {
     </div>
   )
 }
+
 function StarRow({ count = 5, accent = GOLD, size = 13 }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -180,7 +192,7 @@ function TestimonialsHero() {
       <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg,rgba(4,4,10,.96) 0%,rgba(4,4,10,.32) 18%,transparent 45%)' }} />
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(4,4,10,.52) 0%,transparent 22%)' }} />
 
-      {/* Left accent line */}
+      {/* Brand amber accent line — matches homepage */}
       <div className="absolute left-0 top-0 bottom-0 w-[3px]"
         style={{ background: `linear-gradient(180deg,transparent,${GOLD} 35%,${GOLD2} 65%,transparent)` }} />
 
@@ -203,12 +215,13 @@ function TestimonialsHero() {
           transition: 'opacity .9s ease .08s, transform .9s ease .08s',
         }}>
           <div className="flex items-center gap-3 mb-7" style={{ fontFamily: 'sans-serif' }}>
-            <Rule color={GOLD} w={28} />
+            {/* Red-to-amber rule matches homepage hero */}
+            <div style={{ width: 28, height: 1.5, background: `linear-gradient(90deg,${RED},${GOLD})`, borderRadius: 2 }} />
             <span style={{ color: GOLD, fontSize: 10, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase' }}>
               Stories from the Road
             </span>
             <span className="hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5"
-              style={{ color: GOLD2, border: `1px solid ${GOLD}45`, background: 'rgba(212,160,23,0.12)', fontSize: 9, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', fontFamily: 'sans-serif', borderRadius: 2 }}>
+              style={{ color: GOLD2, border: `1px solid ${GOLD}45`, background: 'rgba(245,168,0,0.12)', fontSize: 9, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', fontFamily: 'sans-serif', borderRadius: 2 }}>
               2,400+ Reviews
             </span>
           </div>
@@ -232,7 +245,6 @@ function TestimonialsHero() {
           </p>
         </div>
 
-        {/* Bottom platform strip */}
         <div
           className="absolute bottom-0 left-0 right-0"
           style={{
@@ -240,13 +252,11 @@ function TestimonialsHero() {
             backdropFilter: 'blur(20px)',
             borderTop: '1px solid rgba(255,255,255,.07)',
           }}
-        >
-        </div>
+        />
       </div>
     </section>
   )
 }
-
 
 /* ══════════════════════════════════════════════
    4 ▸ MASONRY GRID
@@ -259,9 +269,9 @@ function TestimonialCard({ t, i, inView }) {
       className="relative flex flex-col p-6 sm:p-7 cursor-default"
       style={{
         background: '#fff',
-        border: `1px solid ${hov ? t.accent + '55' : '#E8E5E1'}`,
+        border: `1px solid ${hov ? t.accent + '55' : '#E8E8E4'}`,
         borderRadius: 4,
-        boxShadow: hov ? `0 20px 52px -12px ${t.accent}22` : '0 2px 12px -4px rgba(28,25,23,.06)',
+        boxShadow: hov ? `0 20px 52px -12px ${t.accent}22` : '0 2px 12px -4px rgba(45,45,45,.06)',
         transform: inView ? (hov ? 'translateY(-6px)' : 'translateY(0)') : 'translateY(30px)',
         opacity: inView ? 1 : 0,
         transition: `transform ${hov ? '320ms' : '600ms'} cubic-bezier(.4,0,.2,1), box-shadow 400ms, border-color 400ms, opacity .7s ease ${i * 80}ms`,
@@ -270,8 +280,14 @@ function TestimonialCard({ t, i, inView }) {
       }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
 
-      {/* Top accent */}
-      <div style={{ height: 2, background: hov ? `linear-gradient(90deg,${t.accent},${GOLD2})` : 'transparent', margin: '-1.75rem -1.75rem 1.25rem', transition: 'background 400ms', borderRadius: '4px 4px 0 0' }} />
+      {/* Top accent — red-to-amber gradient on hover, matching homepage card pattern */}
+      <div style={{
+        height: 2.5,
+        background: hov ? `linear-gradient(90deg,${RED},${GOLD})` : 'transparent',
+        margin: '-1.75rem -1.75rem 1.25rem',
+        transition: 'background 400ms',
+        borderRadius: '4px 4px 0 0'
+      }} />
 
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
@@ -301,7 +317,7 @@ function TestimonialCard({ t, i, inView }) {
 
       {/* Quote */}
       <div className="relative flex-1">
-        <Quote size={20} style={{ color: hov ? `${t.accent}50` : '#E8E5E1', fill: hov ? `${t.accent}50` : '#E8E5E1', position: 'absolute', top: -4, left: -2, transition: 'color 400ms, fill 400ms' }} />
+        <Quote size={20} style={{ color: hov ? `${t.accent}50` : '#E8E8E4', fill: hov ? `${t.accent}50` : '#E8E8E4', position: 'absolute', top: -4, left: -2, transition: 'color 400ms, fill 400ms' }} />
         <p className="leading-relaxed pl-5"
           style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: '0.9rem', fontStyle: 'italic', color: '#44403C', lineHeight: 1.78 }}>
           {t.text}
@@ -310,7 +326,7 @@ function TestimonialCard({ t, i, inView }) {
 
       {/* Tag */}
       <div className="mt-5 pt-4" style={{ borderTop: '1px solid #F0EDE8' }}>
-        <span style={{ background: '#F5F0E8', color: GOLD, fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', fontFamily: 'sans-serif', padding: '4px 10px', borderRadius: 2 }}>
+        <span style={{ background: `${GOLD}18`, color: GOLD2, fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', fontFamily: 'sans-serif', padding: '4px 10px', borderRadius: 2 }}>
           {t.tag}
         </span>
       </div>
@@ -322,9 +338,9 @@ function TestimonialsGrid() {
   const [ref, inView] = useInView(0.06)
 
   return (
-    <section ref={ref} className="w-full py-20 sm:py-28" style={{ background: '#FAFAF8' }}>
+    <section ref={ref} className="w-full py-20 sm:py-28" style={{ background: CREAM }}>
       <div className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: `radial-gradient(#D4A01716 1px,transparent 1px)`, backgroundSize: '30px 30px' }} />
+        style={{ backgroundImage: `radial-gradient(${GOLD}16 1px,transparent 1px)`, backgroundSize: '30px 30px' }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14"
@@ -356,7 +372,7 @@ function TestimonialsGrid() {
           </div>
         </div>
 
-        {/* Masonry grid using CSS columns */}
+        {/* Masonry grid */}
         <div style={{ columns: 'clamp(280px, 30vw, 360px) 3', columnGap: '1.25rem' }}>
           {GRID_TESTIMONIALS.map((t, i) => (
             <TestimonialCard key={t.id} t={t} i={i} inView={inView} />
@@ -382,89 +398,13 @@ function MarqueeStrip() {
       <div className="flex items-center gap-8 animate-marquee whitespace-nowrap"
         style={{ animation: 'marquee 28s linear infinite', display: 'flex', gap: 48 }}>
         {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((t, i) => (
-          <span key={i} style={{ fontFamily: t.startsWith('★') ? 'serif' : "Georgia,'Times New Roman',serif", fontSize: 13, fontWeight: t.startsWith('★') ? 400 : 400, color: '#1C1917', fontStyle: t.startsWith('"') ? 'italic' : 'normal', whiteSpace: 'nowrap', letterSpacing: '0.01em' }}>
+          <span key={i} style={{ fontFamily: t.startsWith('★') ? 'serif' : "Georgia,'Times New Roman',serif", fontSize: 13, fontWeight: 400, color: DARK, fontStyle: t.startsWith('"') ? 'italic' : 'normal', whiteSpace: 'nowrap', letterSpacing: '0.01em' }}>
             {t}
           </span>
         ))}
       </div>
       <style>{`@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}`}</style>
     </div>
-  )
-}
-
-/* ══════════════════════════════════════════════
-   6 ▸ VIDEO TESTIMONIALS TEASER
-══════════════════════════════════════════════ */
-const VIDEO_CARDS = [
-  { name: 'Sharma Family', dest: 'Bali, Indonesia', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=75', duration: '2:34' },
-  { name: 'James & Sarah', dest: 'Santorini, Greece', img: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=75', duration: '1:58' },
-  { name: 'Krishnan Family', dest: 'Kerala, India', img: 'https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=600&q=75', duration: '3:12' },
-]
-
-function VideoTestimonials() {
-  const [ref, inView] = useInView(0.08)
-
-  return (
-    <section ref={ref} className="w-full py-20 sm:py-28 overflow-hidden" style={{ background: DARK }}>
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ backgroundImage: `linear-gradient(${GOLD}08 1px,transparent 1px),linear-gradient(90deg,${GOLD}08 1px,transparent 1px)`, backgroundSize: '60px 60px', opacity: 0.5 }} />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="text-center mb-14"
-          style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(24px)', transition: 'opacity .7s ease, transform .7s ease' }}>
-          <SectionLabel color={GOLD}>Video Stories</SectionLabel>
-          <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(2.2rem,5vw,3.4rem)', fontWeight: 400, color: '#fff', letterSpacing: '-0.02em', lineHeight: 1.06 }}>
-            Watch their<br /><em style={{ color: GOLD }}>journeys unfold.</em>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {VIDEO_CARDS.map((v, i) => {
-            const [hov, setHov] = useState(false)
-            return (
-              <div key={v.name}
-                className="relative overflow-hidden cursor-pointer"
-                style={{
-                  borderRadius: 4,
-                  opacity: inView ? 1 : 0,
-                  transform: inView ? 'translateY(0)' : 'translateY(30px)',
-                  transition: `opacity .7s ease ${i * 100}ms, transform .7s ease ${i * 100}ms`,
-                }}
-                onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
-                <div className="relative overflow-hidden" style={{ paddingBottom: '140%' }}>
-                  <img src={v.img} alt={v.dest} className="absolute inset-0 w-full h-full object-cover"
-                    style={{ transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .6s ease' }} />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,transparent 35%,rgba(4,4,10,.88))' }} />
-
-                  {/* Play button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="flex items-center justify-center transition-all duration-300"
-                      style={{ width: hov ? 60 : 52, height: hov ? 60 : 52, borderRadius: '50%', background: hov ? RED : 'rgba(255,255,255,.2)', backdropFilter: 'blur(10px)', border: '1.5px solid rgba(255,255,255,.4)' }}>
-                      <Play size={18} style={{ color: '#fff', marginLeft: 3, fill: '#fff' }} />
-                    </div>
-                  </div>
-
-                  {/* Duration */}
-                  <div className="absolute top-4 right-4 px-2 py-1"
-                    style={{ background: 'rgba(4,4,10,.72)', backdropFilter: 'blur(8px)', borderRadius: 2 }}>
-                    <span style={{ color: '#fff', fontSize: 10, fontWeight: 700, fontFamily: 'sans-serif' }}>{v.duration}</span>
-                  </div>
-
-                  {/* Info */}
-                  <div className="absolute bottom-5 left-5 right-5">
-                    <p style={{ fontFamily: "Georgia,serif", fontSize: '1.05rem', fontWeight: 600, color: '#fff', lineHeight: 1 }}>{v.name}</p>
-                    <div className="flex items-center gap-1.5 mt-1.5">
-                      <MapPin size={10} style={{ color: GOLD }} />
-                      <span style={{ color: GOLD, fontSize: 10, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', fontFamily: 'sans-serif' }}>{v.dest}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
   )
 }
 
@@ -475,11 +415,11 @@ function VideoTestimonials() {
 ══════════════════════════════════════════════ */
 export default function TestimonialsPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'sans-serif' }}>
-      <Navbar /> 
+    <div className="min-h-screen" style={{ fontFamily: 'sans-serif', background: CREAM }}>
+      <Navbar />
       <TestimonialsHero />
       <TestimonialsGrid />
-       <Footer /> 
+      <Footer />
     </div>
   )
 }

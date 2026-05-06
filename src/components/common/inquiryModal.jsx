@@ -22,6 +22,9 @@ const InquiryModal = () => {
 
   const handleClose = () => {
     dismissedRef.current = true;
+    // Reset form and submitted state when closing
+    setForm({ name: '', email: '', phone: '', message: '' });
+    setSubmitted(false);
     setIsAnimating(false);
     setTimeout(() => setIsOpen(false), 300);
   };
@@ -32,23 +35,15 @@ const InquiryModal = () => {
     setSubmitted(true);
   };
 
+  const resetForm = () => {
+    setForm({ name: '', email: '', phone: '', message: '' });
+    setSubmitted(false);
+  };
+
   const stopPropagation = (e) => e.stopPropagation();
 
   return (
     <>
-      {/* Trigger button (always visible) */}
-      {/* {!isOpen && (
-        <div className="fixed bottom-6 right-6 z-40">
-          <button
-            onClick={handleOpen}
-            style={{ background: '#9B1C1C' }}
-            className="text-white text-xs font-bold tracking-widest uppercase px-5 py-3 rounded shadow-lg hover:bg-red-900 transition-all"
-          >
-            Make Enquiry
-          </button>
-        </div>
-      )} */}
-
       {/* Modal Overlay */}
       {isOpen && (
         <div
@@ -72,7 +67,7 @@ const InquiryModal = () => {
               {/* Close */}
               <button
                 onClick={handleClose}
-                className="absolute top-3 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white transition-all"
+                className="absolute top-3 right-4 w-8 h-8 rounded-full flex items-center justify-center text-white transition-all hover:bg-white/20"
                 style={{ background: 'rgba(255,255,255,0.15)' }}
               >
                 <FaTimes size={12} />
@@ -153,6 +148,35 @@ const InquiryModal = () => {
                 <p style={{ fontSize: '13px', lineHeight: '1.8', color: '#999' }}>
                   We wish you all the best and look forward<br />to planning your perfect journey.
                 </p>
+                
+                {/* Added buttons for better UX */}
+                <div className="flex gap-3 mt-8">
+                  <button
+                    onClick={resetForm}
+                    style={{ 
+                      background: 'transparent', 
+                      color: '#9B1C1C', 
+                      fontFamily: 'Georgia, serif', 
+                      fontSize: '12px',
+                      border: '1px solid #9B1C1C'
+                    }}
+                    className="flex-1 py-2.5 px-4 rounded-lg font-semibold hover:bg-red-50 transition-all"
+                  >
+                    Edit Enquiry
+                  </button>
+                  <button
+                    onClick={handleClose}
+                    style={{ 
+                      background: '#9B1C1C', 
+                      fontFamily: 'Georgia, serif', 
+                      fontSize: '12px' 
+                    }}
+                    className="flex-1 py-2.5 px-4 text-white rounded-lg font-semibold hover:bg-red-900 transition-all"
+                  >
+                    Close
+                  </button>
+                </div>
+                
                 <p style={{ fontSize: '12px', color: '#C9A84C', letterSpacing: '0.1em', fontWeight: '700', marginTop: '16px' }}>
                   — The Chalo Holidays Team
                 </p>

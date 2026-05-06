@@ -463,8 +463,8 @@ export default function FooterSection() {
                 <div className="footer-contact-grid">
                   <ContactRow
                     Icon={MapPin}
-                    text="41 South Park Crescent, Ilford, IG1 1XU"
-                    href="https://maps.google.com/?q=41+South+Park+Crescent+Ilford+IG1+1XU"
+                    text="40, South Park Crescent, London, IG11XU, UK"
+                    href="https://maps.google.com/?q=40+South+Park+Crescent+London+IG1+1XU"
                   />
                   <ContactRow
                     Icon={Phone}
@@ -473,8 +473,8 @@ export default function FooterSection() {
                   />
                   <ContactRow
                     Icon={Mail}
-                    text="concierge@chaloholidays.co.uk"
-                    href="mailto:concierge@chaloholidays.co.uk"
+                    text="Operations@chaloholidays.com"
+                    href="mailto:Operations@chaloholidays.com"
                   />
                 </div>
 

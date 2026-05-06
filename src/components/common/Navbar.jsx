@@ -11,9 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faFacebook, faInstagram, faYoutube, faLinkedin, faWhatsapp,
 } from '@fortawesome/free-brands-svg-icons'
-import flagUK    from "../../assets/icons/flag.png"
-import flagIndia  from "../../assets/icons/flag (1).png"
-import flagDubai  from "../../assets/icons/flag (2).png"
+import flagUK    from "../../assets/icons/london-flag.png"
+import flagIndia  from "../../assets/icons/india-flag.png"
+import flagDubai  from "../../assets/icons/dubai-flag.png"
 
 import logo from "../../assets/icons/Chalo_logo.png"
 import InquiryModal from "../common/inquiryModal"
@@ -253,14 +253,7 @@ function ServicesMega({ onClose }) {
             )
           })}
         </div>
-        <div className="mt-4 sm:mt-6 pt-4 sm:pt-5 flex items-center gap-4 sm:gap-8 flex-wrap" style={{ borderTop: "1px solid #E8E5E1" }}>
-          {[{ val: "200+", label: "Destinations" },{ val: "5,000+", label: "Happy Travellers" },{ val: "50+", label: "Expert Planners" },{ val: "98%", label: "Would Rebook" }].map(({ val, label }) => (
-            <div key={label} className="flex items-center gap-2">
-              <span className="font-bold text-[14px] leading-none" style={{ fontFamily: "Georgia,serif", color: GOLD }}>{val}</span>
-              <span className="text-[10px] uppercase tracking-[.14em]" style={{ color: "#94A3B8", fontFamily: "sans-serif" }}>{label}</span>
-            </div>
-          ))}
-        </div>
+       
       </div>
     </div>
   )

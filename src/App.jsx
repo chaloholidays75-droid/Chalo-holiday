@@ -8,7 +8,6 @@ import ServicesPage from '@/pages/ServicesPage'
 import DestinationsPage from '@/pages/DestinationsPage'
 import TestimonialsPage from '@/pages/TestimonialsPage'
 import ContactPage from '@/pages/ContactPage'
-import InquiryPage from '@/pages/InquiryPage'
 import { ROUTES } from '@/constants/routes'
 import Loader from '@/components/common/Loader'
 
@@ -57,7 +56,6 @@ export default function App() {
             <Route path={ROUTES.DESTINATIONS} element={<DestinationsPage />} />
             <Route path={ROUTES.TESTIMONIALS} element={<TestimonialsPage />} />
             <Route path={ROUTES.CONTACT} element={<ContactPage />} />
-            <Route path={ROUTES.INQUIRY} element={<InquiryPage />} />
           </Route>
         </Routes>
       </LoaderWrapper>
