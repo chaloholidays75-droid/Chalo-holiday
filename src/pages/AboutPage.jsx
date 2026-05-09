@@ -28,7 +28,7 @@ import {
   Star, CheckCircle2, Users, HeartHandshake, Handshake, Globe,
   CheckCircle, BadgeCheck, Zap, TrendingDown, Quote, ChevronRight,
   ChevronLeft, Hotel, Car, Binoculars, Package, Briefcase, Building2,
-  Ticket, Home, Crown, Gem, Landmark, Theater, Moon, Plane, UtensilsCrossed
+  Ticket, Home, Crown, Gem, Landmark, Theater, Moon, Plane, UtensilsCrossed,Circle 
 } from 'lucide-react'
 
 /* ════════════════════════════════════════════
@@ -769,7 +769,7 @@ function Credentials() {
    10. TESTIMONIALS
 ════════════════════════════════════════════ */
 const TESTIMONIALS = [
-  { id: 1, name: 'Priya Sharma',  role: 'Honeymooner',            location: 'Mumbai, India',  rating: 5, service: 'Holiday Package',  text: 'Every single detail of our Maldives honeymoon was flawless. From the private transfer to the overwater villa, everything exceeded our expectations. We felt like royalty throughout.', avatar: 'PS', accent: AMBER,  destination: 'Maldives' },
+  { id: 1, name: 'Juhi sen',  role: 'Honeymooner',            location: 'Mumbai, India',  rating: 5, service: 'Holiday Package',  text: 'Every single detail of our Maldives honeymoon was flawless. From the private transfer to the overwater villa, everything exceeded our expectations. We felt like royalty throughout.', avatar: 'PS', accent: AMBER,  destination: 'Maldives' },
   { id: 2, name: 'James Whitfield',role: 'Corporate Travel Manager',location: 'London, UK',   rating: 5, service: 'Corporate Bookings',text: 'We have worked with dozens of agencies. None have matched the precision, communication, and genuine care that this team brings. Our board has been delighted every single trip.',      avatar: 'JW', accent: CHAR,   destination: 'Singapore' },
   { id: 3, name: 'Ananya Krishnan',role: 'Family Traveller',       location: 'Bangalore, India',rating: 5, service: 'Group Bookings', text: 'Coordinating 22 family members across three generations sounded like chaos — but our coordinator made it effortless. The Kerala itinerary was beautifully paced and unforgettable.',     avatar: 'AK', accent: AMBER2, destination: 'Kerala, India' },
   { id: 4, name: 'Marco De Luca', role: 'Solo Explorer',           location: 'Milan, Italy',   rating: 5, service: 'Sightseeing',     text: 'The private after-hours access to Angkor Wat at sunrise — with just our guide and the silence of the ancient stone — is something I will carry for the rest of my life.',                 avatar: 'MD', accent: AMBER,  destination: 'Cambodia' },
@@ -883,12 +883,24 @@ function TestimonialsSection() {
         </div>
 
         {/* Dots */}
-        <div className="flex items-center justify-center gap-2 mt-8">
-          {TESTIMONIALS.map((_, i) => (
-            <button key={i} onClick={() => goTo(i)}
-              style={{ width: i === active ? 28 : 8, height: 8, borderRadius: 4, background: i === active ? RED : '#E2E8F0', border: 'none', cursor: 'pointer', transition: 'all 350ms' }} />
-          ))}
-        </div>
+       <div className="flex items-center justify-center gap-3 mt-8">
+  {TESTIMONIALS.map((_, i) => (
+    <button key={i} onClick={() => goTo(i)} style={{ cursor: 'pointer' }}>
+      
+      <Circle
+        size={i === active ? 14 : 10}
+        fill={i === active ? RED : 'transparent'}
+        stroke={i === active ? RED : '#94A3B8'}
+        strokeWidth={2}
+        style={{
+          transition: 'all 0.3s ease',
+          transform: i === active ? 'scale(1.2)' : 'scale(1)'
+        }}
+      />
+
+    </button>
+  ))}
+</div>
       </div>
     </section>
   )

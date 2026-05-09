@@ -20,12 +20,41 @@ import RadissonLogo from '../assets/patners/rhg-logo.svg'
 import RosewoodLogo from '../assets/patners/rosewood-logo.png'
 import WyndhamLogo from '../assets/patners/wyndham-hotels.webp'
 import LondonImg from '../assets/destination/london-img.jpeg'
-import InterlakenImg from '../assets/destination/Interlakeni-img.jpg'
+ import InterlakenImg from '../assets/destination/Interlakeni-img.jpg'
 import OsloImg from '../assets/destination/oslo-norway.jpg'
 import ParisImg from '../assets/destination/paris-france.webp'
 import BerlinImg from '../assets/destination/berlin.jpg'
 import WarsawImg from '../assets/destination/Warsaw.avif'
-import BarselonaImg from '../assets/destination/barselona.jpg'
+import BarselonaImg from '../assets/destination/barcelonaimg.avif'
+// ✅ Import all destination images
+import londonImg from '../assets/destination/london-img.jpeg'
+import parisImg from '../assets/destination/paris-img.webp'
+import spainImg from '../assets/destination/spain-img.avif'
+import greeceImg from '../assets/destination/greece-img.webp'
+// import barcelonaImg from '../assets/destination/barcelona.jpg'
+// import romeImg from '../assets/destination/rome.jpg'
+// import amalfiImg from '../assets/destination/amalfi.jpg'
+// import veniceImg from '../assets/destination/venice.jpg'
+// import florenceImg from '../assets/destination/florence.jpg'
+// import interlakenImg from '../assets/destination/interlaken.jpg'
+// import zermattImg from '../assets/destination/zermatt.jpg'
+// import amsterdamImg from '../assets/destination/amsterdam.jpg'
+// import berlinImg from '../assets/destination/berlin.jpg'
+// import viennaImg from '../assets/destination/vienna.jpg'
+// import pragueImg from '../assets/destination/prague.jpg'
+// import lisbonImg from '../assets/destination/lisbon.jpg'
+// import norwayImg from '../assets/destination/norway.jpg'
+// import stockholmImg from '../assets/destination/stockholm.jpg'
+// import budapestImg from '../assets/destination/budapest.jpg'
+// import dubrovnikImg from '../assets/destination/dubrovnik.jpg'
+// import krakowImg from '../assets/destination/krakow.jpg'
+// import laplandImg from '../assets/destination/lapland.jpg'
+// import copenhagenImg from '../assets/destination/copenhagen.jpg'
+// import bledImg from '../assets/destination/bled.jpg'
+// import transylvaniaImg from '../assets/destination/transylvania.jpg'
+// import edinburghImg from '../assets/destination/edinburgh.jpg'
+// import highlandsImg from '../assets/destination/highlands.jpg'
+// import dublinImg from '../assets/destination/dublin.jpg'
 
 import {
   ArrowRight, ChevronLeft, ChevronRight, MapPin,
@@ -115,21 +144,81 @@ function StarRow({ count = 5, accent }) {
    1. HERO SECTION
 ═══════════════════════════════════════════════════════════════ */
 const HERO_SLIDES = [
-  { id: 0, destination: 'EUROPE', subline: 'Timeless Wonders', country: 'Multi-Country', region: 'Europe', tag: 'GRAND TOUR', eyebrow: 'Elite Journey', image: 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=1920&q=90', description: 'From the Swiss Alps to Italian coastlines, experience a journey across cultures, history, and breathtaking landscapes.', rating: 4.8, nights: '10 nights', accent: AMBER },
-  { id: 1, destination: 'LONDON', subline: 'The Royal Capital', country: 'United Kingdom', region: 'Europe', tag: 'URBAN HERITAGE', eyebrow: 'Classic Experience', image: 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=90', description: 'Historic landmarks, royal traditions, and modern luxury blend seamlessly in one of the world\'s most iconic cities.', rating: 4.7, nights: '6 nights', accent: AMBER2 },
-  { id: 2, destination: 'ITALY', subline: 'The Eternal Beauty', country: 'Italy', region: 'Southern Europe', tag: 'CULTURAL LUXURY', eyebrow: 'Curated Experience', image: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1920&q=90', description: 'Ancient ruins, Renaissance art, and romantic streets — Italy is a masterpiece at every turn.', rating: 4.9, nights: '7 nights', accent: AMBER },
-  { id: 3, destination: 'SWEDEN', subline: 'Nordic Serenity', country: 'Sweden', region: 'Northern Europe', tag: 'SCANDINAVIAN', eyebrow: 'Premium Experience', image: 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1920&q=90', description: 'Minimalist design, pristine nature, and a peaceful Nordic lifestyle define Sweden\'s unique charm.', rating: 4.7, nights: '5 nights', accent: AMBER },
-  { id: 4, destination: 'GREECE', subline: 'Aegean Romance', country: 'Greece', region: 'Southern Europe', tag: 'ROMANTIC ESCAPE', eyebrow: 'Luxury Experience', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=90', description: 'Whitewashed villages, blue domes, and breathtaking sunsets over the Aegean Sea.', rating: 4.9, nights: '5 nights', accent: AMBER },
+  {
+    id: 0,
+    destination: 'LONDON',
+    subline: 'Royal City Escape',
+    country: 'United Kingdom',
+    region: 'Europe',
+    tag: 'URBAN HERITAGE',
+    eyebrow: 'Classic Experience',
+    image: londonImg,
+    description: 'Historic landmarks, royal traditions, and modern luxury blend seamlessly in one of the world\'s most iconic cities.',
+    rating: 4.7,
+    nights: '6 nights',
+    accent: AMBER2
+  },
+  {
+    id: 1,
+    destination: 'PARIS',
+    subline: 'City Of Romance',
+    country: 'France',
+    region: 'Western Europe',
+    tag: 'LUXURY ESCAPE',
+    eyebrow: 'Elegant Experience',
+    image: parisImg,
+    description: 'Experience the charm of Paris with iconic landmarks, romantic cafés, luxury shopping, and timeless French culture.',
+    rating: 4.9,
+    nights: '5 nights',
+    accent: AMBER
+  },
+  {
+    id: 2,
+    destination: 'SPAIN',
+    subline: 'Mediterranean Vibes',
+    country: 'Spain',
+    region: 'Southern Europe',
+    tag: 'COASTAL JOURNEY',
+    eyebrow: 'Vibrant Experience',
+    image: spainImg,
+    description: 'Sunny beaches, lively cities, rich culture, and delicious cuisine make Spain an unforgettable destination.',
+    rating: 4.8,
+    nights: '7 nights',
+    accent: AMBER2
+  },
+  {
+    id: 3,
+    destination: 'GREECE',
+    subline: 'Sunset Paradise',
+    country: 'Greece',
+    region: 'Southern Europe',
+    tag: 'ROMANTIC ESCAPE',
+    eyebrow: 'Luxury Experience',
+    image: greeceImg,
+    description: 'Whitewashed villages, blue domes, and breathtaking sunsets over the Aegean Sea.',
+    rating: 4.9,
+    nights: '5 nights',
+    accent: AMBER
+  }
 ]
 
 const AUTO_MS = 5500
 const RING_R = 16
 const RING_CIRC = 2 * Math.PI * RING_R
 
-function getNextCards(cur) {
+function getSliderCards(cur) {
   const total = HERO_SLIDES.length
-  return [HERO_SLIDES[(cur + 1) % total], HERO_SLIDES[(cur + 2) % total], HERO_SLIDES[(cur + 3) % total]]
+  return [
+    HERO_SLIDES[cur],
+    HERO_SLIDES[(cur + 1) % total],
+    HERO_SLIDES[(cur + 2) % total],
+  ]
 }
+
+// Card sizes & positions — must match the stacked card layout exactly
+const CARD_W = [220, 178, 145]
+const CARD_H = [340, 275, 225]
+const CARD_LEFT = [0, 190, 340]
 
 function HeroSection() {
   const [cur, setCur] = useState(0)
@@ -137,7 +226,8 @@ function HeroSection() {
   const [animating, setAnimating] = useState(false)
   const [prog, setProg] = useState(0)
   const [textKey, setTextKey] = useState(0)
-  const [bookmarked, setBookmarked] = useState({})
+  const [morphKey, setMorphKey] = useState(0)
+  const sectionRef = useRef(null)
   const progRef = useRef(null)
 
   const stopTimer = () => clearInterval(progRef.current)
@@ -156,8 +246,14 @@ function HeroSection() {
   const goTo = useCallback((idx, from) => {
     const fromIdx = from !== undefined ? from : cur
     if (animating || idx === fromIdx) return
-    stopTimer(); setPrevIdx(fromIdx); setAnimating(true); setProg(0); setCur(idx); setTextKey(k => k + 1)
-    setTimeout(() => { setPrevIdx(null); setAnimating(false) }, 750)
+    stopTimer()
+    setPrevIdx(fromIdx)
+    setAnimating(true)
+    setProg(0)
+    setCur(idx)
+    setTextKey(k => k + 1)
+    setMorphKey(k => k + 1)
+    setTimeout(() => { setPrevIdx(null); setAnimating(false) }, 1100)
     startTimer(idx)
   }, [animating, cur, startTimer])
 
@@ -171,35 +267,65 @@ function HeroSection() {
   }, [goNext, goPrev])
 
   const slide = HERO_SLIDES[cur]
-  const cards = getNextCards(cur)
+  const sliderCards = getSliderCards(cur)
   const ringOffset = RING_CIRC - (prog / 100) * RING_CIRC
-  const CARD_W = [220, 178, 145]
-  const CARD_H = [340, 275, 225]
-  const CARD_RIGHT = [0, 190, 340]
 
+ 
+  
   return (
     <section
+      ref={sectionRef}
       className="relative w-full overflow-hidden select-none"
       style={{ minHeight: 'clamp(580px, 96vh, 1020px)', background: '#07070e', fontFamily: "Georgia,'Times New Roman',serif" }}
       aria-label="Hero slideshow"
     >
-      {/* Background images */}
+      {/* ── BASE BACKGROUND (previous/stable slide) ── */}
       {HERO_SLIDES.map((s, i) => (
-        <div key={s.id} aria-hidden="true" className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url('${s.image}')`, opacity: i === cur ? 1 : 0, transform: i === cur ? 'scale(1.04)' : 'scale(1)', transition: 'opacity 1.1s cubic-bezier(.4,0,.2,1),transform 8s ease', zIndex: i === cur ? 1 : 0 }} />
+        <div
+          key={s.id}
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('${s.image}')`,
+            opacity: i === cur ? 0 : i === prevIdx ? 1 : 0,  // prev stays visible during morph
+            transform: 'scale(1.04)',
+            zIndex: 0
+          }}
+        />
       ))}
 
-      {/* Overlays */}
-      <div aria-hidden="true" className="absolute inset-0 z-[2]" style={{ background: 'linear-gradient(100deg,rgba(4,4,10,.97) 0%,rgba(4,4,10,.88) 30%,rgba(4,4,10,.65) 50%,rgba(4,4,10,.15) 72%,rgba(4,4,10,.0) 100%)' }} />
-      <div aria-hidden="true" className="absolute inset-0 z-[2]" style={{ background: 'linear-gradient(0deg,rgba(4,4,10,.96) 0%,rgba(4,4,10,.24) 18%,transparent 42%)' }} />
-      <div aria-hidden="true" className="absolute inset-0 z-[2]" style={{ background: 'linear-gradient(180deg,rgba(4,4,10,.60) 0%,transparent 20%)' }} />
+     
+      <div
+        key={`morph-${morphKey}`}
+        aria-hidden="true"
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: `url('${slide.image}')`,
+          zIndex: 1,
+          animation: 'cardMorphExpand 1.0s cubic-bezier(.76,0,.24,1) both',
+        }}
+      />
 
-      {/* Brand accent line — amber from logo */}
-      <div aria-hidden="true" className="absolute left-0 top-0 bottom-0 z-[4] w-[3px]"
+      {/* Overlays */}
+     {/* Left panel - lighter */}
+<div aria-hidden="true" className="absolute inset-0 z-[2]"
+  style={{ background: 'linear-gradient(260deg,rgba(4,4,10,.82) 0%,rgba(4,4,10,.65) 30%,rgba(4,4,10,.38) 50%,rgba(4,4,10,.08) 72%,rgba(4,4,10,.0) 100%)' }} />
+
+{/* Bottom fade - lighter */}
+<div aria-hidden="true" className="absolute inset-0 z-[2]"
+  style={{ background: 'linear-gradient(0deg,rgba(4,4,10,.80) 0%,rgba(4,4,10,.14) 18%,transparent 42%)' }} />
+
+{/* Top fade - lighter */}
+<div aria-hidden="true" className="absolute inset-0 z-[2]"
+  style={{ background: 'linear-gradient(180deg,rgba(4,4,10,.38) 0%,transparent 20%)' }} />
+
+      {/* Brand accent line */}
+      <div aria-hidden="true" className="absolute right-0 top-0 bottom-0 z-[4] w-[3px]"
         style={{ background: `linear-gradient(180deg,transparent,${AMBER} 35%,${AMBER2} 65%,transparent)` }} />
 
       {/* Desktop slide counter */}
-      <div className="absolute left-5 z-[5] hidden lg:flex flex-col items-center gap-4" style={{ top: '50%', transform: 'translateY(-50%)' }}>
+      <div className="absolute right-5 z-[5] hidden lg:flex flex-col items-center gap-4"
+        style={{ top: '50%', transform: 'translateY(-50%)' }}>
         {HERO_SLIDES.map((_, i) => (
           <button key={i} onClick={() => goTo(i)}
             style={{ width: 2, height: i === cur ? 36 : 14, borderRadius: 2, background: i === cur ? AMBER : 'rgba(255,255,255,.25)', border: 'none', cursor: 'pointer', padding: 0, transition: 'height .4s ease,background .4s ease' }} />
@@ -207,7 +333,7 @@ function HeroSection() {
         <div style={{ fontFamily: 'sans-serif', marginTop: 6, textAlign: 'center' }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: AMBER, lineHeight: 1 }}>{String(cur + 1).padStart(2, '0')}</div>
           <div style={{ width: 1, height: 14, background: 'rgba(255,255,255,.18)', margin: '4px auto' }} />
-          <div style={{ fontSize: 10, color: 'rgba(255,255,255,.25)', lineHeight: 1 }}>{String(HERO_SLIDES.length).padStart(2, '0')}</div>
+          <div style={{ fontSize: 10, color: 'rgba(255,255,255,.18)', lineHeight: 1 }}>{String(HERO_SLIDES.length).padStart(2, '0')}</div>
         </div>
       </div>
 
@@ -215,20 +341,80 @@ function HeroSection() {
       <div className="relative z-[3] flex flex-col" style={{ minHeight: 'clamp(580px, 96vh, 1020px)' }}>
         <div className="flex-1 flex items-center">
           <div className="w-full max-w-[1440px] mx-auto relative"
-            style={{ paddingTop: 'clamp(80px,12vw,40px)', paddingBottom: 0, paddingLeft: 'clamp(20px,6vw,96px)', paddingRight: 'clamp(20px,4vw,48px)' }}>
+            style={{ paddingTop: 'clamp(80px,12vw,40px)', paddingBottom: 0, paddingLeft: 'clamp(20px,4vw,48px)', paddingRight: 'clamp(20px,6vw,96px)' }}>
 
-            {/* Text column */}
-            <div className="flex flex-col justify-center"
+            {/* ── LEFT: Stacked image cards ── */}
+            <div className="hidden lg:block absolute"
+              style={{ left: 'clamp(24px,3vw,48px)', bottom: 70, width: CARD_LEFT[2] + CARD_W[2] + 16, height: CARD_H[0], zIndex: 5 }}>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, justifyContent: 'flex-start', fontFamily: 'sans-serif' }}>
+                <Rule color={AMBER} w={14} />
+                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: AMBER }}>Now Viewing</span>
+              </div>
+
+              <div style={{ position: 'absolute', top: -26, left: 0, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'sans-serif' }}>
+                <ArrowRight size={10} style={{ color: AMBER2, transform: 'scaleX(-1)' }} />
+                <Link to="/destinations" style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: AMBER2, textDecoration: 'none' }}>View all destinations</Link>
+              </div>
+
+              {[...sliderCards].reverse().map((card, ri) => {
+                const realIdx = 2 - ri
+                const isFront = realIdx === 0
+                const cardW = CARD_W[realIdx]
+                const cardH = CARD_H[realIdx]
+                const leftOff = CARD_LEFT[realIdx]
+
+                return (
+                  <div
+                    key={`card-${card.id}-${textKey}-${ri}`}
+                    className="absolute overflow-hidden"
+                    style={{
+                      left: leftOff,
+                      bottom: 0,
+                      width: cardW,
+                      height: cardH,
+                      borderRadius: 10,
+                      cursor: isFront ? 'default' : 'pointer',
+                      zIndex: isFront ? 10 : realIdx === 1 ? 9 : 8,
+                      boxShadow: isFront
+                        ? `0 0 0 2px ${AMBER},0 32px 64px rgba(0,0,0,.80)`
+                        : '0 8px 32px rgba(0,0,0,.65)',
+                      animation: `heroCardInLeft .6s ${ri * 70}ms cubic-bezier(.4,0,.2,1) both`,
+                      transition: 'box-shadow .4s ease'
+                    }}
+                    onClick={() => !isFront && goTo(HERO_SLIDES.findIndex(s => s.id === card.id))}
+                  >
+                    <img src={card.image} alt={card.destination}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform .6s ease' }}
+                      onMouseEnter={e => { if (!isFront) e.currentTarget.style.transform = 'scale(1.07)' }}
+                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
+                    <div className="absolute inset-0"
+                      style={{ background: isFront
+                        ? 'linear-gradient(0deg,rgba(4,4,10,.92) 0%,rgba(4,4,10,.10) 52%,transparent 100%)'
+                        : 'linear-gradient(0deg,rgba(4,4,10,.80) 0%,rgba(4,4,10,.25) 55%,rgba(4,4,10,.18) 100%)' }} />
+                    {isFront && (
+                      <div className="absolute top-0 left-0 right-0"
+                        style={{ height: 2.5, background: `linear-gradient(90deg,${RED},${AMBER},${AMBER2})` }} />
+                    )}
+                    <div className="absolute bottom-0 left-0 right-0" style={{ padding: isFront ? '10px 12px' : '8px 10px' }}>
+                      <p style={{ fontFamily: "Georgia,serif", fontSize: isFront ? 14 : 11, fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: 3, textTransform: 'uppercase' }}>{card.destination}</p>
+                      <p style={{ fontFamily: 'sans-serif', fontSize: 9, color: AMBER2, fontWeight: 500 }}>{card.subline}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* ── RIGHT: Text content ── */}
+            <div className="flex flex-col justify-center ml-auto"
               style={{ maxWidth: 'clamp(280px,90vw,520px)', paddingBottom: 'clamp(80px,15vw,60px)', position: 'relative', zIndex: 2 }}>
 
-              {/* Eyebrow */}
               <div key={`ey-${textKey}`} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginBottom: 14, animation: 'heroLuxUp .55s ease both', fontFamily: 'sans-serif' }}>
                 <Rule color={AMBER} w={20} />
                 <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase', color: AMBER }}>{slide.eyebrow}</span>
                 <span style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: AMBER2, border: `1px solid ${AMBER}45`, background: 'rgba(245,168,0,.12)', padding: '3px 8px', borderRadius: 2 }}>{slide.tag}</span>
               </div>
 
-              {/* Headline */}
               <div style={{ position: 'relative', marginBottom: 10 }}>
                 {prevIdx !== null && (
                   <h1 key={`out-${prevIdx}`} style={{ position: 'absolute', top: 0, left: 0, fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(2.6rem,10vw,7.5rem)', fontWeight: 700, letterSpacing: '-0.02em', lineHeight: 0.9, color: '#fff', textTransform: 'uppercase', margin: 0, whiteSpace: 'nowrap', animation: 'heroSlideOutUp .65s cubic-bezier(.4,0,.2,1) both', pointerEvents: 'none', zIndex: 1 }}>
@@ -240,26 +426,48 @@ function HeroSection() {
                 </h1>
               </div>
 
-              {/* Subline */}
               <div key={`sl-${textKey}`} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, animation: 'heroLuxUp .6s .08s ease both' }}>
                 <div style={{ width: 24, height: 1.5, background: AMBER, flexShrink: 0, borderRadius: 2 }} />
                 <span style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: AMBER }}>{slide.subline}</span>
               </div>
 
-              {/* Location */}
-              <div key={`lc-${textKey}`} style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6, marginBottom: 14, animation: 'heroLuxUp .6s .14s ease both', fontFamily: 'sans-serif' }}>
-                <MapPin size={11} style={{ color: AMBER, flexShrink: 0 }} />
-                <span style={{ fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,.42)' }}>{slide.country}</span>
-                <span style={{ color: 'rgba(255,255,255,.15)' }}>·</span>
-                <span style={{ fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.24)' }}>{slide.region}</span>
-              </div>
+            
+<div key={`lc-${textKey}`} style={{
+  display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6,
+  marginBottom: 14,
+  animation: 'heroLuxUp .6s .14s ease both',
+  fontFamily: 'sans-serif'
+}}>
+  <MapPin size={11} style={{ color: AMBER, flexShrink: 0 }} />
+  <span style={{
+    fontSize: 10, letterSpacing: '.15em', textTransform: 'uppercase',
+    color: 'rgba(255,255,255,.75)' 
+  }}>
+    {slide.country}
+  </span>
+  <span style={{ color: 'rgba(255,255,255,.35)' }}>·</span>  
+  <span style={{
+    fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase',
+    color: 'rgba(255,255,255,.55)'  
+  }}>
+    {slide.region}
+  </span>
+</div>
 
-              {/* Description */}
-              <p key={`ds-${textKey}`} style={{ animation: 'heroLuxUp .6s .20s ease both', fontFamily: 'sans-serif', fontSize: 'clamp(.82rem,1.2vw,.96rem)', color: 'rgba(255,255,255,.50)', lineHeight: 1.8, maxWidth: '38ch', fontWeight: 300, marginBottom: 24 }}>
-                {slide.description}
-              </p>
 
-              {/* CTAs */}
+<p key={`ds-${textKey}`} style={{
+  animation: 'heroLuxUp .6s .20s ease both',
+  fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+  fontSize: 'clamp(1rem,1.4vw,1.18rem)',
+  fontStyle: 'italic',
+  color: 'rgba(255,255,255,.78)',
+  lineHeight: 1.9,
+  maxWidth: '38ch',
+  fontWeight: 600,   // ← changed from 300 to 600
+  marginBottom: 24
+}}>
+  {slide.description}
+</p>
               <div key={`ct-${textKey}`} style={{ display: 'flex', flexWrap: 'wrap', gap: 10, animation: 'heroLuxUp .6s .28s ease both' }}>
                 <Link to="/destinations"
                   className="inline-flex items-center gap-2 font-semibold uppercase tracking-widest transition-all duration-300 hover:brightness-110 hover:scale-[1.02] active:scale-95"
@@ -273,54 +481,22 @@ function HeroSection() {
                 </Link>
               </div>
             </div>
-
-            {/* Desktop destination cards */}
-            <div className="hidden lg:block absolute"
-              style={{ right: 'clamp(24px,3vw,48px)', bottom: 70, width: CARD_RIGHT[2] + CARD_W[2] + 16, height: CARD_H[0], zIndex: 5 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10, justifyContent: 'flex-end', fontFamily: 'sans-serif' }}>
-                <Rule color={AMBER} w={14} />
-                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.2em', textTransform: 'uppercase', color: AMBER }}>Also Explore</span>
-              </div>
-              {[...cards].reverse().map((card, ri) => {
-                const realIdx = 2 - ri
-                const isFront = realIdx === 0
-                const cardW = CARD_W[realIdx]; const cardH = CARD_H[realIdx]; const rightOff = CARD_RIGHT[realIdx]
-                return (
-                  <div key={`card-${card.id}-${ri}`} className="absolute overflow-hidden"
-                    style={{ right: rightOff, bottom: 0, width: cardW, height: cardH, borderRadius: 10, cursor: 'pointer', zIndex: isFront ? 10 : realIdx === 1 ? 9 : 8, boxShadow: isFront ? `0 0 0 2px ${AMBER},0 32px 64px rgba(0,0,0,.80)` : '0 8px 32px rgba(0,0,0,.65)', animation: `heroCardIn .6s ${ri * 70}ms cubic-bezier(.4,0,.2,1) both`, transition: 'box-shadow .4s ease' }}
-                    onClick={() => goTo(HERO_SLIDES.findIndex(s => s.id === card.id))}>
-                    <img src={card.image} alt={card.destination} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform .6s ease' }}
-                      onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.07)'}
-                      onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
-                    <div className="absolute inset-0" style={{ background: isFront ? 'linear-gradient(0deg,rgba(4,4,10,.92) 0%,rgba(4,4,10,.10) 52%,transparent 100%)' : 'linear-gradient(0deg,rgba(4,4,10,.80) 0%,rgba(4,4,10,.25) 55%,rgba(4,4,10,.18) 100%)' }} />
-                    {/* Logo-colored top stripe: red → amber */}
-                    {isFront && <div className="absolute top-0 left-0 right-0" style={{ height: 2.5, background: `linear-gradient(90deg,${RED},${AMBER},${AMBER2})` }} />}
-                    <div className="absolute bottom-0 left-0 right-0" style={{ padding: isFront ? '10px 12px' : '8px 10px' }}>
-                      <p style={{ fontFamily: "Georgia,serif", fontSize: isFront ? 14 : 11, fontWeight: 700, color: '#fff', lineHeight: 1.1, marginBottom: 3, textTransform: 'uppercase' }}>{card.destination}</p>
-                      <p style={{ fontFamily: 'sans-serif', fontSize: 9, color: AMBER2, fontWeight: 500 }}>{card.subline}</p>
-                    </div>
-                  </div>
-                )
-              })}
-              <div style={{ position: 'absolute', top: -26, right: 0, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'sans-serif' }}>
-                <Link to="/destinations" style={{ fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: AMBER2, textDecoration: 'none' }}>View all destinations</Link>
-                <ArrowRight size={10} style={{ color: AMBER2 }} />
-              </div>
-            </div>
           </div>
         </div>
 
         {/* Mobile thumbnail cards */}
         <div className="lg:hidden flex items-end justify-center gap-2 px-4 pb-3 relative z-[5]">
-          {getNextCards(cur).map((card, ci) => {
+          {getSliderCards(cur).map((card, ci) => {
             const sizes = [[80, 108], [64, 86], [52, 70]]
             const [w, h] = sizes[ci]
+            const isCurrent = ci === 0
             return (
-              <button key={card.id} onClick={() => goTo(HERO_SLIDES.findIndex(s => s.id === card.id))}
-                style={{ position: 'relative', overflow: 'hidden', flexShrink: 0, width: w, height: h, borderRadius: 8, border: 'none', cursor: 'pointer', padding: 0, boxShadow: ci === 0 ? `0 0 0 2px ${AMBER},0 8px 24px rgba(0,0,0,.65)` : '0 4px 16px rgba(0,0,0,.55)', transition: 'all .4s ease' }}>
+              <button key={`mob-${card.id}-${textKey}-${ci}`}
+                onClick={() => !isCurrent && goTo(HERO_SLIDES.findIndex(s => s.id === card.id))}
+                style={{ position: 'relative', overflow: 'hidden', flexShrink: 0, width: w, height: h, borderRadius: 8, border: 'none', cursor: isCurrent ? 'default' : 'pointer', padding: 0, boxShadow: isCurrent ? `0 0 0 2px ${AMBER},0 8px 24px rgba(0,0,0,.65)` : '0 4px 16px rgba(0,0,0,.55)', transition: 'all .4s ease' }}>
                 <img src={card.image} alt={card.destination} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg,rgba(0,0,0,.72) 0%,transparent 55%)' }} />
-                {ci === 0 && <div className="absolute top-0 left-0 right-0" style={{ height: 2, background: `linear-gradient(90deg,${RED},${AMBER})` }} />}
+                {isCurrent && <div className="absolute top-0 left-0 right-0" style={{ height: 2, background: `linear-gradient(90deg,${RED},${AMBER})` }} />}
                 <p className="absolute bottom-1.5 left-1.5 right-1.5 text-white leading-tight" style={{ fontFamily: "Georgia,serif", fontSize: 8, fontWeight: 700, textTransform: 'uppercase' }}>{card.destination}</p>
               </button>
             )
@@ -377,27 +553,139 @@ function HeroSection() {
       </div>
 
       <style>{`
-        @keyframes heroLuxUp      { from{opacity:0;transform:translateY(16px)}  to{opacity:1;transform:translateY(0)} }
+        @keyframes heroLuxUp      { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
         @keyframes heroSlideInUp  { from{opacity:0;transform:translateY(56px) skewY(1.2deg)} to{opacity:1;transform:translateY(0) skewY(0deg)} }
         @keyframes heroSlideOutUp { from{opacity:1;transform:translateY(0) skewY(0deg)} to{opacity:0;transform:translateY(-56px) skewY(-1.2deg)} }
-        @keyframes heroCardIn     { from{opacity:0;transform:translateX(44px) scale(.92)} to{opacity:1;transform:translateX(0) scale(1)} }
+        @keyframes heroCardInLeft { from{opacity:0;transform:translateX(-44px) scale(.92)} to{opacity:1;transform:translateX(0) scale(1)} }
+
+        /*
+          CARD-TO-FULLSCREEN MORPH — matches the video exactly:
+
+          The section is overflow:hidden, height ~96vh (~900px), width 100vw.
+          The front stacked card sits at:
+            left: ~48px  → right edge at ~268px  → right inset = 100% - 268px ≈ right: calc(100% - 268px)
+            bottom: 70px (above control bar)
+            width: 220px, height: 340px
+            top of card = bottom: 70 + 340 = 410px from bottom → top inset ≈ calc(100% - 410px - 70px)
+
+          We use clip-path: inset(top right bottom left round r)
+          Start: clipped to card region, with 10px border-radius
+          End:   inset(0 0 0 0 round 0px) = full screen
+
+          We also scale the background-image outward so it zooms
+          from card-scale to full-bleed — mimicking the video's zoom-out feel.
+        */
+        @keyframes cardMorphExpand {
+          0% {
+            clip-path: inset(
+              calc(100% - 480px) calc(100% - 270px) 70px 48px
+              round 10px
+            );
+            transform: scale(1.18);
+          }
+          60% {
+            clip-path: inset(
+              0px 0px 0px 0px
+              round 4px
+            );
+            transform: scale(1.06);
+          }
+          100% {
+            clip-path: inset(0px 0px 0px 0px round 0px);
+            transform: scale(1.04);
+          }
+        }
       `}</style>
     </section>
   )
 }
-
 /* ════════════════════════════════════════════════════════════
    2. SERVICES SECTION
 ═══════════════════════════════════════════════════════════════ */
 const ALL_SERVICES = [
-  { id: '01', icon: Users,     title: "Family Holidays",   tagline: "Trips for every generation", desc: "Fun and relaxing holidays for the whole family.", features: ["Kid-friendly plans","Family stays"], tag: "Popular", hot: true,  to: "/services", accent: RED },
-  { id: '02', icon: Hotel,     title: "Hotel Booking",     tagline: "Comfort & value stays",      desc: "Handpicked hotels from budget to luxury.",   features: ["Prime locations","Verified quality"],  tag: "Best Rates", hot: true,  to: "/services", accent: AMBER },
-  { id: '03', icon: Users2,    title: "Group Bookings",    tagline: "Perfect for all groups",     desc: "Curated trips for families, friends, and teams.", features: ["Custom plans","Best pricing"],    tag: "10+ Pax", hot: false, to: "/services", accent: AMBER2 },
-  { id: '04', icon: Train,     title: "Train Travel",      tagline: "Scenic train trips",         desc: "Enjoy iconic and luxury rail experiences.",  features: ["Scenic routes","All-inclusive"],       tag: "Exclusive", hot: false, to: "/services", accent: RED },
-  { id: '05', icon: Car,       title: "Transfers & Cabs",  tagline: "Smooth travel services",     desc: "Private transfers and guided sightseeing.",  features: ["Airport pickup","Private cars"],        tag: "24/7", hot: false, to: "/services", accent: AMBER },
-  { id: '06', icon: Binoculars,title: "Sightseeing Tours", tagline: "Explore with experts",       desc: "Guided tours with seamless planning.",       features: ["Top attractions","Expert guides"],      tag: "Guided", hot: false, to: "/services", accent: AMBER2 },
-  { id: '08', icon: Briefcase, title: "Corporate Travel",  tagline: "Smart business travel",      desc: "Efficient travel solutions for companies.",  features: ["Business trips","Priority support"],    tag: "B2B", hot: false, to: "/services", accent: RED },
-  { id: '09', icon: Crown,     title: "VIP Packages",      tagline: "Premium experiences",        desc: "Exclusive luxury travel with concierge services.", features: ["Private trips","24/7 support"], tag: "Luxury", hot: true,  to: "/services", accent: AMBER },
+  {
+    id: '01',
+    icon: Hotel,
+    title: "Hotels",
+    tagline: "Comfort, convenience & value",
+    desc: "Carefully selected hotel options across categories, ensuring comfort, convenience and value for every stay.",
+    tag: "Best Rates",
+    hot: true,
+    to: "/services",
+    accent: AMBER
+  },
+
+  {
+    id: '02',
+    icon: Users2,
+    title: "Group Bookings",
+    tagline: "Perfect trips for every generation",
+    desc: "Tour packages thoughtfully designed for adults, kids and elderly travellers with seamless planning.",
+    tag: "10+ Pax",
+    hot: false,
+    to: "/services",
+    accent: AMBER2
+  },
+
+  {
+    id: '03',
+    icon: Train,
+    title: "Train Travel",
+    tagline: "Luxury rail holiday experiences",
+    desc: "Exclusive rail tour holiday packages designed for scenic, comfortable and memorable journeys.",
+    tag: "Exclusive",
+    hot: false,
+    to: "/services",
+    accent: RED
+  },
+
+  {
+    id: '04',
+    icon: Car,
+    title: "Transfers & Sightseeing",
+    tagline: "Smooth journeys everywhere",
+    desc: "Grab the best deals on airport transfers, city transfers and guided sightseeing tours.",
+    tag: "24/7",
+    hot: false,
+    to: "/services",
+    accent: AMBER
+  },
+
+  {
+    id: '05',
+    icon: CalendarDays,
+    title: "Event & Conference",
+    tagline: "Professional event planning",
+    desc: "Make your event unforgettable with our experienced meeting and conference planning team.",
+    tag: "Events",
+    hot: false,
+    to: "/services",
+    accent: AMBER2
+  },
+
+  {
+    id: '06',
+    icon: Briefcase,
+    title: "Corporate Bookings",
+    tagline: "Smart corporate travel solutions",
+    desc: "City packages and corporate travel bookings with unbeatable deals and business-friendly services.",
+    tag: "B2B",
+    hot: false,
+    to: "/services",
+    accent: RED
+  },
+
+  {
+    id: '07',
+    icon: Crown,
+    title: "VIP Packages",
+    tagline: "Luxury crafted for VIP travellers",
+    desc: "Enjoy premium boutique hotels, luxury resorts and exclusive concierge-style experiences.",
+    tag: "Luxury",
+    hot: true,
+    to: "/services",
+    accent: AMBER
+  },
 ]
 
 function ServiceCard({ svc, index, inView }) {
@@ -419,14 +707,6 @@ function ServiceCard({ svc, index, inView }) {
         <p className="text-[11px] font-semibold uppercase tracking-widest mb-4" style={{ color: hov ? svc.accent : GRAY, transition: 'color .35s ease' }}>{svc.tagline}</p>
         <div style={{ height: 1, background: hov ? `linear-gradient(90deg,${svc.accent}44,transparent)` : '#F1F5F9', marginBottom: 14, transition: 'background .4s ease' }} />
         <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: SLATE }}>{svc.desc}</p>
-        <ul className="flex flex-col gap-2 mb-5">
-          {svc.features.map(f => (
-            <li key={f} className="flex items-center gap-2.5">
-              <div style={{ width: 5, height: 5, borderRadius: '50%', background: hov ? svc.accent : '#CBD5E1', flexShrink: 0, transition: 'background .4s ease' }} />
-              <span className="text-[12px] font-medium" style={{ color: hov ? SLATE : GRAY, transition: 'color .4s ease' }}>{f}</span>
-            </li>
-          ))}
-        </ul>
         <Link to="/services" className="flex items-center gap-2 font-bold text-[11px] uppercase tracking-widest"
           style={{ color: hov ? svc.accent : '#CBD5E1', transition: 'color .35s ease' }}>
           Learn More
@@ -436,6 +716,8 @@ function ServiceCard({ svc, index, inView }) {
     </article>
   )
 }
+
+
 
 function ServicesPreview() {
   const [ref, inView] = useInView(0.06)
@@ -455,9 +737,13 @@ function ServicesPreview() {
             View All Services <MoveRight size={15} />
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
-          {ALL_SERVICES.map((svc, i) => <ServiceCard key={svc.id} svc={svc} index={i} inView={inView} />)}
-        </div>
+        <div className="flex justify-center">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 max-w-6xl">
+    {ALL_SERVICES.map((svc, i) => (
+      <ServiceCard key={svc.id} svc={svc} index={i} inView={inView} />
+    ))}
+  </div>
+</div>
       </div>
     </section>
   )
@@ -554,7 +840,7 @@ function BrandValues() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5">
           <p className="text-sm leading-relaxed max-w-md" style={{ color: GRAY }}>&ldquo;Every journey is a masterpiece when planned with precision, passion, and the finest attention to detail.&rdquo;</p>
           <div className="flex flex-wrap items-center gap-3 flex-shrink-0">
-            <Link to="/about" className="text-xs font-semibold tracking-[.14em] uppercase px-5 py-2.5 rounded-full border transition-all duration-300 hover:border-[#F5A800] hover:text-[#F5A800]" style={{ color: GRAY, borderColor: '#D6D3D1', textDecoration: 'none' }}>Our Story</Link>
+            <Link to="/about" className="text-xs font-semibold tracking-[.14em] uppercase px-5 py-2.5 rounded-full border transition-all duration-300 hover:border-[#F5A800] hover:text-[#F5A800]" style={{ color: GRAY, borderColor: '#D6D3D1', textDecoration: 'none' }}>Discover More</Link>
             <Link to="/contact" className="inline-flex items-center gap-2 text-xs font-bold tracking-[.12em] uppercase px-6 py-2.5 rounded-full transition-all duration-300 hover:brightness-110 hover:scale-[1.03] active:scale-95" style={{ color: '#fff', background: `linear-gradient(135deg,${RED},${RED2})`, boxShadow: `0 6px 24px -6px ${RED}55`, textDecoration: 'none' }}>Begin Your Journey <ArrowUpRight size={13} /></Link>
           </div>
         </div>
@@ -601,19 +887,137 @@ function WhyChooseUs() {
       <div style={{ position: 'absolute', inset: 0, backgroundImage: `radial-gradient(${AMBER}14 1px,transparent 1px)`, backgroundSize: '30px 30px', pointerEvents: 'none' }} />
       <div className="relative max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center">
-          <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(-32px)', transition: 'opacity .8s ease,transform .8s ease' }}>
-            <div className="flex items-center gap-3 mb-5"><Rule color={AMBER} w={28} /><span style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.22em', color: AMBER, fontFamily: 'sans-serif' }}>About Us</span></div>
-            <h2 style={{ fontFamily: "Georgia,serif", fontSize: 'clamp(1.9rem,4.5vw,3.4rem)', fontWeight: 400, color: CHAR, letterSpacing: '-0.02em', lineHeight: 1.05, marginBottom: '1.25rem' }}>Welcome to <em style={{ color: RED, fontStyle: 'italic' }}>Chalo Holidays</em></h2>
-            <p style={{ color: SLATE, fontSize: '1rem', lineHeight: 1.8, maxWidth: '46ch', fontFamily: 'sans-serif', fontWeight: 300, marginBottom: '1.25rem' }}>We are a travel consultant and B2B wholesale tour operator with a skilled, proactive team dedicated entirely to your success. Every itinerary is crafted with precision — nothing left to chance.</p>
-            {/* Red left border blockquote — echoes logo red */}
-            <blockquote style={{ borderLeft: `3px solid ${RED}`, paddingLeft: 20, marginBottom: 28 }}>
-              <p style={{ fontFamily: "Georgia,serif", fontSize: '1.05rem', color: CHAR, fontStyle: 'italic', lineHeight: 1.7 }}>"We do not just book trips — we architect memories that last a lifetime."</p>
-              <cite style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: GRAY, fontFamily: 'sans-serif', fontStyle: 'normal' }}>— Founder, Chalo Holidays</cite>
-            </blockquote>
-            <Link to="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: `linear-gradient(135deg,${RED},${RED2})`, color: '#fff', fontFamily: 'sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', padding: '14px 28px', borderRadius: 3, textDecoration: 'none', boxShadow: `0 8px 28px -8px ${RED}55` }}>
-              Discover Our Story <ArrowUpRight size={14} />
-            </Link>
-          </div>
+       <div
+  style={{
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateX(0)' : 'translateX(-32px)',
+    transition: 'opacity .8s ease,transform .8s ease'
+  }}
+>
+  <div className="flex items-center gap-3 mb-5">
+    <Rule color={AMBER} w={28} />
+    <span
+      style={{
+        fontSize: 10,
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: '0.22em',
+        color: AMBER,
+        fontFamily: 'sans-serif'
+      }}
+    >
+      About Us
+    </span>
+  </div>
+
+  <h2
+    style={{
+      fontFamily: "Georgia,serif",
+      fontSize: 'clamp(1.9rem,4.5vw,3.4rem)',
+      fontWeight: 400,
+      color: CHAR,
+      letterSpacing: '-0.02em',
+      lineHeight: 1.05,
+      marginBottom: '1rem'
+    }}
+  >
+    Welcome to{' '}
+    <em style={{ color: RED, fontStyle: 'italic' }}>
+      Chalo Holidays
+    </em>
+  </h2>
+
+  {/* New Luxury Heading */}
+  <h3
+    style={{
+      fontFamily: "Georgia, serif",
+      fontStyle: 'italic',
+      fontSize: 'clamp(1.1rem,2vw,1.45rem)',
+      color: AMBER,
+      fontWeight: 500,
+      marginBottom: '1rem',
+      letterSpacing: '-0.01em'
+    }}
+  >
+    Beyond Travel. We Create Experiences.
+  </h3>
+
+  <p
+    style={{
+      color: SLATE,
+      fontSize: '1rem',
+      lineHeight: 1.9,
+      maxWidth: '48ch',
+      fontFamily: 'sans-serif',
+      fontWeight: 300,
+      marginBottom: '1.25rem'
+    }}
+  >
+    We are a team of travel experts - trusted, responsive and
+    detail-driven. With deep expertise in European travel and
+    strong global capabilities, we go beyond simply meeting your
+    needs - we collaborate with you to deliver seamless and
+    successful journeys.
+  </p>
+
+  {/* Quote Block */}
+  <blockquote
+    style={{
+      borderLeft: `3px solid ${RED}`,
+      paddingLeft: 20,
+      marginBottom: 28
+    }}
+  >
+    <p
+      style={{
+        fontFamily: "Georgia,serif",
+        fontSize: '1.05rem',
+        color: CHAR,
+        fontStyle: 'italic',
+        lineHeight: 1.7
+      }}
+    >
+      "We do not just book trips - we architect memories that
+      last a lifetime."
+    </p>
+
+    <cite
+      style={{
+        fontSize: 11,
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        letterSpacing: '0.16em',
+        color: GRAY,
+        fontFamily: 'sans-serif',
+        fontStyle: 'normal'
+      }}
+    >
+      — Founder, Chalo Holidays
+    </cite>
+  </blockquote>
+
+  <Link
+    to="/about"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: 8,
+      background: `linear-gradient(135deg,${RED},${RED2})`,
+      color: '#fff',
+      fontFamily: 'sans-serif',
+      fontSize: 11,
+      fontWeight: 700,
+      letterSpacing: '0.14em',
+      textTransform: 'uppercase',
+      padding: '14px 28px',
+      borderRadius: 3,
+      textDecoration: 'none',
+      boxShadow: `0 8px 28px -8px ${RED}55`
+    }}
+  >
+    Explore More <ArrowUpRight size={14} />
+  </Link>
+</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
             style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(32px)', transition: 'opacity .8s ease .15s,transform .8s ease .15s' }}>
             {WHY_ITEMS.map(item => <WhyCard key={item.title} {...item} />)}
@@ -656,7 +1060,7 @@ function DestRegionRow({ region }) {
       <div className="h-px w-full mb-3" style={{ background: hov ? `linear-gradient(90deg,${RED},transparent)` : '#E2E8F0', transition: 'background 400ms ease' }} />
       <div className="flex items-center justify-between pb-3">
         <div className="flex items-end gap-3">
-          <span className="text-[11px] font-semibold tabular-nums" style={{ color: hov ? RED : '#94A3B8', transition: 'color 300ms ease' }}>{region.num}/</span>
+          {/* <span className="text-[11px] font-semibold tabular-nums" style={{ color: hov ? RED : '#94A3B8', transition: 'color 300ms ease' }}>{region.num}/</span> */}
           <span className="font-bold leading-none" style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(1.2rem,3.5vw,2rem)', color: hov ? CHAR : '#94A3B8', transition: 'color 350ms ease' }}>{region.name}</span>
         </div>
         <div className="flex items-center gap-3">

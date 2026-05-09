@@ -16,7 +16,7 @@ import flagIndia  from "../../assets/icons/india-flag.png"
 import flagDubai  from "../../assets/icons/dubai-flag.png"
 
 import logo from "../../assets/icons/Chalo_logo.png"
-import InquiryModal from "../common/inquiryModal"
+// import InquiryModal from "../common/inquiryModal"
 
 /* ─── Palette ───────────────────────────────────────────────────────── */
 const RED   = "#B91C1C"
@@ -30,14 +30,14 @@ const BRAND = {
   phone2   : "+91 98765 43210",
   email1   : "info@chaloholiday.com",
   email2   : "support@chaloholiday.com",
-  address  : "41 South Park Crescent, Ilford, London IG1 1XU",
-  whatsapp : "447575104181",
+  address  : "40 South Park Crescent, Ilford, London IG1 1XU",
+  whatsapp : "447575104081",
 }
 
 /* ─── WhatsApp Icon ─────────────────────────────────────────────────── */
 const WaIcon = ({ size = 12 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.403.248-.694.248-1.289.173-1.403-.074-.124-.272-.198-.57-.347z" />
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.112 1.523 5.84L0 24l6.33-1.496A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.651-.49-5.181-1.347l-.371-.215-3.757.887.942-3.648-.236-.385A9.957 9.957 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
   </svg>
 )
@@ -73,16 +73,16 @@ const COUNTRY_COVERS = {
   "Italy"          : "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=120&q=75",
   "Switzerland"    : "https://images.unsplash.com/photo-1620563092215-0fbc6b55cfc5?w=120&q=75",
   "Germany"        : "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=120&q=75",
-  "Austria"        : "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=120&q=75",
+  "Austria"        : "https://images.unsplash.com/photo-1501785888040-af3ef285b470?w=120&q=75",
   "Czech Republic" : "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=120&q=75",
   "Hungary"        : "https://images.unsplash.com/photo-1551867633-194f125bddfa?w=120&q=75",
   "Norway"         : "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=120&q=75",
-  "Sweden"         : "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=120&q=75",
+  "Sweden"         : "https://images.unsplash.com/photo-1509356843151-3e7d96240e11?w=120&q=75",
   "Denmark"        : "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=120&q=75",
   "Finland"        : "https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=120&q=75",
   "Poland"         : "https://images.unsplash.com/photo-1519197924294-4ba991a11128?w=120&q=75",
   "Romania"        : "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=120&q=75",
-  "Slovenia"       : "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=120&q=75",
+  "Slovenia"       : "https://images.unsplash.com/photo-1501785888040-af3ef285b470?w=120&q=75",
   "Croatia"        : "https://images.unsplash.com/photo-1575540291670-8d3b26f7d327?w=120&q=75",
   "Greece"         : "https://images.unsplash.com/photo-1555993539-1732b0258235?w=120&q=75",
 }
@@ -325,7 +325,7 @@ function InfoSidebar({ open, onClose }) {
           <div>
             <img src={logo} alt="Chalo Holidays" style={{ height: 70, width: "auto", objectFit: "contain" }} />
             <p className="text-[13px] text-slate-500 leading-relaxed mt-3">
-              Your trusted premium travel consultants based in London — planning unforgettable journeys across 200+ destinations worldwide.
+              Your trusted premium travel consultants based in London - planning unforgettable journeys across 200+ destinations worldwide.
             </p>
             <div className="flex items-center gap-3 mt-4">
               {[
@@ -625,7 +625,7 @@ export default function Navbar() {
       <InfoSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* ── Inquiry Modal ── */}
-      <InquiryModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      {/* <InquiryModal isOpen={openModal} onClose={() => setOpenModal(false)} /> */}
     </>
   )
 }

@@ -510,9 +510,30 @@ export default function FooterSection() {
             paddingTop: 17, paddingBottom: 17,
           }}>
             <div className="footer-bottom-bar">
-              <p style={{ fontSize: 11, color: C.text3, margin: 0 }}>
-                © {new Date().getFullYear()} Chalo Holidays Ltd. Registered in England & Wales. All rights reserved.
-              </p>
+             <p style={{ fontSize: 11, color: C.text3, margin: 0 }}>
+    © {new Date().getFullYear()} All Rights Reserved. Design & Developed By{' '}
+    
+    <a
+      href="https://www.chaloholiday.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        color: C.gold,
+        fontWeight: 700,
+        textDecoration: 'none',
+        transition: '0.3s ease'
+      }}
+      onMouseEnter={(e) => {
+        e.target.style.textDecoration = 'underline'
+      }}
+      onMouseLeave={(e) => {
+        e.target.style.textDecoration = 'none'
+      }}
+    >
+      ChaloHoliday.com
+    </a>
+
+  </p>
               <div className="footer-legal-links">
                 {LEGAL.map((l, i) => (
                   <React.Fragment key={l.label}>

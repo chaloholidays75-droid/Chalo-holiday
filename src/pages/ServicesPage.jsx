@@ -207,10 +207,10 @@ const FAQ_ITEMS = [
    BLOB PATHS — 4 unique organic shapes
 ══════════════════════════════════════════════════ */
 const BLOB_PATHS = [
-  'M82,16C94,25,100,41,97,56c-3,15-14,29-27,35S39,91,27,83C15,75,8,60,9,46S18,18,31,11S70,7,82,16Z',
+  'M82,16C94,25,100,40,97,56c-3,15-14,29-27,35S39,91,27,83C15,75,8,60,9,46S18,18,31,11S70,7,82,16Z',
   'M80,14C93,22,101,38,100,54s-11,32-25,38S42,94,29,85C16,76,8,59,9,44S18,16,32,10S67,6,80,14Z',
-  'M78,13C92,21,100,37,99,53S88,84,74,90S41,93,28,84S9,61,10,46S20,17,34,11S64,5,78,13Z',
-  'M81,15C94,23,102,39,101,55S90,86,76,92S41,94,28,85S8,62,9,47S19,18,33,11S68,7,81,15Z',
+  'M78,13C92,21,100,37,99,53S88,84,74,90S40,93,28,84S9,61,10,46S20,17,34,11S64,5,78,13Z',
+  'M81,15C94,23,102,39,101,55S90,86,76,92S40,94,28,85S8,62,9,47S19,18,33,11S68,7,81,15Z',
 ]
 
 /* blob icons */
@@ -437,24 +437,7 @@ function ServicesGrid() {
           </div>
         )}
 
-        {/* Bottom CTA strip */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 p-7"
-          style={{ background: WHITE, border: `1px solid #EDEAE5`, borderRadius: 6, opacity: inView ? 1 : 0, transition: 'opacity .7s ease .4s' }}>
-          <div>
-            <p style={{ fontFamily: "Georgia,serif", fontSize: '1.1rem', color: CHAR, marginBottom: 4 }}>Don't see what you're looking for?</p>
-            <p style={{ fontFamily: 'sans-serif', fontSize: 12.5, color: STONE }}>We specialise in bespoke arrangements — speak to our consultants for tailored solutions.</p>
-          </div>
-          <div className="flex gap-3 flex-shrink-0">
-            <a href="tel:+4420300499780" className="inline-flex items-center gap-2"
-              style={{ background: CREAM2, color: STONE, border: `1px solid #E8E5E1`, padding: '11px 22px', borderRadius: 3, fontFamily: 'sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none' }}>
-              <Phone size={12} /> Call Us
-            </a>
-            <a href="#inquiry" className="inline-flex items-center gap-2"
-              style={{ background: `linear-gradient(135deg,${RED},${RED2})`, color: WHITE, padding: '11px 22px', borderRadius: 3, fontFamily: 'sans-serif', fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', textDecoration: 'none', boxShadow: `0 6px 20px ${RED}44` }}>
-              Make Enquiry <MoveRight size={12} />
-            </a>
-          </div>
-        </div>
+      
       </div>
     </section>
   )
