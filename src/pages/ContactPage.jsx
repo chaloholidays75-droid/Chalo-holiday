@@ -23,6 +23,60 @@ import ParisFlag from '../assets/icons/france.png'
 import QatarFlag from '../assets/icons/qatar.png'
 import LocationPinIcon from '../assets/icons/location-pin.png'
 
+/* ═══════════════════════════════════════════════════════════
+   LUXURY TYPOGRAPHY SYSTEM
+   (identical to AboutPage - single source of truth)
+   ─────────────────────────────────────────────────────────
+   DISPLAY  : Cormorant Garamond - ultra-refined serif, hero titles & quotes
+   HEADING  : Playfair Display   - classic editorial serif, section h2 / h3
+   BODY     : Jost               - geometric, airy, modern - all paragraphs
+   LABEL    : Montserrat         - crisp uppercase micro-labels / badges
+══════════════════════════════════════════════════════════════ */
+
+/* ── inject fonts once ── */
+if (typeof document !== 'undefined' && !document.getElementById('luxury-fonts')) {
+  const l = document.createElement('link')
+  l.id   = 'luxury-fonts'
+  l.rel  = 'stylesheet'
+  l.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Jost:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap'
+  document.head.appendChild(l)
+}
+
+/* ── inject CSS vars once ── */
+if (typeof document !== 'undefined' && !document.getElementById('luxury-vars')) {
+  const s = document.createElement('style')
+  s.id = 'luxury-vars'
+  s.textContent = `
+    :root {
+      --f-display : 'Cormorant Garamond', 'Georgia', serif;
+      --f-heading : 'Playfair Display', 'Georgia', serif;
+      --f-body    : 'Jost', 'Helvetica Neue', sans-serif;
+      --f-label   : 'Montserrat', sans-serif;
+
+      --t-display : clamp(3rem, 9vw, 7.2rem);
+      --t-h1      : clamp(2.4rem, 5.5vw, 4.2rem);
+      --t-h2      : clamp(1.55rem, 2.8vw, 2.2rem);
+      --t-h3      : clamp(1.05rem, 1.8vw, 1.25rem);
+      --t-body-lg : 1.0625rem;
+      --t-body    : 0.9375rem;
+      --t-body-sm : 0.8125rem;
+      --t-label   : 0.625rem;
+      --t-stat    : clamp(1.8rem, 3.5vw, 2.6rem);
+
+      --ls-display : -0.025em;
+      --ls-heading : -0.02em;
+      --ls-label   : 0.22em;
+      --ls-sublabel: 0.14em;
+
+      --lh-display : 0.9;
+      --lh-heading : 1.05;
+      --lh-body    : 1.85;
+      --lh-body-tight: 1.55;
+    }
+  `
+  document.head.appendChild(s)
+}
+
 // ─────────────────────────────────────────────────────────────
 //  EMAILJS SETUP
 // ─────────────────────────────────────────────────────────────
@@ -32,7 +86,9 @@ const EMAILJS_CLIENT_TEMPLATE = 'template_f9dgp2r'
 const EMAILJS_PUBLIC_KEY      = 'azlkQhLwb1WTqQ3QZ'
 const PhoneInput = PhoneInputLib.default ?? PhoneInputLib
 
-/* ─── Design Tokens ─── */
+/* ═══════════════════════════════════════════════════════════
+   BRAND PALETTE
+══════════════════════════════════════════════════════════════ */
 const RED    = '#D91B1B'
 const RED2   = '#B01515'
 const AMBER  = '#F5A800'
@@ -44,13 +100,24 @@ const CREAM2 = '#F5F0E6'
 const WHITE  = '#FFFFFF'
 const SLATE  = '#4A4A4A'
 const STONE  = GRAY
-const BG     = CREAM2
 const BORDER = '#E8DFD0'
-const TEXT1  = CHAR
-const TEXT2  = GRAY
 const GOLD_L = '#F5E6C8'
 
-/* ─── Load EmailJS SDK once ─── */
+/* ── Shared type style objects ── */
+const T = {
+  display : { fontFamily:'var(--f-display)', fontSize:'var(--t-display)',   letterSpacing:'var(--ls-display)', lineHeight:'var(--lh-display)', fontWeight:700 },
+  h1      : { fontFamily:'var(--f-heading)', fontSize:'var(--t-h1)',        letterSpacing:'var(--ls-heading)', lineHeight:'var(--lh-heading)', fontWeight:700 },
+  h2      : { fontFamily:'var(--f-heading)', fontSize:'var(--t-h2)',        letterSpacing:'var(--ls-heading)', lineHeight:'var(--lh-heading)', fontWeight:600 },
+  h3      : { fontFamily:'var(--f-heading)', fontSize:'var(--t-h3)',        letterSpacing:'-0.01em',           lineHeight:1.25,                fontWeight:600 },
+  bodyLg  : { fontFamily:'var(--f-body)',    fontSize:'var(--t-body-lg)',   lineHeight:'var(--lh-body)',       fontWeight:300 },
+  body    : { fontFamily:'var(--f-body)',    fontSize:'var(--t-body)',      lineHeight:'var(--lh-body)',       fontWeight:300 },
+  bodySm  : { fontFamily:'var(--f-body)',    fontSize:'var(--t-body-sm)',   lineHeight:'var(--lh-body-tight)', fontWeight:400 },
+  label   : { fontFamily:'var(--f-label)',   fontSize:'var(--t-label)',     letterSpacing:'var(--ls-label)',   textTransform:'uppercase', fontWeight:700 },
+  sublabel: { fontFamily:'var(--f-label)',   fontSize:'var(--t-label)',     letterSpacing:'var(--ls-sublabel)',textTransform:'uppercase', fontWeight:600 },
+  stat    : { fontFamily:'var(--f-display)', fontSize:'var(--t-stat)',      letterSpacing:'-0.03em',           lineHeight:1,               fontWeight:700 },
+}
+
+/* ── Load EmailJS SDK once ── */
 function loadEmailJS() {
   return new Promise((resolve, reject) => {
     if (window.emailjs) { resolve(window.emailjs); return }
@@ -66,7 +133,9 @@ function loadEmailJS() {
   })
 }
 
-/* ─── Hooks ─── */
+/* ═══════════════════════════════════════════════════════════
+   HOOKS
+══════════════════════════════════════════════════════════════ */
 function useInView(threshold = 0.10) {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)
@@ -81,21 +150,13 @@ function useInView(threshold = 0.10) {
   return [ref, inView]
 }
 
-/* ─── Shared Atoms ─── */
-function Rule({ color = AMBER, w = 28 }) {
+/* ═══════════════════════════════════════════════════════════
+   ATOMS
+══════════════════════════════════════════════════════════════ */
+function Rule({ color = AMBER, w = 32 }) {
   return <div style={{ width: w, height: 1.5, background: color, flexShrink: 0, borderRadius: 2 }} />
 }
-function SectionLabel({ color = AMBER, center = false, children }) {
-  return (
-    <div className={`flex items-center gap-3 mb-5 ${center ? 'justify-center' : ''}`}>
-      <Rule color={color} w={28} />
-      <span style={{ color, fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase' }}>
-        {children}
-      </span>
-      {center && <Rule color={color} w={28} />}
-    </div>
-  )
-}
+
 function StarRow({ count = 5, accent = AMBER, size = 12 }) {
   return (
     <div className="flex items-center gap-0.5">
@@ -103,6 +164,26 @@ function StarRow({ count = 5, accent = AMBER, size = 12 }) {
         <Star key={i} size={size} style={{ fill: accent, color: accent }} />
       ))}
     </div>
+  )
+}
+
+/* Consistent section label - matches AboutPage */
+function SectionLabel({ color = AMBER, center = false, children }) {
+  return (
+    <div className={`flex items-center gap-3 mb-5 ${center ? 'justify-center' : ''}`}>
+      <Rule color={color} w={26} />
+      <span style={{ ...T.label, color }}>{children}</span>
+      {center && <Rule color={color} w={26} />}
+    </div>
+  )
+}
+
+/* Consistent section heading - h1 scale Playfair Display */
+function SectionHeading({ children, light = false, style: extraStyle = {} }) {
+  return (
+    <h2 style={{ ...T.h1, color: light ? '#fff' : CHAR, ...extraStyle }}>
+      {children}
+    </h2>
   )
 }
 
@@ -134,10 +215,12 @@ function Toast({ show, type, message, onClose }) {
         {isSuccess ? <CheckCircle2 size={18} style={{ color: AMBER }} /> : <X size={16} style={{ color: RED }} />}
       </div>
       <div style={{ flex: 1 }}>
-        <p style={{ fontFamily: 'sans-serif', fontSize: 13, fontWeight: 700, color: CHAR, marginBottom: 4 }}>
+        {/* Toast title - h3 Playfair */}
+        <p style={{ ...T.h3, color: CHAR, marginBottom: 4, fontSize: '0.875rem' }}>
           {isSuccess ? '✈️ Enquiry Sent Successfully!' : '⚠️ Something went wrong'}
         </p>
-        <p style={{ fontFamily: 'sans-serif', fontSize: 12, color: STONE, lineHeight: 1.65 }}>{message}</p>
+        {/* Toast message - bodySm Jost */}
+        <p style={{ ...T.bodySm, color: STONE, lineHeight: 1.65 }}>{message}</p>
       </div>
       <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: STONE, padding: '2px 4px', flexShrink: 0, fontSize: 18, lineHeight: 1 }}>×</button>
       <style>{`@keyframes slideInToast{from{opacity:0;transform:translateX(70px)}to{opacity:1;transform:translateX(0)}}`}</style>
@@ -151,56 +234,59 @@ function Toast({ show, type, message, onClose }) {
 function ContactHero() {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => { setTimeout(() => setLoaded(true), 60) }, [])
+
   return (
-    <section
-      className="relative w-full overflow-hidden"
-      style={{ minHeight: 'clamp(480px,65vh,720px)', background: '#07070e', fontFamily: "Georgia,'Times New Roman',serif" }}
-    >
-      <div
-        className="absolute inset-0 bg-cover bg-center"
+    <section className="relative w-full overflow-hidden"
+      style={{ minHeight: 'clamp(560px,82vh,900px)', background: '#07070e' }}>
+
+      <div className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${ContactImg})`,
-          transform: loaded ? 'scale(1.02)' : 'scale(1.09)',
+          transform: loaded ? 'scale(1.02)' : 'scale(1.10)',
           transition: 'transform 1.6s cubic-bezier(.4,0,.2,1)',
-        }}
-      />
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(105deg,rgba(4,4,10,.97) 0%,rgba(4,4,10,.80) 42%,rgba(4,4,10,.28) 70%,rgba(4,4,10,.05) 100%)' }} />
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg,rgba(4,4,10,.98) 0%,rgba(4,4,10,.36) 18%,transparent 46%)' }} />
-      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(4,4,10,.55) 0%,transparent 24%)' }} />
+        }} />
+
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(108deg,rgba(4,4,10,.98) 0%,rgba(4,4,10,.84) 40%,rgba(4,4,10,.30) 66%,rgba(4,4,10,.06) 100%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg,rgba(4,4,10,.95) 0%,rgba(4,4,10,.40) 22%,transparent 52%)' }} />
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg,rgba(4,4,10,.52) 0%,transparent 25%)' }} />
+
+      {/* Brand amber left accent line */}
       <div className="absolute left-0 top-0 bottom-0 w-[3px]"
         style={{ background: `linear-gradient(180deg,transparent,${AMBER} 35%,${AMBER2} 65%,transparent)` }} />
-      <div
-        className="relative z-10 max-w-[1440px] mx-auto flex flex-col justify-center"
-        style={{ minHeight: 'clamp(480px,65vh,720px)', padding: 'clamp(5rem,10vh,7rem) clamp(1.5rem,5vw,4rem) clamp(4rem,7vh,5rem)' }}
-      >
-        <div style={{
-          opacity: loaded ? 1 : 0,
-          transform: loaded ? 'translateY(0)' : 'translateY(22px)',
-          transition: 'opacity .9s ease .08s, transform .9s ease .08s',
-        }}>
-          <div className="flex items-center gap-3 mb-7" style={{ fontFamily: 'sans-serif' }}>
-            <Rule color={AMBER} w={28} />
-            <span style={{ color: AMBER, fontSize: 10, fontWeight: 700, letterSpacing: '.24em', textTransform: 'uppercase' }}>Get in Touch</span>
-            <span
-              className="hidden sm:inline-flex items-center px-2.5 py-0.5"
-              style={{ color: AMBER2, border: `1px solid ${AMBER}45`, background: 'rgba(245,168,0,0.12)', fontSize: 9, fontWeight: 700, letterSpacing: '.15em', textTransform: 'uppercase', fontFamily: 'sans-serif', borderRadius: 2 }}
-            >
+
+      {/* Dot grid */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: `radial-gradient(rgba(245,168,0,.06) 1px,transparent 1px)`, backgroundSize: '36px 36px' }} />
+
+      <div className="relative z-10 max-w-[1440px] mx-auto flex flex-col justify-center"
+        style={{ minHeight: 'clamp(560px,82vh,900px)', padding: 'clamp(5rem,11vh,8rem) clamp(1.5rem,5vw,4rem) clamp(3rem,7vh,5rem)' }}>
+
+        <div style={{ opacity: loaded ? 1 : 0, transform: loaded ? 'translateY(0)' : 'translateY(22px)', transition: 'opacity .85s ease .1s, transform .85s ease .1s' }}>
+
+          <div className="flex items-center gap-3 mb-7">
+            <Rule color={AMBER} w={26} />
+            <span style={{ ...T.label, color: AMBER }}>Get in Touch</span>
+            <span className="hidden sm:inline-flex items-center px-2.5 py-0.5"
+              style={{ ...T.label, color: AMBER2, border: `1px solid ${AMBER}45`, background: 'rgba(245,168,0,0.12)', borderRadius: 2 }}>
               IATA Accredited
             </span>
           </div>
-          <h1 className="text-white leading-[.92] mb-6"
-            style={{ fontSize: 'clamp(3rem,8.5vw,6.8rem)', fontWeight: 400, letterSpacing: '-0.025em' }}>
-            Let's plan your<br /><em style={{ fontStyle: 'italic', color: AMBER }}>perfect journey.</em>
+
+          {/* Hero display title - Cormorant Garamond */}
+          <h1 style={{ ...T.display, color: '#fff', marginBottom: 24 }}>
+            Let's plan your<br />
+            <em style={{ fontStyle: 'italic', color: AMBER }}>perfect journey.</em>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,.50)', fontSize: 'clamp(.88rem,1.4vw,1.05rem)', lineHeight: 1.85, maxWidth: '50ch', fontFamily: 'sans-serif', fontWeight: 300, marginBottom: '2.5rem' }}>
-            Whether you're dreaming of a honeymoon in the Maldives, a family adventure in Europe, or a corporate retreat — our London-based experts are ready to craft your perfect itinerary.
+
+          {/* Hero subline - bodyLg Jost */}
+          <p style={{ ...T.bodyLg, color: 'rgba(255,255,255,.60)', maxWidth: '52ch', marginBottom: '2.5rem' }}>
+            Whether you're dreaming of a honeymoon in the Maldives, a family adventure in Europe, or a corporate retreat - our London-based experts are ready to craft your perfect itinerary.
           </p>
-          <div className="flex flex-wrap gap-3" style={{ fontFamily: 'sans-serif' }}>
-            <a
-              href="#contact-form"
-              className="inline-flex items-center gap-3 font-semibold text-sm tracking-widest uppercase transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
-              style={{ background: `linear-gradient(135deg,${RED},${RED2})`, color: WHITE, padding: '13px 28px', borderRadius: 2, boxShadow: `0 8px 28px ${RED}50`, textDecoration: 'none' }}
-            >
+
+          <div className="flex flex-wrap gap-3">
+            <a href="#contact-form"
+              className="inline-flex items-center gap-3 transition-all duration-300 hover:brightness-110 hover:scale-[1.02]"
+              style={{ ...T.label, background: `linear-gradient(135deg,${RED},${RED2})`, color: WHITE, padding: '13px 28px', borderRadius: 3, boxShadow: `0 8px 28px ${RED}50`, textDecoration: 'none' }}>
               Send an Enquiry <ArrowRight size={14} />
             </a>
           </div>
@@ -217,15 +303,14 @@ function InputField({ label, type = 'text', placeholder, value, onChange, requir
   const [focus, setFocus] = useState(false)
   return (
     <div>
-      <label style={{ display: 'block', fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.18em', color: STONE, marginBottom: 8 }}>
+      {/* Field label - label Montserrat */}
+      <label style={{ ...T.label, display: 'block', color: STONE, marginBottom: 8 }}>
         {label}{required && <span style={{ color: RED, marginLeft: 3 }}>*</span>}
       </label>
       <div className="relative">
         {Icon && (
-          <Icon
-            size={14}
-            style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: focus ? AMBER : '#CBD5E1', transition: 'color 250ms', pointerEvents: 'none' }}
-          />
+          <Icon size={14}
+            style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: focus ? AMBER : '#CBD5E1', transition: 'color 250ms', pointerEvents: 'none' }} />
         )}
         <input
           type={type} name={name} placeholder={placeholder} value={value} onChange={onChange}
@@ -233,7 +318,8 @@ function InputField({ label, type = 'text', placeholder, value, onChange, requir
           style={{
             width: '100%',
             padding: Icon ? '12px 16px 12px 40px' : '12px 16px',
-            fontFamily: 'sans-serif', fontSize: 14, color: CHAR,
+            /* Input text - body Jost */
+            fontFamily: 'var(--f-body)', fontSize: 'var(--t-body)', color: CHAR,
             background: CREAM,
             border: `1px solid ${focus ? AMBER : '#E2DED8'}`,
             borderRadius: 3, outline: 'none',
@@ -250,7 +336,8 @@ function TextareaField({ label, value, onChange, placeholder, rows = 4, name }) 
   const [focus, setFocus] = useState(false)
   return (
     <div>
-      <label style={{ display: 'block', fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.18em', color: STONE, marginBottom: 8 }}>
+      {/* Textarea label - label Montserrat */}
+      <label style={{ ...T.label, display: 'block', color: STONE, marginBottom: 8 }}>
         {label}
       </label>
       <textarea
@@ -258,7 +345,8 @@ function TextareaField({ label, value, onChange, placeholder, rows = 4, name }) 
         onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
         style={{
           width: '100%', padding: '12px 16px',
-          fontFamily: 'sans-serif', fontSize: 14, color: CHAR,
+          /* Textarea text - body Jost */
+          fontFamily: 'var(--f-body)', fontSize: 'var(--t-body)', color: CHAR,
           background: CREAM,
           border: `1px solid ${focus ? AMBER : '#E2DED8'}`,
           borderRadius: 3, outline: 'none', resize: 'vertical',
@@ -279,12 +367,11 @@ function ContactForm() {
   const [loading, setLoading] = useState(false)
   const [toast, setToast] = useState({ show: false, type: 'success', message: '' })
 
-  // phone stores the full number including dial code digits e.g. "919876543210"
   const [form, setForm] = useState({
     fullName: '',
     email: '',
-    phone: '',       // full number with country code digits
-    dialCode: '44',  // just the dial code portion
+    phone: '',
+    dialCode: '44',
     subject: '',
     message: '',
     consent: false,
@@ -301,35 +388,20 @@ function ContactForm() {
     if (!form.consent) { showToast('error', 'Please accept the consent checkbox to continue.'); return }
     if (!form.phone || form.phone.length < 7) { showToast('error', 'Please enter a valid phone number.'); return }
     setLoading(true)
-
     const submittedAt = new Date().toLocaleString('en-GB', { dateStyle: 'full', timeStyle: 'short' })
-
     try {
       const ejs = await loadEmailJS()
-
-      // EMAIL 1: Team notification
       await ejs.send(EMAILJS_SERVICE_ID, EMAILJS_TEAM_TEMPLATE, {
-        from_name:       form.fullName,
-        from_email:      form.email,
-        reply_to:        form.email,
-        phone:           `+${form.phone}`,
-        enquiry_subject: form.subject || 'General Enquiry',
-        message:         form.message || '(No message provided)',
-        submitted_at:    submittedAt,
+        from_name: form.fullName, from_email: form.email, reply_to: form.email,
+        phone: `+${form.phone}`, enquiry_subject: form.subject || 'General Enquiry',
+        message: form.message || '(No message provided)', submitted_at: submittedAt,
       })
-
-      // EMAIL 2: Client auto-reply
-      // IMPORTANT: In your EmailJS template_f9dgp2r, set the "To Email" field to {{to_email}}
       await ejs.send(EMAILJS_SERVICE_ID, EMAILJS_CLIENT_TEMPLATE, {
-        to_email:  form.email,
-        from_name: form.fullName,
-        reply_to:  'enquiries@chaloholidays.co.uk',
+        to_email: form.email, from_name: form.fullName, reply_to: 'enquiries@chaloholidays.co.uk',
       })
-
       setSubmitted(true)
       showToast('success', `Thank you ${form.fullName}! Your enquiry has been received. A confirmation has been sent to ${form.email}. We'll be in touch within 2 hours.`)
       setForm({ fullName: '', email: '', phone: '', dialCode: '44', subject: '', message: '', consent: false })
-
     } catch (err) {
       console.error('Form submission error:', err)
       showToast('error', 'Failed to send your enquiry. Please call us directly on +44 (0) 2030 049978.')
@@ -348,156 +420,106 @@ function ContactForm() {
           {/* ── LEFT: Form ── */}
           <div style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(-32px)', transition: 'opacity .8s ease, transform .8s ease' }}>
             <SectionLabel color={AMBER}>Plan Your Journey</SectionLabel>
-            <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(2rem,4.5vw,3.2rem)', fontWeight: 400, color: CHAR, letterSpacing: '-0.02em', lineHeight: 1.06, marginBottom: '1rem' }}>
-              Tell us about your<br /><em style={{ color: AMBER }}>dream trip.</em>
-            </h2>
-            <p style={{ fontFamily: 'sans-serif', fontSize: 14, color: STONE, lineHeight: 1.8, marginBottom: '2.5rem', maxWidth: '46ch' }}>
-              Fill in your details and our London travel experts will create a personalised holiday plan for you — completely free and with no obligation.
+
+            {/* Section heading - h1 Playfair */}
+            <SectionHeading style={{ marginBottom: '1rem' }}>
+              Tell us about your<br />
+              <em style={{ fontFamily:'var(--f-display)', color: AMBER, fontStyle: 'italic', fontWeight: 500 }}>dream trip.</em>
+            </SectionHeading>
+
+            {/* Lead paragraph - bodyLg Jost */}
+            <p style={{ ...T.bodyLg, color: STONE, marginBottom: '2.5rem', maxWidth: '46ch' }}>
+              Fill in your details and our London travel experts will create a personalised holiday plan for you - completely free and with no obligation.
             </p>
 
             {submitted ? (
-              <div
-                className="flex flex-col items-center text-center py-16 px-8"
-                style={{ border: `1px solid ${AMBER}44`, borderRadius: 4, background: CREAM }}
-              >
+              <div className="flex flex-col items-center text-center py-16 px-8"
+                style={{ border: `1px solid ${AMBER}44`, borderRadius: 4, background: CREAM }}>
                 <div className="w-16 h-16 flex items-center justify-center rounded-full mb-5"
                   style={{ background: `${AMBER}18`, border: `2px solid ${AMBER}50` }}>
                   <CheckCircle2 size={30} style={{ color: AMBER }} />
                 </div>
-                <h3 style={{ fontFamily: "Georgia,serif", fontSize: '1.6rem', fontWeight: 400, color: CHAR, marginBottom: 12 }}>Enquiry Received!</h3>
-                <p style={{ fontFamily: 'sans-serif', fontSize: 14, color: STONE, lineHeight: 1.8, maxWidth: '40ch' }}>
+                {/* Success heading - h2 Playfair */}
+                <h3 style={{ ...T.h2, color: CHAR, marginBottom: 12 }}>Enquiry Received!</h3>
+                {/* Success message - body Jost */}
+                <p style={{ ...T.body, color: STONE, maxWidth: '40ch' }}>
                   Thank you for reaching out. A confirmation email has been sent to your inbox, and a member of our London team will be in touch within 2 hours.
                 </p>
                 <div className="flex items-center gap-2 mt-6">
                   <StarRow count={5} accent={AMBER} size={13} />
-                  <span style={{ fontFamily: 'sans-serif', fontSize: 12, color: STONE }}>You're in good hands.</span>
+                  <span style={{ ...T.bodySm, color: STONE }}>You're in good hands.</span>
                 </div>
-                <button
-                  onClick={() => setSubmitted(false)}
-                  style={{ marginTop: 20, fontFamily: 'sans-serif', fontSize: 12, color: RED, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
-                >
+                <button onClick={() => setSubmitted(false)}
+                  style={{ ...T.label, marginTop: 20, color: RED, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}>
                   Submit another enquiry
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-
-                  {/* Row 1: Full Name + Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <InputField
-                      label="Full Name" name="fullName" placeholder="Your full name"
-                      value={form.fullName} onChange={set('fullName')} required icon={Users}
-                    />
+                    <InputField label="Full Name" name="fullName" placeholder="Your full name"
+                      value={form.fullName} onChange={set('fullName')} required icon={Users} />
 
-                    {/* ── Phone with country dial-code picker ── */}
                     <div>
-                      <label style={{
-                        display: 'block', fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700,
-                        textTransform: 'uppercase', letterSpacing: '.18em', color: STONE, marginBottom: 8,
-                      }}>
+                      {/* Phone label - label Montserrat */}
+                      <label style={{ ...T.label, display: 'block', color: STONE, marginBottom: 8 }}>
                         Phone / WhatsApp<span style={{ color: RED, marginLeft: 3 }}>*</span>
                       </label>
                       <PhoneInput
-                        country="gb"
-                        value={form.phone}
-                        onChange={(phone, data) =>
-                          setForm(p => ({ ...p, phone, dialCode: data.dialCode }))
-                        }
+                        country="gb" value={form.phone}
+                        onChange={(phone, data) => setForm(p => ({ ...p, phone, dialCode: data.dialCode }))}
                         inputProps={{ name: 'phone', required: true }}
-                        enableSearch
-                        searchPlaceholder="Search country…"
-                        specialLabel=""
+                        enableSearch searchPlaceholder="Search country…" specialLabel=""
                         containerStyle={{ width: '100%' }}
-                        inputStyle={{
-                          width: '100%',
-                          height: '44px',
-                          fontFamily: 'sans-serif',
-                          fontSize: '14px',
-                          color: CHAR,
-                          background: CREAM,
-                          border: `1px solid #E2DED8`,
-                          borderRadius: '3px',
-                          paddingLeft: '52px',
-                        }}
-                        buttonStyle={{
-                          background: CREAM2,
-                          border: `1px solid #E2DED8`,
-                          borderRight: `1px solid #E2DED8`,
-                          borderRadius: '3px 0 0 3px',
-                        }}
-                        dropdownStyle={{
-                          fontFamily: 'sans-serif',
-                          fontSize: '13px',
-                          borderRadius: '4px',
-                          border: `1px solid ${BORDER}`,
-                          boxShadow: '0 8px 24px rgba(0,0,0,0.10)',
-                          background: CREAM,
-                        }}
-                        searchStyle={{
-                          fontFamily: 'sans-serif',
-                          fontSize: '13px',
-                          border: `1px solid #E2DED8`,
-                          borderRadius: '3px',
-                          padding: '6px 10px',
-                          width: '90%',
-                          background: CREAM,
-                          color: CHAR,
-                        }}
+                        inputStyle={{ width: '100%', height: '44px', fontFamily: 'var(--f-body)', fontSize: 'var(--t-body)', color: CHAR, background: CREAM, border: `1px solid #E2DED8`, borderRadius: '3px', paddingLeft: '52px' }}
+                        buttonStyle={{ background: CREAM2, border: `1px solid #E2DED8`, borderRight: `1px solid #E2DED8`, borderRadius: '3px 0 0 3px' }}
+                        dropdownStyle={{ fontFamily: 'var(--f-body)', fontSize: 'var(--t-body-sm)', borderRadius: '4px', border: `1px solid ${BORDER}`, boxShadow: '0 8px 24px rgba(0,0,0,0.10)', background: CREAM }}
+                        searchStyle={{ fontFamily: 'var(--f-body)', fontSize: 'var(--t-body-sm)', border: `1px solid #E2DED8`, borderRadius: '3px', padding: '6px 10px', width: '90%', background: CREAM, color: CHAR }}
                       />
                     </div>
                   </div>
 
-                  {/* Row 2: Email + Subject */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                    <InputField
-                      label="Email Address" name="email" type="email" placeholder="you@example.com"
-                      value={form.email} onChange={set('email')} required icon={Mail}
-                    />
-                    <InputField
-                      label="Subject" name="subject" placeholder="e.g. Honeymoon Package"
-                      value={form.subject} onChange={set('subject')} required
-                    />
+                    <InputField label="Email Address" name="email" type="email" placeholder="you@example.com"
+                      value={form.email} onChange={set('email')} required icon={Mail} />
+                    <InputField label="Subject" name="subject" placeholder="e.g. Honeymoon Package"
+                      value={form.subject} onChange={set('subject')} required />
                   </div>
 
                   <div style={{ height: 1, background: '#F0EDE8', margin: '1.5rem 0' }} />
 
-                  <TextareaField
-                    label="Message" name="message" value={form.message} onChange={set('message')} rows={5}
-                    placeholder="Share any special occasions, preferences, dietary needs, or anything that will help us craft the perfect itinerary…"
-                  />
+                  <TextareaField label="Message" name="message" value={form.message} onChange={set('message')} rows={5}
+                    placeholder="Share any special occasions, preferences, dietary needs, or anything that will help us craft the perfect itinerary…" />
                 </div>
 
-                {/* Consent */}
+                {/* Consent - bodySm Jost */}
                 <div className="flex items-start gap-3 mb-7 mt-4">
-                  <input
-                    type="checkbox" id="consent" checked={form.consent} onChange={set('consent')}
-                    style={{ marginTop: 3, accentColor: AMBER, width: 16, height: 16, cursor: 'pointer' }}
-                  />
-                  <label htmlFor="consent" style={{ fontFamily: 'sans-serif', fontSize: 12, color: STONE, lineHeight: 1.7, cursor: 'pointer' }}>
+                  <input type="checkbox" id="consent" checked={form.consent} onChange={set('consent')}
+                    style={{ marginTop: 3, accentColor: AMBER, width: 16, height: 16, cursor: 'pointer' }} />
+                  <label htmlFor="consent" style={{ ...T.bodySm, color: STONE, cursor: 'pointer' }}>
                     I agree to be contacted by a Chalo Holidays consultant regarding my travel enquiry. Your details are never shared with third parties. Registered under Company No. 07303708 (England &amp; Wales).
                   </label>
                 </div>
 
-                {/* Submit button */}
-                <button
-                  type="submit" disabled={loading}
-                  className="w-full flex items-center justify-center gap-3 font-bold text-sm tracking-widest uppercase"
+                {/* Submit button - label Montserrat */}
+                <button type="submit" disabled={loading}
+                  className="w-full flex items-center justify-center gap-3"
                   style={{
+                    ...T.label,
                     background: loading ? '#C9B99A' : `linear-gradient(135deg,${RED},${RED2})`,
                     color: WHITE, padding: '16px 32px', borderRadius: 3, border: 'none',
-                    cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'sans-serif',
+                    cursor: loading ? 'not-allowed' : 'pointer',
                     boxShadow: loading ? 'none' : `0 8px 32px ${RED}44`,
                     transition: 'all 0.3s',
-                  }}
-                >
+                  }}>
                   {loading ? (
                     <>
                       <div style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,.4)', borderTopColor: WHITE, borderRadius: '50%', animation: 'spin .7s linear infinite' }} />
                       Sending your enquiry…
                     </>
                   ) : (
-                    <><Send size={15} /> Submit Enquiry </>
+                    <><Send size={15} /> Submit Enquiry</>
                   )}
                 </button>
               </form>
@@ -505,17 +527,17 @@ function ContactForm() {
           </div>
 
           {/* ── RIGHT: Info Panel ── */}
-          <div
-            className="flex flex-col gap-5"
-            style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(32px)', transition: 'opacity .8s ease .12s, transform .8s ease .12s' }}
-          >
+          <div className="flex flex-col gap-5"
+            style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateX(0)' : 'translateX(32px)', transition: 'opacity .8s ease .12s, transform .8s ease .12s' }}>
+
             {/* Why Choose Us */}
             <div className="p-6" style={{ background: CREAM, borderRadius: 4, border: `1px solid ${BORDER}` }}>
-              <p style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.18em', color: STONE, marginBottom: 14 }}>Why Choose Us</p>
+              {/* Panel title - label Montserrat */}
+              <p style={{ ...T.label, color: STONE, marginBottom: 14 }}>Why Choose Us</p>
               {[
-                { icon: Zap,            text: 'IATA / TIDS Accredited Agency — No. 96-016351.' },
+                { icon: Zap,            text: 'IATA / TIDS Accredited Agency - No. 96-016351.' },
                 { icon: HeartHandshake, text: 'Dedicated consultant from first call to safe return.' },
-                { icon: ShieldCheck,    text: '100% transparent pricing — no hidden fees, ever.' },
+                { icon: ShieldCheck,    text: '100% transparent pricing - no hidden fees, ever.' },
                 { icon: Globe,          text: '200+ destinations · 500+ vetted global partners.' },
               ].map(({ icon: I, text }, i) => (
                 <div key={i} className="flex items-start gap-3 mb-3 last:mb-0">
@@ -523,33 +545,18 @@ function ContactForm() {
                     style={{ background: `${AMBER}12`, border: `1px solid ${AMBER}24` }}>
                     <I size={12} style={{ color: AMBER }} />
                   </div>
-                  <p style={{ fontFamily: 'sans-serif', fontSize: 13, color: SLATE, lineHeight: 1.65 }}>{text}</p>
+                  {/* Panel item text - body Jost */}
+                  <p style={{ ...T.body, color: SLATE }}>{text}</p>
                 </div>
               ))}
             </div>
 
-            {/* Office Hours */}
-            <div className="p-6" style={{ background: CREAM, borderRadius: 4, border: `1px solid ${BORDER}` }}>
-              <div className="flex items-center gap-2 mb-4">
-                <Clock size={13} style={{ color: AMBER }} />
-                <span style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.18em', color: STONE }}>Office Hours (GMT)</span>
-              </div>
-              {[
-                { day: 'Monday – Friday', time: '9:00 AM – 6:00 PM' },
-                { day: 'Saturday',        time: '10:00 AM – 4:00 PM' },
-                { day: 'Emergency',       time: '24/7 · +44 7575 104081' },
-              ].map((h, i) => (
-                <div key={i} className="flex items-center justify-between py-2.5"
-                  style={{ borderBottom: i < 2 ? `1px solid ${BORDER}` : 'none' }}>
-                  <span style={{ fontFamily: 'sans-serif', fontSize: 13, color: STONE }}>{h.day}</span>
-                  <span style={{ fontFamily: 'sans-serif', fontSize: 13, fontWeight: 600, color: CHAR }}>{h.time}</span>
-                </div>
-              ))}
-            </div>
+         
 
             {/* Social */}
             <div className="p-6" style={{ background: CREAM, borderRadius: 4, border: `1px solid ${BORDER}` }}>
-              <p style={{ fontFamily: 'sans-serif', fontSize: 10, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '.18em', color: STONE, marginBottom: 14 }}>Follow Our Journeys</p>
+              {/* Panel title - label Montserrat */}
+              <p style={{ ...T.label, color: STONE, marginBottom: 14 }}>Follow Our Journeys</p>
               <div className="flex items-center gap-2 flex-wrap">
                 {[
                   { icon: faInstagram, label: '@chaloholiday', href: '#', accent: '#E1306C' },
@@ -560,52 +567,42 @@ function ContactForm() {
                 ].map(({ icon: I, label, href, accent }, i) => {
                   const [hov, setHov] = useState(false)
                   return (
-                    <a
-                      key={i} href={href}
+                    <a key={i} href={href}
                       className="flex items-center gap-2 px-3 py-2 transition-all duration-250"
                       style={{ border: `1px solid ${hov ? accent + '55' : BORDER}`, borderRadius: 3, background: hov ? `${accent}10` : 'transparent', textDecoration: 'none' }}
-                      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-                    >
+                      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
                       <FontAwesomeIcon icon={I} style={{ fontSize: 14, color: hov ? accent : STONE, transition: 'color 250ms' }} />
-                      <span style={{ fontFamily: 'sans-serif', fontSize: 12, color: hov ? accent : STONE, transition: 'color 250ms' }}>{label}</span>
+                      {/* Social label - bodySm Jost */}
+                      <span style={{ ...T.bodySm, color: hov ? accent : STONE, transition: 'color 250ms' }}>{label}</span>
                     </a>
                   )
                 })}
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
 
-      {/* Global styles */}
       <style>{`
         @keyframes spin { to { transform: rotate(360deg) } }
-
-        /* PhoneInput focus ring matches amber design tokens */
         .react-tel-input .form-control:focus {
           border-color: ${AMBER} !important;
           box-shadow: 0 0 0 3px ${AMBER}28 !important;
           outline: none !important;
         }
-        /* Flag button hover */
         .react-tel-input .flag-dropdown:hover,
         .react-tel-input .flag-dropdown.open {
           background: ${GOLD_L} !important;
           border-color: ${AMBER} !important;
         }
-        /* Dropdown country hover / highlight */
         .react-tel-input .country-list .country:hover,
         .react-tel-input .country-list .country.highlight {
           background: ${AMBER}18 !important;
         }
-        /* Search input inside dropdown */
         .react-tel-input .search-box:focus {
           border-color: ${AMBER} !important;
           outline: none !important;
         }
-        /* Dial code text colour */
         .react-tel-input .selected-flag .arrow {
           border-top-color: ${STONE} !important;
         }
@@ -636,7 +633,7 @@ function LiveClock({ timezone }) {
     const id = setInterval(tick, 1000)
     return () => clearInterval(id)
   }, [timezone])
-  return <span style={{ fontFamily: 'monospace', fontSize: 13, fontWeight: 700, color: AMBER, letterSpacing: '.08em' }}>{time}</span>
+  return <span style={{ fontFamily: 'var(--f-label)', fontSize: '0.8rem', fontWeight: 700, color: AMBER, letterSpacing: '.08em' }}>{time}</span>
 }
 
 /* ─── Office data ─── */
@@ -679,8 +676,8 @@ function LeafletMap({ offices, activePin, setActivePin }) {
       offices.forEach((o, i) => {
         const marker = L.marker([o.lat, o.lng], { icon: makePinIcon() }).addTo(map)
         marker.bindPopup(
-          `<div style="font-family:sans-serif;min-width:175px;padding:2px 0;">
-            <p style="font-size:14px;font-weight:700;color:${CHAR};margin:0 0 2px;">${o.city}</p>
+          `<div style="font-family:var(--f-body,sans-serif);min-width:175px;padding:2px 0;">
+            <p style="font-family:var(--f-heading,Georgia,serif);font-size:14px;font-weight:600;color:${CHAR};margin:0 0 2px;">${o.city}</p>
             <p style="font-size:9px;color:${GRAY};margin:0 0 8px;letter-spacing:.12em;text-transform:uppercase;">${o.country}</p>
             <p style="font-size:11.5px;color:#475569;margin:0 0 6px;line-height:1.65;">${o.address}</p>
             <p style="font-size:10px;color:${AMBER};margin:0;font-weight:600;">🕐 ${o.tzLabel}</p>
@@ -737,79 +734,88 @@ function MapSection() {
   const [activePin, setActivePin] = useState(null)
 
   return (
-    <section id="map" ref={ref} style={{ background: BG, padding: '5rem 0 4rem', position: 'relative', overflow: 'hidden' }}>
+    <section id="map" ref={ref} className="relative overflow-hidden"
+      style={{ background: CREAM2, padding: '5rem 0 4rem' }}>
       <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', backgroundImage: `radial-gradient(circle,${AMBER}18 1px,transparent 1px)`, backgroundSize: '32px 32px' }} />
-      <div
-        className="max-w-[1440px] mx-auto px-6 lg:px-16"
-        style={{ position: 'relative', zIndex: 1, opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity .8s ease, transform .8s ease' }}
-      >
+
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-16"
+        style={{ position: 'relative', zIndex: 1, opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity .8s ease, transform .8s ease' }}>
+
+        {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '2.8rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14, marginBottom: '1rem' }}>
-            <div style={{ height: 1, width: 40, background: `linear-gradient(90deg,transparent,${AMBER})` }} />
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: AMBER, fontFamily: 'sans-serif' }}>Our Offices</span>
-            <div style={{ height: 1, width: 40, background: `linear-gradient(90deg,${AMBER},transparent)` }} />
-          </div>
-          <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(1.9rem,4vw,3rem)', fontWeight: 400, color: TEXT1, lineHeight: 1.08 }}>
-            Find us around <em style={{ fontStyle: 'italic', color: AMBER }}>the world.</em>
-          </h2>
+          <SectionLabel color={AMBER} center>Our Offices</SectionLabel>
+          {/* Section heading - h1 Playfair */}
+          <SectionHeading style={{ textAlign: 'center' }}>
+            Find us around{' '}
+            <em style={{ fontFamily:'var(--f-display)', color: AMBER, fontStyle: 'italic', fontWeight: 500 }}>the world.</em>
+          </SectionHeading>
         </div>
 
+        {/* Map */}
         <div style={{ position: 'relative', borderRadius: 8, overflow: 'hidden', border: `1px solid ${BORDER}`, boxShadow: `0 4px 32px rgba(245,168,0,0.12)`, marginBottom: '2.5rem', background: '#EDE8DF' }}>
           <LeafletMap offices={OFFICES} activePin={activePin} setActivePin={setActivePin} />
           <div style={{ position: 'absolute', top: 14, right: 14, zIndex: 999, background: `rgba(250,250,245,0.97)`, border: `1px solid ${BORDER}`, borderRadius: 5, padding: '10px 16px', backdropFilter: 'blur(10px)', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 36, height: 36, borderRadius: '50%', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.15)', flexShrink: 0, background: WHITE, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ borderRadius: '50%', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.15)', flexShrink: 0, background: WHITE, display: 'flex', justifyContent: 'center', alignItems: 'center', width: 36, height: 36 }}>
               <img src={ChaloLogo} alt="Chalo Holidays Logo" style={{ width: 28, height: 28, objectFit: 'contain' }} />
             </div>
             <div>
-              <p style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 13, fontWeight: 400, color: TEXT1, margin: 0 }}>Chalo Holidays</p>
-              <p style={{ fontFamily: 'sans-serif', fontSize: 9, color: TEXT2, letterSpacing: '.14em', textTransform: 'uppercase', marginTop: 2, marginBottom: 0 }}>5 Global Offices</p>
+              {/* Map badge name - h3 Playfair */}
+              <p style={{ ...T.h3, color: CHAR, fontSize: '0.85rem', margin: 0 }}>Chalo Holidays</p>
+              {/* Map badge sub - sublabel Montserrat */}
+              <p style={{ ...T.sublabel, color: GRAY, marginTop: 2, marginBottom: 0 }}>5 Global Offices</p>
             </div>
           </div>
         </div>
 
+        {/* Office cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.5rem', maxWidth: '1320px', margin: '0 auto' }}>
           {OFFICES.map((office, i) => {
             const [hov, setHov] = useState(false)
             const { Flag } = office
             const isActive = activePin === i
             return (
-              <div
-                key={office.city}
+              <div key={office.city}
                 onClick={() => setActivePin(isActive ? null : i)}
                 onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-                style={{ background: WHITE, borderRadius: 6, border: `1px solid ${(hov || isActive) ? office.accentColor + '60' : BORDER}`, boxShadow: (hov || isActive) ? `0 8px 32px ${office.accentColor}20` : '0 2px 12px rgba(245,168,0,0.07)', padding: '1.8rem 1.6rem', position: 'relative', overflow: 'hidden', transition: 'all 0.3s cubic-bezier(.4,0,.2,1)', cursor: 'pointer' }}
-              >
+                style={{ background: WHITE, borderRadius: 6, border: `1px solid ${(hov || isActive) ? office.accentColor + '60' : BORDER}`, boxShadow: (hov || isActive) ? `0 8px 32px ${office.accentColor}20` : '0 2px 12px rgba(245,168,0,0.07)', padding: '1.8rem 1.6rem', position: 'relative', overflow: 'hidden', transition: 'all 0.3s cubic-bezier(.4,0,.2,1)', cursor: 'pointer' }}>
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: (hov || isActive) ? `linear-gradient(90deg,${office.accentColor},${office.accentColor}88)` : `linear-gradient(90deg,${GOLD_L},transparent)`, transition: 'background 0.3s' }} />
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: '1.1rem' }}>
                   <div style={{ borderRadius: 3, overflow: 'hidden', flexShrink: 0, border: `1px solid ${BORDER}`, boxShadow: '0 1px 4px rgba(0,0,0,0.08)' }}><Flag /></div>
                   <div>
-                    <p style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: '1.2rem', fontWeight: 400, color: TEXT1, letterSpacing: '-0.01em', lineHeight: 1 }}>{office.city}</p>
-                    <p style={{ fontFamily: 'sans-serif', fontSize: 9.5, color: TEXT2, letterSpacing: '.16em', textTransform: 'uppercase', marginTop: 4 }}>{office.country}</p>
+                    {/* City - h3 Playfair */}
+                    <p style={{ ...T.h3, color: CHAR, marginBottom: 0 }}>{office.city}</p>
+                    {/* Country - sublabel Montserrat */}
+                    <p style={{ ...T.sublabel, color: GRAY, marginTop: 4 }}>{office.country}</p>
                   </div>
                 </div>
                 <div style={{ height: 1, background: `linear-gradient(90deg,${BORDER},transparent)`, marginBottom: '1.1rem' }} />
                 <div style={{ marginBottom: '1rem' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 9, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', fontFamily: 'sans-serif', padding: '4px 10px', borderRadius: 2, background: office.isHQ ? `${RED}10` : `${AMBER}10`, border: `1px solid ${office.isHQ ? RED + '40' : AMBER + '40'}`, color: office.isHQ ? RED : AMBER }}>
+                  {/* Badge - label Montserrat */}
+                  <span style={{ ...T.label, display: 'inline-flex', alignItems: 'center', gap: 5, padding: '4px 10px', borderRadius: 2, background: office.isHQ ? `${RED}10` : `${AMBER}10`, border: `1px solid ${office.isHQ ? RED + '40' : AMBER + '40'}`, color: office.isHQ ? RED : AMBER }}>
                     <span style={{ width: 5, height: 5, borderRadius: '50%', background: office.isHQ ? RED : AMBER, display: 'inline-block' }} />
                     {office.badge}
                   </span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8, marginBottom: '0.9rem' }}>
                   <MapPin size={13} style={{ color: office.accentColor, flexShrink: 0, marginTop: 2 }} />
-                  <p style={{ fontFamily: 'sans-serif', fontSize: 12.5, color: TEXT2, lineHeight: 1.7 }}>{office.address}</p>
+                  {/* Address - bodySm Jost */}
+                  <p style={{ ...T.bodySm, color: GRAY }}>{office.address}</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: `${office.accentColor}09`, border: `1px solid ${office.accentColor}28`, borderRadius: 4, padding: '8px 12px', marginTop: 4 }}>
                   <Clock size={11} style={{ color: office.accentColor, flexShrink: 0 }} />
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontFamily: 'sans-serif', fontSize: 9, color: TEXT2, letterSpacing: '.12em', textTransform: 'uppercase', marginBottom: 2 }}>{office.tzLabel}</p>
+                    {/* Timezone label - sublabel Montserrat */}
+                    <p style={{ ...T.sublabel, color: GRAY, marginBottom: 2 }}>{office.tzLabel}</p>
                     <LiveClock timezone={office.timezone} />
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                     <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#22C55E', animation: 'pulse 2s infinite' }} />
-                    <span style={{ fontFamily: 'sans-serif', fontSize: 8, color: '#22C55E', fontWeight: 600, letterSpacing: '.08em' }}>LIVE</span>
+                    {/* Live indicator - label Montserrat */}
+                    <span style={{ ...T.label, fontSize: '0.5rem', color: '#22C55E' }}>LIVE</span>
                   </div>
                 </div>
-                <p style={{ fontFamily: 'sans-serif', fontSize: 10, color: office.accentColor, marginTop: 12, fontWeight: 600, letterSpacing: '.08em', opacity: hov || isActive ? 1 : 0, transition: 'opacity 0.2s' }}>
+                {/* Map hint - bodySm Jost */}
+                <p style={{ ...T.bodySm, color: office.accentColor, marginTop: 12, fontWeight: 500, opacity: hov || isActive ? 1 : 0, transition: 'opacity 0.2s' }}>
                   {isActive ? '✓ Showing on map' : 'Click to show on map →'}
                 </p>
               </div>
@@ -827,24 +833,23 @@ function MapSection() {
 ══════════════════════════════════════════════ */
 const FAQS = [
   { icon: <Clock size={13} style={{ color: AMBER }} />, q: 'How quickly will I hear back?', a: <>Our London team typically responds within <span style={{ color: AMBER2, fontWeight: 600 }}>2 hours</span> during business hours via email or phone. For urgent matters, use our 24/7 emergency line: <span style={{ color: AMBER2 }}>+44 7575 104081</span>.</> },
-  { icon: <span style={{ fontSize: 12, color: AMBER }}>£</span>, q: 'Is there a consultation fee?', a: <>Absolutely <span style={{ color: AMBER2, fontWeight: 600 }}>none</span>. Every consultation, itinerary draft, and expert call is completely free of charge — always. No obligation, no pressure.</> },
-  { icon: <Globe size={13} style={{ color: AMBER }} />, q: 'Can I customise a package I see online?', a: <>Yes — every package is a <span style={{ color: AMBER2, fontWeight: 600 }}>starting point</span>, not a fixed product. We personalise everything to your preferences, budget, travel dates and party size.</> },
+  { icon: <span style={{ fontSize: 12, color: AMBER }}>£</span>, q: 'Is there a consultation fee?', a: <>Absolutely <span style={{ color: AMBER2, fontWeight: 600 }}>none</span>. Every consultation, itinerary draft, and expert call is completely free of charge - always. No obligation, no pressure.</> },
+  { icon: <Globe size={13} style={{ color: AMBER }} />, q: 'Can I customise a package I see online?', a: <>Yes - every package is a <span style={{ color: AMBER2, fontWeight: 600 }}>starting point</span>, not a fixed product. We personalise everything to your preferences, budget, travel dates and party size.</> },
   { icon: <ShieldCheck size={13} style={{ color: AMBER }} />, q: 'Do you handle visa assistance?', a: <>Yes. Our team provides <span style={{ color: AMBER2, fontWeight: 600 }}>end-to-end visa guidance</span>, documentation checklists, and application support for all major destinations worldwide.</> },
-  { icon: <CheckCircle2 size={13} style={{ color: AMBER }} />, q: 'Are you IATA accredited?', a: <>Yes — Chalo Holidays holds full <span style={{ color: AMBER2, fontWeight: 600 }}>IATA/TIDS accreditation</span> (No. 96-016351) and is registered in England &amp; Wales under Company No. 07303708. VAT: GB 132842918.</> },
+  { icon: <CheckCircle2 size={13} style={{ color: AMBER }} />, q: 'Are you IATA accredited?', a: <>Yes - Chalo Holidays holds full <span style={{ color: AMBER2, fontWeight: 600 }}>IATA/TIDS accreditation</span> (No. 96-016351) and is registered in England &amp; Wales under Company No. 07303708. VAT: GB 132842918.</> },
 ]
 
 function FAQItem({ faq, isOpen, onToggle }) {
   return (
-    <div
-      onClick={onToggle}
-      style={{ background: isOpen ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.02)', border: `1px solid ${isOpen ? AMBER + '65' : AMBER + '25'}`, borderRadius: 6, overflow: 'hidden', transition: 'all 0.3s cubic-bezier(.4,0,.2,1)', cursor: 'pointer', marginBottom: 10 }}
-    >
+    <div onClick={onToggle}
+      style={{ background: isOpen ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.02)', border: `1px solid ${isOpen ? AMBER + '65' : AMBER + '25'}`, borderRadius: 6, overflow: 'hidden', transition: 'all 0.3s cubic-bezier(.4,0,.2,1)', cursor: 'pointer', marginBottom: 10 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.4rem 1.8rem', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
           <div style={{ width: 34, height: 34, borderRadius: '50%', flexShrink: 0, background: isOpen ? `${AMBER}22` : `${AMBER}10`, border: `1px solid ${isOpen ? AMBER + '55' : AMBER + '28'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s' }}>
             {faq.icon}
           </div>
-          <span style={{ fontFamily: "Georgia,serif", fontSize: '1rem', fontWeight: 500, color: isOpen ? WHITE : 'rgba(255,255,255,0.8)', lineHeight: 1.3, transition: 'color 0.25s' }}>{faq.q}</span>
+          {/* FAQ question - h3 Playfair */}
+          <span style={{ ...T.h3, color: isOpen ? WHITE : 'rgba(255,255,255,0.8)', transition: 'color 0.25s' }}>{faq.q}</span>
         </div>
         <div style={{ width: 30, height: 30, borderRadius: '50%', flexShrink: 0, background: isOpen ? `${AMBER}22` : `${AMBER}10`, border: `1px solid ${isOpen ? AMBER + '55' : AMBER + '28'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'all 0.3s' }}>
           <ChevronRight size={13} style={{ color: isOpen ? AMBER : `${AMBER}AA` }} />
@@ -853,7 +858,8 @@ function FAQItem({ faq, isOpen, onToggle }) {
       <div style={{ maxHeight: isOpen ? 200 : 0, overflow: 'hidden', transition: 'max-height 0.4s cubic-bezier(.4,0,.2,1)' }}>
         <div style={{ padding: '0 1.8rem 1.5rem', paddingLeft: 'calc(1.8rem + 14px + 34px)' }}>
           <div style={{ height: 1, background: `linear-gradient(90deg,${AMBER}44,transparent)`, marginBottom: '1rem' }} />
-          <p style={{ fontFamily: 'sans-serif', fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.85, margin: 0 }}>{faq.a}</p>
+          {/* FAQ answer - body Jost */}
+          <p style={{ ...T.body, color: 'rgba(255,255,255,0.55)' }}>{faq.a}</p>
         </div>
       </div>
     </div>
@@ -863,30 +869,31 @@ function FAQItem({ faq, isOpen, onToggle }) {
 function FAQSection() {
   const [ref, inView] = useInView(0.06)
   const [open, setOpen] = useState(0)
+
   return (
-    <section
-      ref={ref}
-      className="w-full py-20 sm:py-28 overflow-hidden relative"
-      style={{ background: `linear-gradient(135deg,#1a0f00 0%,#2a1e00 40%,#1a0f00 100%)` }}
-    >
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `radial-gradient(circle at 20% 50%,${AMBER}12 0%,transparent 60%),radial-gradient(circle at 80% 20%,${AMBER2}09 0%,transparent 50%)` }} />
-      <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: `repeating-linear-gradient(0deg,transparent,transparent 79px,${AMBER}07 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,${AMBER}07 80px)` }} />
-      <div className="absolute left-0 top-0 bottom-0 w-[3px]" style={{ background: `linear-gradient(180deg,transparent,${RED} 35%,${AMBER} 65%,transparent)` }} />
-      <div
-        className="relative max-w-[1440px] mx-auto px-6 lg:px-16"
-        style={{ zIndex: 1, opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity .8s ease, transform .8s ease' }}
-      >
+    <section ref={ref} className="w-full py-20 sm:py-28 overflow-hidden relative"
+      style={{ background: `linear-gradient(135deg,#1a0f00 0%,#2a1e00 40%,#1a0f00 100%)` }}>
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: `radial-gradient(circle at 20% 50%,${AMBER}12 0%,transparent 60%),radial-gradient(circle at 80% 20%,${AMBER2}09 0%,transparent 50%)` }} />
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: `repeating-linear-gradient(0deg,transparent,transparent 79px,${AMBER}07 80px),repeating-linear-gradient(90deg,transparent,transparent 79px,${AMBER}07 80px)` }} />
+      <div className="absolute left-0 top-0 bottom-0 w-[3px]"
+        style={{ background: `linear-gradient(180deg,transparent,${RED} 35%,${AMBER} 65%,transparent)` }} />
+
+      <div className="relative max-w-[1440px] mx-auto px-6 lg:px-16"
+        style={{ zIndex: 1, opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: 'opacity .8s ease, transform .8s ease' }}>
+
         <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, marginBottom: '1rem' }}>
-            <div style={{ height: 1, width: 60, background: `linear-gradient(90deg,transparent,${AMBER})` }} />
-            <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.28em', textTransform: 'uppercase', color: AMBER, fontFamily: 'sans-serif' }}>Frequently Asked</span>
-            <div style={{ height: 1, width: 60, background: `linear-gradient(90deg,${AMBER},transparent)` }} />
-          </div>
-          <h2 style={{ fontFamily: "Georgia,'Times New Roman',serif", fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 400, color: WHITE, letterSpacing: '-0.02em', lineHeight: 1.06, margin: '0 0 .8rem' }}>
-            Questions &amp; <em style={{ fontStyle: 'italic', color: AMBER2 }}>Answers</em>
-          </h2>
-          <p style={{ fontFamily: 'sans-serif', fontSize: 13, color: 'rgba(255,255,255,0.38)', letterSpacing: '.06em' }}>Everything you need to know before your journey begins</p>
+          <SectionLabel color={AMBER} center>Frequently Asked</SectionLabel>
+          {/* FAQ heading - h1 Playfair */}
+          <SectionHeading light style={{ textAlign: 'center', marginBottom: '0.8rem' }}>
+            Questions &amp;{' '}
+            <em style={{ fontFamily:'var(--f-display)', color: AMBER2, fontStyle: 'italic', fontWeight: 500 }}>Answers</em>
+          </SectionHeading>
+          {/* FAQ sub - body Jost */}
+          <p style={{ ...T.body, color: 'rgba(255,255,255,0.38)' }}>Everything you need to know before your journey begins</p>
         </div>
+
         <div style={{ maxWidth: 780, margin: '0 auto' }}>
           {FAQS.map((f, i) => (
             <FAQItem key={i} faq={f} isOpen={open === i} onToggle={() => setOpen(open === i ? -1 : i)} />
@@ -902,7 +909,7 @@ function FAQSection() {
 ══════════════════════════════════════════════ */
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'sans-serif' }}>
+    <div className="min-h-screen bg-white" style={{ fontFamily: 'var(--f-body)' }}>
       <Navbar />
       <ContactHero />
       <ContactForm />
